@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en,zh-CN,default">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|KaiTi:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|STXingkai:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/imgs/favicon_32_32.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/imgs/favicon_16_16.ico?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="mysql 安装记录windows 下 zip格式安装 windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装">
+<meta name="keywords" content="linux,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装配置mysql">
+<meta property="og:url" content="https://kong.afreto.tk/安装配置mysql/index.html">
+<meta property="og:site_name" content="Afreto&#39;s blog~">
+<meta property="og:description" content="mysql 安装记录windows 下 zip格式安装 windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd3c9e76a345.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd3c9e73bff8.png">
+<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd3c9e73ced6.png">
+<meta property="og:updated_time" content="2019-04-16T05:02:11.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装配置mysql">
+<meta name="twitter:description" content="mysql 安装记录windows 下 zip格式安装 windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装">
+<meta name="twitter:image" content="https://i.loli.net/2018/10/27/5bd3c9e76a345.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kong.afreto.tk/安装配置mysql/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>安装配置mysql | Afreto's blog~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Afreto's blog~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">Tags</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kong.afreto.tk/安装配置mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Afreto">
+      <meta itemprop="description" content="灯把黑夜 烫了个洞~">
+      <meta itemprop="image" content="/imgs/who.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Afreto's blog~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安装配置mysql
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-24 22:18:48" itemprop="dateCreated datePublished" datetime="2018-10-24T22:18:48+08:00">2018-10-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-16 13:02:11" itemprop="dateModified" datetime="2019-04-16T13:02:11+08:00">2019-04-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="mysql-安装记录"><a href="#mysql-安装记录" class="headerlink" title="mysql 安装记录"></a>mysql 安装记录</h2><h3 id="windows-下-zip格式安装"><a href="#windows-下-zip格式安装" class="headerlink" title="windows 下 zip格式安装"></a>windows 下 zip格式安装</h3><blockquote>
+<p><em>windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装</em></p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<ul>
+<li>下载 <a href="https://dev.mysql.com/downloads/mysql/5.6.html#downloads" target="_blank" rel="noopener">官链</a>  <a href="https://pan.baidu.com/s/1gR_T14njEZzYRno5vUL98Q" target="_blank" rel="noopener">某度云</a>  </li>
+</ul>
+</blockquote>
+<ul>
+<li><p>配置</p>
+<ul>
+<li><p>my.ini 配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[mysql]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集default-character-set=utf8</span></span><br><span class="line"><span class="string">[mysqld]</span></span><br><span class="line"><span class="comment">#设置3306端口</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="string">basedir=C:\Program</span> <span class="string">Files\mysql-5.6.39-winx64</span></span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="string">datadir=C:\Program</span> <span class="string">Files\mysql-5.6.39-winx64\data</span></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="string">max_connections=200#</span> <span class="string">服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"><span class="string">character-set-server=utf8</span></span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎default-storage-engine=INNODB</span></span><br><span class="line"><span class="string">skip-grant-tables</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置环境变量</p>
+<ul>
+<li>在系统变量PATH后面添加: 你的mysql bin文件夹的路径（如C:\Program Files\mysql-5.6.39-winx64\bin）</li>
+</ul>
+</li>
+<li><p>安装 MySQL 服务</p>
+<ul>
+<li>以管理员身份打开cmd窗口后，将目录切换到你解压文件的bin目录，输入<br><code>mysqld install</code></li>
+</ul>
+</li>
+<li><p>启动 MySQL 服务</p>
+<ul>
+<li>以管理员身份在cmd中输入</li>
+<li><code>net start mysql</code></li>
+<li>服务启动成功之后，就可以登录了，输入 <code>mysql -u root -p</code>（第一次登录没有密码，直接按回车过）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ubuntu18-04-安装"><a href="#ubuntu18-04-安装" class="headerlink" title="ubuntu18.04 安装"></a>ubuntu18.04 安装</h3><blockquote>
+<p>微软这波巨硬~   WSL 真的是太好用了  既有 linux 环境可以用 又不用折腾</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install mysql-server -y  </span><br><span class="line">service mysql start</span><br></pre></td></tr></table></figure>
+<h3 id="centos7-安装"><a href="#centos7-安装" class="headerlink" title="centos7 安装"></a>centos7 安装</h3><ul>
+<li><p>下载 <a href="http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm" target="_blank" rel="noopener">mysql.noarch.rpm</a></p>
+<blockquote>
+<p>或者 <code>wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</code></p>
+</blockquote>
+</li>
+<li><p>安装</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">yum install mysql-community-server</span><br><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加防火墙端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL-常用命令三连"><a href="#MySQL-常用命令三连" class="headerlink" title="MySQL 常用命令三连"></a>MySQL 常用命令三连</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create user bird identified by &apos;birdpwd&apos;;</span><br><span class="line">grant all privileges on birdDb.* to bird@&apos;%&apos; identified by &apos;birdpwd&apos;;</span><br><span class="line">flush  privileges;</span><br></pre></td></tr></table></figure>
+<h3 id="配置中文"><a href="#配置中文" class="headerlink" title="配置中文"></a>配置中文</h3><p><code>mysql&gt; status;</code><br><img src="https://i.loli.net/2018/10/27/5bd3c9e76a345.png" alt="status"><br>查看表的字符集<br><code>show create table &lt;table_name&gt;;</code><br><img src="https://i.loli.net/2018/10/27/5bd3c9e73bff8.png" alt="table"><br>修改表字符集<br><code>ALTER TABLE &lt;table_name&gt; character set utf8;</code><br>修改字段字符集<br><code>mysql&gt; ALTER TABLE &lt;table_name&gt; modify name varchar(20) character set utf8;</code><br>设置数据库编码</p>
+<blockquote>
+<p>show<br><code>show variables like &#39;character_set_%&#39;;</code><br><img src="https://i.loli.net/2018/10/27/5bd3c9e73ced6.png" alt="mysql"><br>set<br><code>set character_set_database=utf8;</code></p>
+</blockquote>
+<h3 id="设置区分大小写"><a href="#设置区分大小写" class="headerlink" title="设置区分大小写"></a>设置区分大小写</h3><p>创建表时，直接设置表的 collate 属性为 utf8_general_cs 或者 utf8_bin；如果已经创建表，则直接修改字段的 Collation 属性为 utf8_general_cs 或者 utf8_bin<br>创建表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE testt(</span><br><span class="line">id INT PRIMARY KEY,</span><br><span class="line">name VARCHAR(32) NOT NULL</span><br><span class="line">) ENGINE = INNODB COLLATE =utf8_bin;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i>
+ linux</a>
+          
+            <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i>
+ mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/django配置允许跨域/" rel="prev" title="django配置允许跨域">
+                django配置允许跨域 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/imgs/who.png" alt="Afreto">
+            
+              <p class="site-author-name" itemprop="name">Afreto</p>
+              <p class="site-description motion-element" itemprop="description">灯把黑夜 烫了个洞~</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:kongandmarx@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+           <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=34200930&auto=0&height=66"></iframe>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-安装记录"><span class="nav-text">mysql 安装记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows-下-zip格式安装"><span class="nav-text">windows 下 zip格式安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu18-04-安装"><span class="nav-text">ubuntu18.04 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centos7-安装"><span class="nav-text">centos7 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL-常用命令三连"><span class="nav-text">MySQL 常用命令三连</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置中文"><span class="nav-text">配置中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置区分大小写"><span class="nav-text">设置区分大小写</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Afreto</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    <script type="text/javascript">
+  /* 鼠标特效 */
+  var a_idx = 0;
+  jQuery(document).ready(function($) {
+     $("body").click(function(e) {
+         var a = new Array("蒸羊羔", "蒸熊掌", "蒸鹿尾儿", "烧花鸭", "烧雏鸡儿", "烧子鹅", "卤煮咸鸭" ,"酱鸡", "腊肉", "松花", "小肚儿", "晾肉","香肠","尖氽活鲤鱼","板鸭","筒子鸡");
+         var $i = $("<span/>").text(a[a_idx]);
+         a_idx = (a_idx + 1) % a.length;
+         var x = e.pageX,
+         y = e.pageY;
+         $i.css({
+             "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+             "top": y - 20,
+             "left": x,
+             "position": "absolute",
+             "font-weight": "bold",
+             "color": "#ff6651"
+         });
+         $("body").append($i);
+         $i.animate({
+             "top": y - 180,
+             "opacity": 0
+         },
+         1500,
+         function() {
+             $i.remove();
+         });
+     });
+  });
+      </script>
+      
+</body>
+</html>

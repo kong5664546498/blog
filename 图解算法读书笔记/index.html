@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en,zh-CN,default">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|KaiTi:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|STXingkai:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/imgs/favicon_32_32.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/imgs/favicon_16_16.ico?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="从一个朋友那里学来的读书笔记的习惯 还不是很会写 努力吧 ps: 很多问题其实学生时期 是想过的呀 … 看这本书 经常会有一种 好像赚钱的方法都写在了刑法上了的感觉">
+<meta name="keywords" content="reading_note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解算法读书笔记">
+<meta property="og:url" content="https://kong.afreto.tk/图解算法读书笔记/index.html">
+<meta property="og:site_name" content="Afreto&#39;s blog~">
+<meta property="og:description" content="从一个朋友那里学来的读书笔记的习惯 还不是很会写 努力吧 ps: 很多问题其实学生时期 是想过的呀 … 看这本书 经常会有一种 好像赚钱的方法都写在了刑法上了的感觉">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-04-16T05:02:11.872Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图解算法读书笔记">
+<meta name="twitter:description" content="从一个朋友那里学来的读书笔记的习惯 还不是很会写 努力吧 ps: 很多问题其实学生时期 是想过的呀 … 看这本书 经常会有一种 好像赚钱的方法都写在了刑法上了的感觉">
+
+
+
+
+
+
+  <link rel="canonical" href="https://kong.afreto.tk/图解算法读书笔记/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>图解算法读书笔记 | Afreto's blog~</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Afreto's blog~</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">Archives</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">Tags</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kong.afreto.tk/图解算法读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Afreto">
+      <meta itemprop="description" content="灯把黑夜 烫了个洞~">
+      <meta itemprop="image" content="/imgs/who.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Afreto's blog~">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图解算法读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-15 15:09:31" itemprop="dateCreated datePublished" datetime="2018-11-15T15:09:31+08:00">2018-11-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-16 13:02:11" itemprop="dateModified" datetime="2019-04-16T13:02:11+08:00">2019-04-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p> 从一个朋友那里学来的读书笔记的习惯 还不是很会写 努力吧<br> <em>ps: 很多问题其实学生时期 是想过的呀 … 看这本书 经常会有一种 好像赚钱的方法都写在了刑法上了的感觉</em> </p>
+</blockquote>
+<a id="more"></a>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>code:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findSmallest</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="comment"># 存储最小的值</span></span><br><span class="line">    smallest = arr[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 存储最小的元素的 index</span></span><br><span class="line">    smallest_index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(arr)):</span><br><span class="line">        <span class="keyword">if</span> arr[i] &lt; smallest:</span><br><span class="line">            smallest = arr[i]</span><br><span class="line">            smallest_index = i</span><br><span class="line">    <span class="keyword">return</span> smallest_index</span><br></pre></td></tr></table></figure></p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>code:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span><span class="params">(array)</span>:</span></span><br><span class="line">    <span class="comment"># 所有小于基准值的元素组成的子数组</span></span><br><span class="line">    less = []</span><br><span class="line">    <span class="comment"># 所有大于基准值的元素组成的子数组</span></span><br><span class="line">    greater = []</span><br><span class="line">    <span class="keyword">if</span> len(array) &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="comment"># 基线条件</span></span><br><span class="line">        <span class="keyword">return</span> array</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 递归条件</span></span><br><span class="line">        pivot = array[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> array[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> i &lt;= pivot:</span><br><span class="line">                less.append(i)</span><br><span class="line">            <span class="keyword">if</span> i &gt; pivot:</span><br><span class="line">                greater.append(i)</span><br><span class="line">    <span class="keyword">return</span> quicksort(less) + [pivot] + quicksort(greater)</span><br></pre></td></tr></table></figure></p>
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><p>广度优先搜索可以解决两类问题</p>
+<ul>
+<li>从节点 a  出发, 有前往节点 b  的路径么</li>
+<li>从节点 a 出发, 前往节点 b 的哪条路径最短<blockquote>
+<p>使用广度优先搜索解决芒果销售商问题, 假设你经营一个芒果农场, 需要寻找芒果销售商(假设无重复好友)…</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">person_is_seller</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">-1</span>] == <span class="string">'m'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_seller</span><span class="params">()</span>:</span></span><br><span class="line">    graph = &#123;<span class="string">'you'</span>: [<span class="string">'tom'</span>, <span class="string">'jerry'</span>]&#125;</span><br><span class="line">    <span class="comment"># 创建一个队列</span></span><br><span class="line">    search_queue = deque()</span><br><span class="line">    <span class="comment"># 添加邻居</span></span><br><span class="line">    search_queue += graph[<span class="string">'you'</span>]</span><br><span class="line">    <span class="comment"># 只要队列不为空</span></span><br><span class="line">    <span class="keyword">while</span> search_queue:</span><br><span class="line">        person = search_queue.popleft()</span><br><span class="line">        <span class="keyword">if</span> person_is_seller(person):</span><br><span class="line">            print(<span class="string">'&#123;&#125; is seller ...'</span>.format(person))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            search_queue += graph[person]</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h2 id="迪克斯特拉算法"><a href="#迪克斯特拉算法" class="headerlink" title="迪克斯特拉算法"></a>迪克斯特拉算法</h2><p>加权的广度优先搜索<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_lowest_cost_node</span><span class="params">(costs)</span>:</span></span><br><span class="line">    lowest_cost = fload(<span class="string">'inf'</span>)</span><br><span class="line">    lowest_cost_node = <span class="keyword">None</span></span><br><span class="line">    <span class="comment"># 遍历所有节点</span></span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> costs:</span><br><span class="line">        cost = costs[nodes]</span><br><span class="line">        <span class="comment"># 如果当前节点的开销更低 且未处理过</span></span><br><span class="line">        <span class="keyword">if</span> cost &lt; lowest_cost <span class="keyword">and</span> node <span class="keyword">not</span> <span class="keyword">in</span> processes:</span><br><span class="line">            <span class="comment"># 将其视为开销最低的节点</span></span><br><span class="line">            lowest_cost = cost</span><br><span class="line">            lowest_cost_node = node</span><br><span class="line">    <span class="keyword">return</span> lowest_cost_node</span><br></pre></td></tr></table></figure></p>
+<h1 id="贪婪算法"><a href="#贪婪算法" class="headerlink" title="贪婪算法"></a>贪婪算法</h1><h2 id="教室调度问题"><a href="#教室调度问题" class="headerlink" title="教室调度问题"></a>教室调度问题</h2><blockquote>
+<p>每步选择局部最优解 最终得到的就是全局最优解</p>
+</blockquote>
+<h2 id="广播台问题"><a href="#广播台问题" class="headerlink" title="广播台问题"></a>广播台问题</h2><blockquote>
+<p>使用贪婪算法计算近似最优解…  </p>
+</blockquote>
+<p>选择覆盖 50 个的州的最小电台合集<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> states_needed:</span><br><span class="line">    best_station = <span class="keyword">None</span></span><br><span class="line">    states_covered = set()</span><br><span class="line">    <span class="keyword">for</span> station, states <span class="keyword">in</span> stations.items():</span><br><span class="line">        covered = states_needed &amp; states</span><br><span class="line">        <span class="keyword">if</span> len(covered) &gt; len(states_covered):</span><br><span class="line">            best_station = station</span><br><span class="line">            states_covered = covered</span><br><span class="line">        states_needed -= states_covered</span><br><span class="line">        final_stations.add(best_station)</span><br></pre></td></tr></table></figure></p>
+<h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><p>动态规划</p>
+<h1 id="K-最近邻算法"><a href="#K-最近邻算法" class="headerlink" title="K 最近邻算法"></a>K 最近邻算法</h1><h2 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h2><p>橘子还是橙子</p>
+<h2 id="OCR"><a href="#OCR" class="headerlink" title="OCR"></a>OCR</h2><p>光学字符识别</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/reading-note/" rel="tag"><i class="fa fa-tag"></i>
+ reading_note</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/正则表达式/" rel="next" title="正则表达式..">
+                <i class="fa fa-chevron-left"></i> 正则表达式..
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Effective-Python-读书笔记/" rel="prev" title="Effective Python 读书笔记">
+                Effective Python 读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/imgs/who.png" alt="Afreto">
+            
+              <p class="site-author-name" itemprop="name">Afreto</p>
+              <p class="site-description motion-element" itemprop="description">灯把黑夜 烫了个洞~</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:kongandmarx@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+           <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=34200930&auto=0&height=66"></iframe>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#排序"><span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-text">快速排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#广度优先搜索"><span class="nav-text">广度优先搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迪克斯特拉算法"><span class="nav-text">迪克斯特拉算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贪婪算法"><span class="nav-text">贪婪算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#教室调度问题"><span class="nav-text">教室调度问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广播台问题"><span class="nav-text">广播台问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背包问题"><span class="nav-text">背包问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#K-最近邻算法"><span class="nav-text">K 最近邻算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#KNN"><span class="nav-text">KNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OCR"><span class="nav-text">OCR</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Afreto</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    <script type="text/javascript">
+  /* 鼠标特效 */
+  var a_idx = 0;
+  jQuery(document).ready(function($) {
+     $("body").click(function(e) {
+         var a = new Array("蒸羊羔", "蒸熊掌", "蒸鹿尾儿", "烧花鸭", "烧雏鸡儿", "烧子鹅", "卤煮咸鸭" ,"酱鸡", "腊肉", "松花", "小肚儿", "晾肉","香肠","尖氽活鲤鱼","板鸭","筒子鸡");
+         var $i = $("<span/>").text(a[a_idx]);
+         a_idx = (a_idx + 1) % a.length;
+         var x = e.pageX,
+         y = e.pageY;
+         $i.css({
+             "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+             "top": y - 20,
+             "left": x,
+             "position": "absolute",
+             "font-weight": "bold",
+             "color": "#ff6651"
+         });
+         $("body").append($i);
+         $i.animate({
+             "top": y - 180,
+             "opacity": 0
+         },
+         1500,
+         function() {
+             $i.remove();
+         });
+     });
+  });
+      </script>
+      
+</body>
+</html>
