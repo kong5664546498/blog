@@ -152,29 +152,25 @@
 
 
 
-  <meta name="description" content="mysql 安装记录windows 下 zip格式安装 windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装">
-<meta name="keywords" content="linux,mysql">
+  <meta name="description" content="一键安装 zsh 并配置 oh-my-zsh, 下载插件">
+<meta name="keywords" content="linux,tool">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安装配置mysql">
-<meta property="og:url" content="https://kong.afreto.tk/安装配置mysql/index.html">
+<meta property="og:title" content="一键 oh-my-zh">
+<meta property="og:url" content="https://kong.afreto.tk/一键-oh-my-zh/index.html">
 <meta property="og:site_name" content="Afreto&#39;s blog~">
-<meta property="og:description" content="mysql 安装记录windows 下 zip格式安装 windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装">
+<meta property="og:description" content="一键安装 zsh 并配置 oh-my-zsh, 下载插件">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd3c9e76a345.png">
-<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd3c9e73bff8.png">
-<meta property="og:image" content="https://i.loli.net/2018/10/27/5bd3c9e73ced6.png">
-<meta property="og:updated_time" content="2019-04-16T05:02:11.873Z">
+<meta property="og:updated_time" content="2019-05-09T04:00:46.782Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安装配置mysql">
-<meta name="twitter:description" content="mysql 安装记录windows 下 zip格式安装 windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装">
-<meta name="twitter:image" content="https://i.loli.net/2018/10/27/5bd3c9e76a345.png">
+<meta name="twitter:title" content="一键 oh-my-zh">
+<meta name="twitter:description" content="一键安装 zsh 并配置 oh-my-zsh, 下载插件">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kong.afreto.tk/安装配置mysql/">
+  <link rel="canonical" href="https://kong.afreto.tk/一键-oh-my-zh/">
 
 
 
@@ -184,7 +180,7 @@
   };
 </script>
 
-  <title>安装配置mysql | Afreto's blog~</title>
+  <title>一键 oh-my-zh | Afreto's blog~</title>
   
 
 
@@ -334,7 +330,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kong.afreto.tk/安装配置mysql/">
+    <link itemprop="mainEntityOfPage" href="https://kong.afreto.tk/一键-oh-my-zh/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Afreto">
@@ -351,7 +347,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">安装配置mysql
+          <h1 class="post-title" itemprop="name headline">一键 oh-my-zh
               
             
           </h1>
@@ -376,24 +372,12 @@
                 
               
 
-              <time title="Created: 2018-10-24 22:18:48" itemprop="dateCreated datePublished" datetime="2018-10-24T22:18:48+08:00">2018-10-24</time>
+              <time title="Created: 2019-05-09 11:47:58 / Modified: 12:00:46" itemprop="dateCreated datePublished" datetime="2019-05-09T11:47:58+08:00">2019-05-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-16 13:02:11" itemprop="dateModified" datetime="2019-04-16T13:02:11+08:00">2019-04-16</time>
               
             
           </span>
@@ -426,65 +410,21 @@
       
 
       
-        <h2 id="mysql-安装记录"><a href="#mysql-安装记录" class="headerlink" title="mysql 安装记录"></a>mysql 安装记录</h2><h3 id="windows-下-zip格式安装"><a href="#windows-下-zip格式安装" class="headerlink" title="windows 下 zip格式安装"></a>windows 下 zip格式安装</h3><blockquote>
-<p><em>windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装</em></p>
-</blockquote>
+        <p>一键安装 zsh 并配置 oh-my-zsh, 下载插件</p>
 <a id="more"></a>
-<blockquote>
-<ul>
-<li>下载 <a href="https://dev.mysql.com/downloads/mysql/5.6.html#downloads" target="_blank" rel="noopener">官链</a>  <a href="https://pan.baidu.com/s/1gR_T14njEZzYRno5vUL98Q" target="_blank" rel="noopener">某度云</a>  </li>
+<h1 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/kong5664546498/half_a_wheel/master/wheel/onekey-omzsh/onekey-omzsh.sh &amp;&amp; chmod +x onekey-omzsh.sh &amp;&amp; ./onekey-omzsh.sh</span><br></pre></td></tr></table></figure>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p><a href="https://raw.githubusercontent.com/kong5664546498/half_a_wheel/master/wheel/onekey-omzsh/onekey-omzsh.sh" target="_blank" rel="noopener">脚本地址</a></p>
+<p>shell 脚本自动安装 相关依赖和插件.</p>
+<p>oh-my-zsh 配置使用我自己的 <a href="https://github.com/kong5664546498/half_a_wheel/blob/master/wheel/onekey-omzsh/.zshrc" target="_blank" rel="noopener">.zshrc</a> 进行替换.</p>
+<p>默认主题为 <code>avit</code>, 酷炫的主题都要安装字体, 试过好多次, 可能命里欠烤吧, 就没装成功过一次. 所以选了个不需要字体, 兼容所有 <code>terminal</code> 的主题.</p>
+<p>插件:</p>
+<pre><code>- zsh-autosuggestions
+- zsh-syntax-highlighting
+- command-not-found
+</code></pre><h1 id="feattrue"><a href="#feattrue" class="headerlink" title="feattrue"></a>feattrue</h1><ul>
+<li>fuck 插件</li>
+<li>gotop</li>
 </ul>
-</blockquote>
-<ul>
-<li><p>配置</p>
-<ul>
-<li><p>my.ini 配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[mysql]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集default-character-set=utf8</span></span><br><span class="line"><span class="string">[mysqld]</span></span><br><span class="line"><span class="comment">#设置3306端口</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="string">basedir=C:\Program</span> <span class="string">Files\mysql-5.6.39-winx64</span></span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="string">datadir=C:\Program</span> <span class="string">Files\mysql-5.6.39-winx64\data</span></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="string">max_connections=200#</span> <span class="string">服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"><span class="string">character-set-server=utf8</span></span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎default-storage-engine=INNODB</span></span><br><span class="line"><span class="string">skip-grant-tables</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置环境变量</p>
-<ul>
-<li>在系统变量PATH后面添加: 你的mysql bin文件夹的路径（如C:\Program Files\mysql-5.6.39-winx64\bin）</li>
-</ul>
-</li>
-<li><p>安装 MySQL 服务</p>
-<ul>
-<li>以管理员身份打开cmd窗口后，将目录切换到你解压文件的bin目录，输入<br><code>mysqld install</code></li>
-</ul>
-</li>
-<li><p>启动 MySQL 服务</p>
-<ul>
-<li>以管理员身份在cmd中输入</li>
-<li><code>net start mysql</code></li>
-<li>服务启动成功之后，就可以登录了，输入 <code>mysql -u root -p</code>（第一次登录没有密码，直接按回车过）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="ubuntu18-04-安装"><a href="#ubuntu18-04-安装" class="headerlink" title="ubuntu18.04 安装"></a>ubuntu18.04 安装</h3><blockquote>
-<p>微软这波巨硬~   WSL 真的是太好用了  既有 linux 环境可以用 又不用折腾</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install mysql-server -y  </span><br><span class="line">service mysql start</span><br></pre></td></tr></table></figure>
-<h3 id="centos7-安装"><a href="#centos7-安装" class="headerlink" title="centos7 安装"></a>centos7 安装</h3><ul>
-<li><p>下载 <a href="http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm" target="_blank" rel="noopener">mysql.noarch.rpm</a></p>
-<blockquote>
-<p>或者 <code>wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</code></p>
-</blockquote>
-</li>
-<li><p>安装</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">yum install mysql-community-server</span><br><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加防火墙端口</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-<h3 id="MySQL-常用命令三连"><a href="#MySQL-常用命令三连" class="headerlink" title="MySQL 常用命令三连"></a>MySQL 常用命令三连</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create user bird identified by &apos;birdpwd&apos;;</span><br><span class="line">grant all privileges on birdDb.* to bird@&apos;%&apos; identified by &apos;birdpwd&apos;;</span><br><span class="line">flush  privileges;</span><br></pre></td></tr></table></figure>
-<h3 id="配置中文"><a href="#配置中文" class="headerlink" title="配置中文"></a>配置中文</h3><p><code>mysql&gt; status;</code><br><img src="https://i.loli.net/2018/10/27/5bd3c9e76a345.png" alt="status"><br>查看表的字符集<br><code>show create table &lt;table_name&gt;;</code><br><img src="https://i.loli.net/2018/10/27/5bd3c9e73bff8.png" alt="table"><br>修改表字符集<br><code>ALTER TABLE &lt;table_name&gt; character set utf8;</code><br>修改字段字符集<br><code>mysql&gt; ALTER TABLE &lt;table_name&gt; modify name varchar(20) character set utf8;</code><br>设置数据库编码</p>
-<blockquote>
-<p>show<br><code>show variables like &#39;character_set_%&#39;;</code><br><img src="https://i.loli.net/2018/10/27/5bd3c9e73ced6.png" alt="mysql"><br>set<br><code>set character_set_database=utf8;</code></p>
-</blockquote>
-<h3 id="设置区分大小写"><a href="#设置区分大小写" class="headerlink" title="设置区分大小写"></a>设置区分大小写</h3><p>创建表时，直接设置表的 collate 属性为 utf8_general_cs 或者 utf8_bin；如果已经创建表，则直接修改字段的 Collation 属性为 utf8_general_cs 或者 utf8_bin<br>创建表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE testt(</span><br><span class="line">id INT PRIMARY KEY,</span><br><span class="line">name VARCHAR(32) NOT NULL</span><br><span class="line">) ENGINE = INNODB COLLATE =utf8_bin;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -508,8 +448,8 @@
             <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i>
  linux</a>
           
-            <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i>
- mysql</a>
+            <a href="/tags/tool/" rel="tag"><i class="fa fa-tag"></i>
+ tool</a>
           
         </div>
       
@@ -522,15 +462,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/vim-命令/" rel="next" title="vim 命令">
+                <i class="fa fa-chevron-left"></i> vim 命令
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/django配置允许跨域/" rel="prev" title="django配置允许跨域">
-                django配置允许跨域 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -698,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-安装记录"><span class="nav-text">mysql 安装记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows-下-zip格式安装"><span class="nav-text">windows 下 zip格式安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu18-04-安装"><span class="nav-text">ubuntu18.04 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centos7-安装"><span class="nav-text">centos7 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL-常用命令三连"><span class="nav-text">MySQL 常用命令三连</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置中文"><span class="nav-text">配置中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置区分大小写"><span class="nav-text">设置区分大小写</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#usage"><span class="nav-text">usage</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#feattrue"><span class="nav-text">feattrue</span></a></li></ol></div>
             
           </div>
         </section>
