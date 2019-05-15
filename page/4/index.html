@@ -152,25 +152,23 @@
 
 
 
-  <meta name="description" content="继续站在别人的肩膀上">
-<meta name="keywords" content="python,aync">
-<meta property="og:type" content="article">
-<meta property="og:title" content="生产者-消费者的协程">
-<meta property="og:url" content="https://kong.afreto.tk/生产者-消费者的协程/index.html">
+  <meta name="description" content="灯把黑夜 烫了个洞~">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Afreto&#39;s blog~">
+<meta property="og:url" content="https://kong.afreto.tk/page/4/index.html">
 <meta property="og:site_name" content="Afreto&#39;s blog~">
-<meta property="og:description" content="继续站在别人的肩膀上">
+<meta property="og:description" content="灯把黑夜 烫了个洞~">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-04-16T05:02:11.873Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生产者-消费者的协程">
-<meta name="twitter:description" content="继续站在别人的肩膀上">
+<meta name="twitter:title" content="Afreto&#39;s blog~">
+<meta name="twitter:description" content="灯把黑夜 烫了个洞~">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kong.afreto.tk/生产者-消费者的协程/">
+  <link rel="canonical" href="https://kong.afreto.tk/page/4/">
 
 
 
@@ -180,7 +178,7 @@
   };
 </script>
 
-  <title>生产者-消费者的协程 | Afreto's blog~</title>
+  <title>Afreto's blog~</title>
   
 
 
@@ -227,7 +225,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -313,9 +312,9 @@
           
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -330,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kong.afreto.tk/生产者-消费者的协程/">
+    <link itemprop="mainEntityOfPage" href="https://kong.afreto.tk/安装配置mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Afreto">
@@ -347,7 +346,11 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">生产者-消费者的协程
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/安装配置mysql/" itemprop="url">
+                  安装配置mysql
+                </a>
               
             
           </h1>
@@ -372,7 +375,7 @@
                 
               
 
-              <time title="Created: 2019-03-15 19:15:10" itemprop="dateCreated datePublished" datetime="2019-03-15T19:15:10+08:00">2019-03-15</time>
+              <time title="Created: 2018-10-24 22:18:48" itemprop="dateCreated datePublished" datetime="2018-10-24T22:18:48+08:00">2018-10-24</time>
             
 
             
@@ -422,21 +425,20 @@
       
 
       
-        <blockquote>
-<p>继续站在别人的肩膀上</p>
+        
+          <h2 id="mysql-安装记录"><a href="#mysql-安装记录" class="headerlink" title="mysql 安装记录"></a>mysql 安装记录</h2><h3 id="windows-下-zip格式安装"><a href="#windows-下-zip格式安装" class="headerlink" title="windows 下 zip格式安装"></a>windows 下 zip格式安装</h3><blockquote>
+<p><em>windows 安装个 mysql 还是挺麻烦的 官方的安装器 用起来好麻烦  还经常出错 后来环境都习惯放在 WSL 里面   记录一下这个 zip 包的安装</em></p>
 </blockquote>
-<a id="more"></a>
-<p><a href="https://zhuanlan.zhihu.com/p/25228075" target="_blank" rel="noopener">转载</a>, 单独把这部分拿出来 方便以后查找.</p>
-<h1 id="生产者-消费者的协程"><a href="#生产者-消费者的协程" class="headerlink" title="生产者-消费者的协程"></a>生产者-消费者的协程</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">consumer</span><span class="params">()</span>:</span></span><br><span class="line">    status = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        n = <span class="keyword">yield</span> status</span><br><span class="line">        print(<span class="string">"我拿到了&#123;&#125;!"</span>.format(n))</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">3</span>:</span><br><span class="line">            status = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">producer</span><span class="params">(consumer)</span>:</span></span><br><span class="line">    n = <span class="number">5</span></span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="comment"># yield给主程序返回消费者的状态</span></span><br><span class="line">        <span class="keyword">yield</span> consumer.send(n)</span><br><span class="line">        n -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    c = consumer()</span><br><span class="line">    c.send(<span class="keyword">None</span>)</span><br><span class="line">    p = producer(c)</span><br><span class="line">    <span class="keyword">for</span> status <span class="keyword">in</span> p:</span><br><span class="line">        <span class="keyword">if</span> status == <span class="keyword">False</span>:</span><br><span class="line">            print(<span class="string">"我只要3,4,5就行啦"</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    print(<span class="string">"程序结束"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我拿到了5!</span><br><span class="line">我拿到了4!</span><br><span class="line">我拿到了3!</span><br><span class="line">我只要3,4,5就行啦</span><br><span class="line">程序结束</span><br></pre></td></tr></table></figure>
-<p>上面这个例子是典型的生产者－消费者问题，我们用协程的方式来实现它。首先从主程序中开始看，第一句 c = consumer ()，因为 consumer 函数中存在 yield 语句，python 会把它当成一个 generator（生成器，注意：生成器和协程的概念区别很大，千万别混淆了两者），因此在运行这条语句后，python 并不会像执行函数一样，而是返回了一个 generator object。</p>
-<p>再看第二条语句 c.send (None)，这条语句的作用是将 consumer（即变量 c，它是一个 generator）中的语句推进到第一个 yield 语句出现的位置，那么在例子中，consumer 中的 status = True 和 while True: 都已经被执行了，程序停留在 n = yield status 的位置（注意：此时这条语句还没有被执行），上面说的 send (None) 语句十分重要，如果漏写这一句，那么程序直接报错，这个 send () 方法看上去似乎挺神奇，等下再讲它的作用。</p>
-<p>下面第三句 p = producer (c)，这里则像上面一样定义了 producer 的生成器，注意的是这里我们传入了消费者的生成器，来让 producer 跟 consumer 通信。</p>
-<p>第四句 for status in p:，这条语句会循环地运行 producer 和获取它 yield 回来的状态。</p>
-<p>好了，进入正题，<strong>现在我们要让生产者发送 1,2,3,4,5 给消费者，消费者接受数字，返回状态给生产者，而我们的消费者只需要 3,4,5 就行了，当数字等于 3 时，会返回一个错误的状态。最终我们需要由主程序来监控生产者－消费者的过程状态，调度结束程序。</strong></p>
-<p>现在程序流进入了 producer 里面，我们直接看 yield consumer.send (n)，生产者调用了消费者的 send () 方法，把 n 发送给 consumer（即 c），在 consumer 中的 n = yield status，n 拿到的是消费者发送的数字，同时，consumer 用 yield 的方式把状态（status）返回给消费者，注意：这时 producer（即消费者）的 consumer.send () 调用返回的就是 consumer 中 yield 的 status！消费者马上将 status 返回给调度它的主程序，主程序获取状态，判断是否错误，若错误，则终止循环，结束程序。上面看起来有点绕，其实这里面 generator.send (n) 的作用是：把 n 发送 generator (生成器) 中 yield 的赋值语句中，同时返回 generator 中 yield 的变量（结果）。</p>
-<p>于是程序便一直运作，直至 consumer 中获取的 n 的值变为 3！此时 consumer 把 status 变为 False，最后返回到主程序，主程序中断循环，程序结束。</p>
-
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/安装配置mysql/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
       
     </div>
 
@@ -454,44 +456,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i>
- python</a>
-          
-            <a href="/tags/aync/" rel="tag"><i class="fa fa-tag"></i>
- aync</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/django-rest-framework-示例/" rel="next" title="django-rest-framework 示例">
-                <i class="fa fa-chevron-left"></i> django-rest-framework 示例
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/flask-jsonify/" rel="prev" title="flask_jsonify">
-                flask_jsonify <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -501,15 +473,18 @@
   </article>
 
 
-  </div>
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -532,17 +507,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -643,21 +609,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生产者-消费者的协程"><span class="nav-text">生产者-消费者的协程</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -795,10 +746,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
-
-
 
   
 
