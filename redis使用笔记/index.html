@@ -152,18 +152,18 @@
 
 
 
-  <meta name="description" content="大佬的批评记一下 &amp;lt; !— more —&amp;gt;  读取集合时aioredis1title_name_1 = await redis.smembers(config.USER_TITLE_NAME.format(1)) smembers 方法会把集合中所有元素全部下载下来, 修改为 12async for title_name_1_i in redis.isscan(config.USER_">
+  <meta name="description" content="大佬的批评记一下 &amp;lt; ! — more — &amp;gt;  读取集合时aioredis1title_name_1 = await redis.smembers(config.USER_TITLE_NAME.format(1)) smembers 方法会把集合中所有元素全部下载下来, 修改为 12async for title_name_1_i in redis.isscan(config.USE">
 <meta name="keywords" content="python,redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis使用笔记">
 <meta property="og:url" content="https://kong.afreto.tk/redis使用笔记/index.html">
 <meta property="og:site_name" content="Afreto&#39;s blog~">
-<meta property="og:description" content="大佬的批评记一下 &amp;lt; !— more —&amp;gt;  读取集合时aioredis1title_name_1 = await redis.smembers(config.USER_TITLE_NAME.format(1)) smembers 方法会把集合中所有元素全部下载下来, 修改为 12async for title_name_1_i in redis.isscan(config.USER_">
+<meta property="og:description" content="大佬的批评记一下 &amp;lt; ! — more — &amp;gt;  读取集合时aioredis1title_name_1 = await redis.smembers(config.USER_TITLE_NAME.format(1)) smembers 方法会把集合中所有元素全部下载下来, 修改为 12async for title_name_1_i in redis.isscan(config.USE">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-03T09:19:27.705Z">
+<meta property="og:updated_time" content="2019-07-03T09:21:24.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis使用笔记">
-<meta name="twitter:description" content="大佬的批评记一下 &amp;lt; !— more —&amp;gt;  读取集合时aioredis1title_name_1 = await redis.smembers(config.USER_TITLE_NAME.format(1)) smembers 方法会把集合中所有元素全部下载下来, 修改为 12async for title_name_1_i in redis.isscan(config.USER_">
+<meta name="twitter:description" content="大佬的批评记一下 &amp;lt; ! — more — &amp;gt;  读取集合时aioredis1title_name_1 = await redis.smembers(config.USER_TITLE_NAME.format(1)) smembers 方法会把集合中所有元素全部下载下来, 修改为 12async for title_name_1_i in redis.isscan(config.USE">
 
 
 
@@ -372,7 +372,7 @@
                 
               
 
-              <time title="Created: 2019-07-03 17:11:57 / Modified: 17:19:27" itemprop="dateCreated datePublished" datetime="2019-07-03T17:11:57+08:00">2019-07-03</time>
+              <time title="Created: 2019-07-03 17:11:57 / Modified: 17:21:24" itemprop="dateCreated datePublished" datetime="2019-07-03T17:11:57+08:00">2019-07-03</time>
             
 
             
@@ -411,7 +411,7 @@
 
       
         <p>大佬的批评记一下</p>
-<p>&lt; !— more —&gt; </p>
+<p>&lt; ! — more — &gt; </p>
 <h1 id="读取集合时"><a href="#读取集合时" class="headerlink" title="读取集合时"></a>读取集合时</h1><h2 id="aioredis"><a href="#aioredis" class="headerlink" title="aioredis"></a>aioredis</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title_name_1 = <span class="keyword">await</span> redis.smembers(config.USER_TITLE_NAME.format(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
 <p>smembers 方法会把集合中所有元素全部下载下来, 修改为</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">for</span> title_name_1_i <span class="keyword">in</span> redis.isscan(config.USER_TITLE_NAME.format(<span class="number">1</span>), count=<span class="number">20</span>):</span><br><span class="line">    title_name_1.append(title_name_1_i)</span><br></pre></td></tr></table></figure>
