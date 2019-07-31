@@ -160,7 +160,7 @@
 <meta property="og:site_name" content="Afreto&#39;s blog~">
 <meta property="og:description" content="人生路窄酒杯宽">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-31T15:38:38.535Z">
+<meta property="og:updated_time" content="2019-07-31T15:45:50.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go 搭个脚手架 (配置文件)">
 <meta name="twitter:description" content="人生路窄酒杯宽">
@@ -372,7 +372,7 @@
                 
               
 
-              <time title="Created: 2019-07-31 22:29:03 / Modified: 23:38:38" itemprop="dateCreated datePublished" datetime="2019-07-31T22:29:03+08:00">2019-07-31</time>
+              <time title="Created: 2019-07-31 22:29:03 / Modified: 23:45:50" itemprop="dateCreated datePublished" datetime="2019-07-31T22:29:03+08:00">2019-07-31</time>
             
 
             
@@ -428,7 +428,7 @@
 <li>就正常 build</li>
 <li>使用 <code>packr2 clean</code> 清除生成的文件</li>
 </ol>
-<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">   &quot;fmt&quot;</span><br><span class="line">   &quot;github.com/spf13/viper&quot;</span><br><span class="line">   _ &quot;goFrame/conf&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">   logLevel := viper.GetString(&quot;logLevel&quot;)</span><br><span class="line">   app := viper.GetString(&quot;app&quot;)</span><br><span class="line">   fmt.Println(logLevel)</span><br><span class="line">   fmt.Println(app)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">   <span class="string">"fmt"</span></span><br><span class="line">   <span class="string">"github.com/spf13/viper"</span></span><br><span class="line">   _ <span class="string">"goFrame/conf"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   logLevel := viper.GetString(<span class="string">"logLevel"</span>)</span><br><span class="line">   app := viper.GetString(<span class="string">"app"</span>)</span><br><span class="line">   fmt.Println(logLevel)</span><br><span class="line">   fmt.Println(app)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="feature"><a href="#feature" class="headerlink" title="feature"></a>feature</h1><ul>
 <li>consul</li>
 </ul>
