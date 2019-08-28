@@ -438,7 +438,7 @@
 <p>注意完成这个操作后，就恢复到了上一次的 commit 状态。</p>
 <h2 id="取消上一次提交的注释"><a href="#取消上一次提交的注释" class="headerlink" title="取消上一次提交的注释"></a>取消上一次提交的注释</h2><p><code>git commit —amend</code></p>
 <h2 id="账号密码"><a href="#账号密码" class="headerlink" title="账号密码"></a>账号密码</h2><h3 id="设置单独的-git-配置"><a href="#设置单独的-git-配置" class="headerlink" title="设置单独的 git 配置"></a>设置单独的 git 配置</h3><p>在 .git 路径下执行, 不要带 <code>—global</code>参数</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config user.name <span class="string">"B"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config user.email <span class="string">"B@gmail.com"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config user.name "B"</span><br><span class="line"><span class="meta">$</span> git config user.email "B@gmail.com"</span><br></pre></td></tr></table></figure>
 <h3 id="自动记录账号密码"><a href="#自动记录账号密码" class="headerlink" title="自动记录账号密码"></a>自动记录账号密码</h3><p><code>git config --global credential.helper store</code></p>
 <h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><p><code>git remote add go_turorial git@gitee.com:afreto/go_tutorial.git</code></p>
 <h2 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git config --global https.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global http.proxy 'socks5://127.0.0.1:1080'</span><br><span class="line"></span><br><span class="line">git config --global http.proxy https://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 'socks5://127.0.0.1:1080'</span><br><span class="line"></span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line"></span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
@@ -621,7 +621,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">21</span>
+                      
+                    
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
