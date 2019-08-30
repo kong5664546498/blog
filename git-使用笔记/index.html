@@ -160,7 +160,7 @@
 <meta property="og:site_name" content="Afreto&#39;s blog~">
 <meta property="og:description" content="日出江花红胜火">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-05T09:01:26.973Z">
+<meta property="og:updated_time" content="2019-08-30T03:57:08.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 使用笔记">
 <meta name="twitter:description" content="日出江花红胜火">
@@ -389,7 +389,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-05 17:01:26" itemprop="dateModified" datetime="2019-07-05T17:01:26+08:00">2019-07-05</time>
+                <time title="Modified: 2019-08-30 11:57:08" itemprop="dateModified" datetime="2019-08-30T11:57:08+08:00">2019-08-30</time>
               
             
           </span>
@@ -427,9 +427,13 @@
 </blockquote>
 <a id="more"></a>
 <h1 id="基操"><a href="#基操" class="headerlink" title="基操"></a>基操</h1><p><code>git pull</code> <code>git push</code> 不表</p>
+<h2 id="账号密码"><a href="#账号密码" class="headerlink" title="账号密码"></a>账号密码</h2><h3 id="设置单独的-git-配置"><a href="#设置单独的-git-配置" class="headerlink" title="设置单独的 git 配置"></a>设置单独的 git 配置</h3><p>在 .git 路径下执行, 不要带 <code>—global</code>参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config user.name "B"</span><br><span class="line"><span class="meta">$</span> git config user.email "B@gmail.com"</span><br></pre></td></tr></table></figure>
+<h3 id="自动记录账号密码"><a href="#自动记录账号密码" class="headerlink" title="自动记录账号密码"></a>自动记录账号密码</h3><p><code>git config --global credential.helper store</code></p>
+<h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><p><code>git remote add go_turorial git@gitee.com:afreto/go_tutorial.git</code></p>
 <h2 id="拉取远程分支到本地分支"><a href="#拉取远程分支到本地分支" class="headerlink" title="拉取远程分支到本地分支"></a>拉取远程分支到本地分支</h2><p><code>git checkout --track origin/feat/5.01</code></p>
 <p>不带 <code>—track</code> 参数只会拉取 index</p>
-<h1 id="取消上一次提交"><a href="#取消上一次提交" class="headerlink" title="取消上一次提交"></a>取消上一次提交</h1><p><code>git reset --soft HEAD^</code></p>
+<h1 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h1><p><code>git reset --soft HEAD^</code></p>
 <p>HEAD^ 的意思是上一个版本，也可以写成 HEAD~1</p>
 <p>如果你进行了 2 次 commit，想都撤回，可以使用 HEAD~2</p>
 <p>–mixed<br>意思是：不删除工作空间改动代码，撤销 commit，并且撤销 git add . 操作<br>这个为默认参数，git reset –mixed HEAD^ 和 git reset HEAD^ 效果是一样的。</p>
@@ -437,11 +441,7 @@
 <p>–hard<br>删除工作空间改动代码，撤销 commit，撤销 git add . </p>
 <p>注意完成这个操作后，就恢复到了上一次的 commit 状态。</p>
 <h2 id="取消上一次提交的注释"><a href="#取消上一次提交的注释" class="headerlink" title="取消上一次提交的注释"></a>取消上一次提交的注释</h2><p><code>git commit —amend</code></p>
-<h2 id="账号密码"><a href="#账号密码" class="headerlink" title="账号密码"></a>账号密码</h2><h3 id="设置单独的-git-配置"><a href="#设置单独的-git-配置" class="headerlink" title="设置单独的 git 配置"></a>设置单独的 git 配置</h3><p>在 .git 路径下执行, 不要带 <code>—global</code>参数</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git config user.name "B"</span><br><span class="line"><span class="meta">$</span> git config user.email "B@gmail.com"</span><br></pre></td></tr></table></figure>
-<h3 id="自动记录账号密码"><a href="#自动记录账号密码" class="headerlink" title="自动记录账号密码"></a>自动记录账号密码</h3><p><code>git config --global credential.helper store</code></p>
-<h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><p><code>git remote add go_turorial git@gitee.com:afreto/go_tutorial.git</code></p>
-<h2 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git config --global https.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global http.proxy 'socks5://127.0.0.1:1080'</span><br><span class="line"></span><br><span class="line">git config --global http.proxy https://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 'socks5://127.0.0.1:1080'</span><br><span class="line"></span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line"></span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+<h1 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git config --global https.proxy https://127.0.0.1:1080</span><br><span class="line">git config --global http.proxy 'socks5://127.0.0.1:1080'</span><br><span class="line"></span><br><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 'socks5://127.0.0.1:1080'</span><br><span class="line"></span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line"></span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
 <h1 id="删除远程分支后-同步本地分支"><a href="#删除远程分支后-同步本地分支" class="headerlink" title="删除远程分支后, 同步本地分支"></a>删除远程分支后, 同步本地分支</h1><h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><p><code>git remote show origin</code></p>
 <h2 id="从本地版本库中删除"><a href="#从本地版本库中删除" class="headerlink" title="从本地版本库中删除"></a>从本地版本库中删除</h2><p><code>git remote prune origin</code></p>
 
@@ -668,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基操"><span class="nav-text">基操</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拉取远程分支到本地分支"><span class="nav-text">拉取远程分支到本地分支</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取消上一次提交"><span class="nav-text">取消上一次提交</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取消上一次提交的注释"><span class="nav-text">取消上一次提交的注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#账号密码"><span class="nav-text">账号密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置单独的-git-配置"><span class="nav-text">设置单独的 git 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动记录账号密码"><span class="nav-text">自动记录账号密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加远程仓库"><span class="nav-text">添加远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置代理"><span class="nav-text">配置代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除远程分支后-同步本地分支"><span class="nav-text">删除远程分支后, 同步本地分支</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看"><span class="nav-text">查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从本地版本库中删除"><span class="nav-text">从本地版本库中删除</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基操"><span class="nav-text">基操</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#账号密码"><span class="nav-text">账号密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置单独的-git-配置"><span class="nav-text">设置单独的 git 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动记录账号密码"><span class="nav-text">自动记录账号密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加远程仓库"><span class="nav-text">添加远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉取远程分支到本地分支"><span class="nav-text">拉取远程分支到本地分支</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回滚"><span class="nav-text">回滚</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取消上一次提交的注释"><span class="nav-text">取消上一次提交的注释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置代理"><span class="nav-text">配置代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除远程分支后-同步本地分支"><span class="nav-text">删除远程分支后, 同步本地分支</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看"><span class="nav-text">查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从本地版本库中删除"><span class="nav-text">从本地版本库中删除</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
