@@ -152,25 +152,25 @@
 
 
 
-  <meta name="description" content="先装个 zsh  再改个主题">
-<meta name="keywords" content="linux">
+  <meta name="description" content="写脚本使我快乐~">
+<meta name="keywords" content="linux,shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="洒家的命令行">
-<meta property="og:url" content="https://kong.afreto.tk/洒家的命令行/index.html">
+<meta property="og:title" content="学习写shell">
+<meta property="og:url" content="https://kong.afreto.tk/学习写shell/index.html">
 <meta property="og:site_name" content="Afreto&#39;s blog~">
-<meta property="og:description" content="先装个 zsh  再改个主题">
+<meta property="og:description" content="写脚本使我快乐~">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-30T09:11:59.430Z">
+<meta property="og:updated_time" content="2019-09-20T09:16:00.342Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="洒家的命令行">
-<meta name="twitter:description" content="先装个 zsh  再改个主题">
+<meta name="twitter:title" content="学习写shell">
+<meta name="twitter:description" content="写脚本使我快乐~">
 
 
 
 
 
 
-  <link rel="canonical" href="https://kong.afreto.tk/洒家的命令行/">
+  <link rel="canonical" href="https://kong.afreto.tk/学习写shell/">
 
 
 
@@ -180,7 +180,7 @@
   };
 </script>
 
-  <title>洒家的命令行 | Afreto's blog~</title>
+  <title>学习写shell | Afreto's blog~</title>
   
 
 
@@ -330,7 +330,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kong.afreto.tk/洒家的命令行/">
+    <link itemprop="mainEntityOfPage" href="https://kong.afreto.tk/学习写shell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Afreto">
@@ -347,7 +347,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">洒家的命令行
+          <h1 class="post-title" itemprop="name headline">学习写shell
               
             
           </h1>
@@ -372,7 +372,7 @@
                 
               
 
-              <time title="Created: 2019-07-09 11:06:11" itemprop="dateCreated datePublished" datetime="2019-07-09T11:06:11+08:00">2019-07-09</time>
+              <time title="Created: 2019-08-30 14:55:47" itemprop="dateCreated datePublished" datetime="2019-08-30T14:55:47+08:00">2019-08-30</time>
             
 
             
@@ -389,7 +389,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-30 17:11:59" itemprop="dateModified" datetime="2019-07-30T17:11:59+08:00">2019-07-30</time>
+                <time title="Modified: 2019-09-20 17:16:00" itemprop="dateModified" datetime="2019-09-20T17:16:00+08:00">2019-09-20</time>
               
             
           </span>
@@ -422,27 +422,41 @@
       
 
       
-        <blockquote>
-<p> 先装个 <a href="http://blog.afreto.tk/%E4%B8%80%E9%94%AE-oh-my-zh/" target="_blank" rel="noopener">zsh</a></p>
-<p> 再改个主题</p>
-</blockquote>
+        <p>写脚本使我快乐~</p>
 <a id="more"></a>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><h2 id="变量-1"><a href="#变量-1" class="headerlink" title="变量"></a>变量</h2><p>定义变量</p>
+<p><code>name=afreto</code></p>
+<p>使用</p>
+<p><code>echo $name</code></p>
+<h3 id="常见系统变量"><a href="#常见系统变量" class="headerlink" title="常见系统变量"></a>常见系统变量</h3><ul>
+<li><code>$0</code> 当前程序</li>
+<li><code>$1</code> 第 n 个参数, n= 1, 2, 3…</li>
+<li><code>$*</code> 所有参数, 不包括 <code>$0</code>, 为一个字符串</li>
+<li><code>$2</code> 传递给脚本的所有参数, 每个参数是独立的字符串</li>
+<li><code>$#</code> 参数个数, 不含 <code>$0</code></li>
+<li><code>$?</code> 命令执行完成后的状态, <code>0</code> 表示执行成功</li>
+</ul>
 <blockquote>
-<p>忽略别名 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ \cat # 忽略叫 &quot;cat&quot; 的别名 - 具体解释: https://stackoverflow.com/a/16506263/22617</span><br><span class="line">&gt; $ command cat # 忽略函数和别名</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p><code>set --</code> 清空所有位置变量</p>
 </blockquote>
-<h1 id="使用的插件"><a href="#使用的插件" class="headerlink" title="使用的插件"></a>使用的插件</h1><p><code>plugins=(git zsh-autosuggestions zsh-syntax-highlighting command-not-found z)</code></p>
-<p>语法高亮, 自动提示, 再来一个 z 命令解放 cd </p>
-<p>经常用的就这三个了</p>
-<h1 id="工具集"><a href="#工具集" class="headerlink" title="工具集"></a>工具集</h1><h2 id="lolcat"><a href="#lolcat" class="headerlink" title="lolcat"></a>lolcat</h2><p>给命令行加个炫彩皮肤</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias ll="ls -l | lolcat -n"</span><br></pre></td></tr></table></figure>
-<h2 id="bat-gt-cat"><a href="#bat-gt-cat" class="headerlink" title="bat &gt; cat"></a>bat &gt; cat</h2><p>替换一下默认的cat</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias cat='bat'</span><br></pre></td></tr></table></figure>
-<h2 id="prettyping-gt-ping"><a href="#prettyping-gt-ping" class="headerlink" title="prettyping &gt; ping"></a>prettyping &gt; ping</h2><p>顾名思义</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias ping='prettyping --nolegend</span><br></pre></td></tr></table></figure>
-<h2 id="tldr-真的比-man-好用太多了"><a href="#tldr-真的比-man-好用太多了" class="headerlink" title="tldr 真的比 man 好用太多了"></a>tldr 真的比 man 好用太多了</h2><p><code>tldr —help</code></p>
-<h2 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a>tmux</h2><p>小白不敢布道, 但谁用谁知道</p>
-<h2 id="尝试用-ag-替代-grep"><a href="#尝试用-ag-替代-grep" class="headerlink" title="尝试用 ag 替代 grep"></a>尝试用 ag 替代 grep</h2><h1 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h1><h2 id="路径下文件数量"><a href="#路径下文件数量" class="headerlink" title="路径下文件数量"></a>路径下文件数量</h2><p><code>ll | grep &#39;^-&#39; | wc -l</code></p>
+<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">if condition</span><br><span class="line">then</span><br><span class="line">    command1 </span><br><span class="line">    command2</span><br><span class="line">    ...</span><br><span class="line">    commandN </span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if condition1</span><br><span class="line">then</span><br><span class="line">    command1</span><br><span class="line">elif condition2 </span><br><span class="line">then </span><br><span class="line">    command2</span><br><span class="line">else</span><br><span class="line">    commandN</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h2 id="判断数字"><a href="#判断数字" class="headerlink" title="判断数字"></a>判断数字</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">! /bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">if</span> <span class="built_in">test</span>, 判断数字大小</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">NUM=100</span><br><span class="line">if (($NUM &gt; 1));then</span><br><span class="line">    echo "this  $NUM is greater than 1"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>数字运算使用 <code>let</code></p>
+</blockquote>
+<h2 id="判断目录是否存在"><a href="#判断目录是否存在" class="headerlink" title="判断目录是否存在"></a>判断目录是否存在</h2><p>文件测试运算符见<a href="https://www.runoob.com/linux/linux-shell-basic-operators.html" target="_blank" rel="noopener">这里</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">! /bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 判断目录是否存在</span></span><br><span class="line">if [ ! -d  ~/mine ] </span><br><span class="line">then</span><br><span class="line">    echo "~/mine not exists"</span><br><span class="line">else</span><br><span class="line">    echo "exists"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>(())</code>  和 <code>[]</code> 的区别…   先放一放  暂时不知</p>
+</blockquote>
+<h1 id="for"><a href="#for" class="headerlink" title="for"></a>for</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for var in item1 item2 ... itemN</span><br><span class="line">do</span><br><span class="line">    command1</span><br><span class="line">    command2</span><br><span class="line">    ...</span><br><span class="line">    commandN</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">! /bin/bash</span></span><br><span class="line"></span><br><span class="line">for i in `seq 1 15`</span><br><span class="line">do</span><br><span class="line">    echo $i</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h1 id="获取当前日期"><a href="#获取当前日期" class="headerlink" title="获取当前日期"></a>获取当前日期</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`date +%Y%m%d`</span><br></pre></td></tr></table></figure>
+<h1 id="输出颜色"><a href="#输出颜色" class="headerlink" title="输出颜色"></a>输出颜色</h1><p><code>echo -e &quot;\033[32m TEXT \033[1m&quot;</code></p>
+<p><code>echo -e &quot;\e[1;31m TEXT \e[0m&quot;</code></p>
+<h1 id="获取当前文件名"><a href="#获取当前文件名" class="headerlink" title="获取当前文件名"></a>获取当前文件名</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo "`basename $0`"</span><br></pre></td></tr></table></figure>
+<h1 id="输出-a-z"><a href="#输出-a-z" class="headerlink" title="输出 a - z"></a>输出 a - z</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#123;a..z&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="设置-exit"><a href="#设置-exit" class="headerlink" title="设置 exit"></a>设置 exit</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit 10</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -466,6 +480,9 @@
             <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i>
  linux</a>
           
+            <a href="/tags/shell/" rel="tag"><i class="fa fa-tag"></i>
+ shell</a>
+          
         </div>
       
 
@@ -477,8 +494,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/mongo-tips/" rel="next" title="mongo tips">
-                <i class="fa fa-chevron-left"></i> mongo tips
+              <a href="/docker-使用记录/" rel="next" title="docker 使用记录">
+                <i class="fa fa-chevron-left"></i> docker 使用记录
               </a>
             
           </div>
@@ -487,8 +504,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/go-搭个脚手架/" rel="prev" title="go 配置文件">
-                go 配置文件 <i class="fa fa-chevron-right"></i>
+              <a href="/golang-记录一下常用包/" rel="prev" title="golang 记录一下常用包">
+                golang 记录一下常用包 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -669,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用的插件"><span class="nav-text">使用的插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具集"><span class="nav-text">工具集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lolcat"><span class="nav-text">lolcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bat-gt-cat"><span class="nav-text">bat &gt; cat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prettyping-gt-ping"><span class="nav-text">prettyping &gt; ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tldr-真的比-man-好用太多了"><span class="nav-text">tldr 真的比 man 好用太多了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux"><span class="nav-text">tmux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尝试用-ag-替代-grep"><span class="nav-text">尝试用 ag 替代 grep</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令行"><span class="nav-text">命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#路径下文件数量"><span class="nav-text">路径下文件数量</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量"><span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量-1"><span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见系统变量"><span class="nav-text">常见系统变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if"><span class="nav-text">if</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#判断数字"><span class="nav-text">判断数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断目录是否存在"><span class="nav-text">判断目录是否存在</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for"><span class="nav-text">for</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取当前日期"><span class="nav-text">获取当前日期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出颜色"><span class="nav-text">输出颜色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取当前文件名"><span class="nav-text">获取当前文件名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出-a-z"><span class="nav-text">输出 a - z</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置-exit"><span class="nav-text">设置 exit</span></a></li></ol></div>
             
           </div>
         </section>
