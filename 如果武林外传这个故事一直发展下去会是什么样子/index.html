@@ -1,0 +1,1237 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="
+《小青篇》
+我奉老爷之命找回小姐，小雨时节出门，到今日，算来一年有余。
+一路停停走走，我又来到七侠镇。抬头一望，《同福客栈》的匾额落漆斑斑，石阶上青苔厚如浓砚。这就是小姐生活过三年的地方，我把手按在那道哀尘遍布大门上，思绪万千。
+“诶！…..." />
+    <meta name="keywords" content="cave" />
+    <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://afret0.github.io/styles/main.css">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/rainbow.min.css">
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script src="https://afret0.github.io/media/js/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://afret0.github.io/media/css/live2d.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
+    <title>Afreto's blog</title>
+    
+    <style>
+        .markdownIt-TOC {
+            padding-left: 2px;
+            width: 100%;
+        }
+
+        .markdownIt-TOC li {
+            padding-left: 2%;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+    </div>
+    <div id="codeCopyText" style="display: none">代码复制成功了哦</div>
+    <div id="domainname" style="display:none">https://afret0.github.io</div>
+    <!-- 响应式布局，针对PC端内容显示 -->
+    <div id="content">
+        <div class="nav-large">
+            <div class="row">
+                <div class="side"><body>
+    
+
+
+
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://afret0.github.io"
+                    style="font-size:21px">Afreto&#39;s blog&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+                <a class="navbar-brand" href=""
+                    style="font-size:15px;font-family:kaiti">江湖沒什麼好的，也就酒還行～
+
+</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                
+                <div class="search nav navbar-nav" style="margin-top:8px">
+                    <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
+                    <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
+                    <div class="search-results"></div>
+                </div>
+                
+                <div class="search nav navbar-nav">
+                <a title="text" onclick="document.getElementById('socialMenu').style.display='block'"><i><img class="social"
+                    src="https://afret0.github.io/media/images/social.png" alt=""></i></a>
+            </div>
+            <ul class="nav navbar-nav" style="float: right;margin-right:5%">
+                
+                
+                <li>
+                    <a href="tags" style="color:white">
+                        home
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/archives" style="color:white">
+                        archives
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/tags" style="color:white">
+                        tags
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/post/about" style="color:white">
+                        about
+                    </a>
+                </li>
+                
+                
+                
+                  
+                <li><a href="https://afret0.github.io/friends" style="color:white">友链</a></li>
+                
+                  <li><img src="https://afret0.github.io/images/avatar.png?v=1597397760518" alt=""
+                class="menutopavatar"></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="socialMenu">
+        <div class="animate">
+            <div class="socialContainer">
+                
+                
+                
+                
+                
+                
+            </div>
+            <div id="qq" style="display:none"></div>
+        </div>
+    </div>
+    <!-- 引入jQuery核心js文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script>
+        var social = document.getElementById('socialMenu');
+        // 鼠标点击模型外区域关闭登录框
+        window.onclick = function (event) {
+            if (event.target == social) {
+                social.style.display = "none";
+            }
+        }
+    </script>
+    
+</body>
+<script>
+    //-------------------------------------------------搜索
+    // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
+    var searchInput = document.querySelector('.search-input');
+    var searchResults = document.querySelector('.search-results');
+
+    // 申明保存文章的标题、链接、内容的数组变量
+    var searchValue = '',
+        arrItems = [],
+        arrLinks = [],
+        arrTitles = [],
+        arrResults = [],
+        indexItem = [],
+        itemLength = 0;
+    var tmpDiv = document.createElement('div');
+    tmpDiv.className = 'result-item';
+
+    // ajax 的兼容写法
+    var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            xml = xhr.responseXML;
+            arrItems = xml.getElementsByTagName('entry');
+            itemLength = arrItems.length;
+            // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
+            // 同时过滤掉 HTML 标签
+            for (i = 0; i < itemLength; i++) {
+                var link = arrItems[i].getElementsByTagName('link')[0];
+                arrLinks[i] = link.getAttribute("href");
+                arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
+                childNodes[0].nodeValue.replace(/<.*?>/g, '');
+            }
+        }
+    }
+
+    // 开始获取根目录下 feed.xml 文件内的数据
+    xhr.open('get', '/atom.xml', true);
+    xhr.send();
+
+
+
+    // 输入框内容变化后就开始匹配，可以不用点按钮
+    // 经测试，onkeydown, onchange 等方法效果不太理想，
+    // 存在输入延迟等问题，最后发现触发 input 事件最理想，
+    // 并且可以处理中文输入法拼写的变化
+    searchInput.oninput = function () {
+        setTimeout(searchConfirm, 0);
+    }
+    searchInput.onfocus = function () {
+        searchResults.style.display = 'block';
+    }
+
+    function searchConfirm() {
+        if (searchInput.value == '') {
+            searchResults.style.display = 'none';
+        } else if (searchInput.value.search(/^\s+$/) >= 0) {
+            // 检测输入值全是空白的情况
+            searchInit();
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '请输入有效内容...';
+            searchResults.appendChild(itemDiv);
+        } else {
+            // 合法输入值的情况
+            searchInit();
+            searchValue = searchInput.value;
+            // 在标题、内容中查找
+            searchMatching(arrTitles, searchValue);
+        }
+    }
+
+    // 每次搜索完成后的初始化
+    function searchInit() {
+        arrResults = [];
+        indexItem = [];
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'block';
+    }
+
+    function searchMatching(arr1, input) {
+        // 忽略输入大小写
+        input = new RegExp(input, 'i');
+        // 在所有文章标题、内容中匹配查询值
+        for (i = 0; i < itemLength; i++) {
+            if (arr1[i].search(input) !== -1) {
+                var arr = arr1;
+                indexItem.push(i); // 保存匹配值的索引
+                var indexContent = arr[i].search(input);
+                // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
+                var l = input.toString().length - 3;
+                var step = 10;
+
+                // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
+                arrResults.push(arr[i].slice(indexContent - step, indexContent));
+            }
+        }
+
+        // 输出总共匹配到的数目
+        var totalDiv = tmpDiv.cloneNode(true);
+        totalDiv.innerHTML = '<b>总匹配：' + indexItem.length + ' 项<hr></b>';
+        searchResults.appendChild(totalDiv);
+
+        // 未匹配到内容的情况
+        if (indexItem.length == 0) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '未匹配到内容...';
+            searchResults.appendChild(itemDiv);
+        }
+
+        // 将所有匹配内容进行组合
+        for (i = 0; i < arrResults.length; i++) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerHTML = '<b>[' + arrTitles[indexItem[i]] +
+                ']</b><p>' + arrResults[i] + "</p><hr />";
+            itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
+            searchResults.appendChild(itemDiv);
+        }
+    }
+
+    function changeHref(href) {
+        location.href = href;
+    }
+
+    function showqq() {
+        var qq = document.getElementById("qq").innerHTML;
+        if (qq != '')
+            window.location.href = "tencent://message/?uin=" + qq + "&Site=&Menu=yes";
+        else
+            alert("博主暂未设置QQ联系方式");
+    }
+</script>
+</div>
+                
+            <div id="main" class="col-xs-12 col-sm-7" style="width:50%;margin-top:50px;left:27%">
+                <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;">
+                
+                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2018-10-26</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 19 min read</div>
+            <div class="posttag">
+                
+                <a href="https://afret0.github.io/n16nqH-vB/" class="postlink">
+                    <i class="fa fa-tag"></i> cave
+                </a>
+                
+            </div>
+        </div>
+        
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2>如果武林外传这个故事一直发展下去会是什么样子</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://afret0.github.io/如果武林外传这个故事一直发展下去会是什么样子/</div>
+                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
+                <span id="hotnum" class="leancloud_visitors" data-flag-title="如果武林外传这个故事一直发展下去会是什么样子">
+                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
+                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="leancloud-visitors-count">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <!-- more -->
+<p>《小青篇》<br>
+我奉老爷之命找回小姐，小雨时节出门，到今日，算来一年有余。<br>
+一路停停走走，我又来到七侠镇。抬头一望，《同福客栈》的匾额落漆斑斑，石阶上青苔厚如浓砚。这就是小姐生活过三年的地方，我把手按在那道哀尘遍布大门上，思绪万千。<br>
+“诶！……客栈已经关门了！”身后有人急切的喊。我回头一望，一个身穿麻布，头绑粗巾的胖大哥手提扫帚站在我身后。<br>
+“是你！”二人同时开口说道。我微微一笑，看到他拿的清扫器具，对其来意了然。<br>
+“还在找小郭呢？”李大嘴问。<br>
+我点头：“找不到小姐，我就不回去。”<br>
+“是是是，小贝她……”李大嘴叹口气：“放心吧，秀才那里就包我身上了。”<br>
+我从包里取出四十两银子，放在大嘴手里，道“姑爷那，就拜托你了。”<br>
+“诶！”他仿佛又没什么可说的了，讪讪的笑笑，又说“进来坐坐吧。”<br>
+“不了，我这次回来，是想打听一下有没有佟掌柜他们的消息”<br>
+“掌柜的回汉中了，听说和老白一年前就出门了，现在也不知道找着小贝没有。”<br>
+我暗暗捏了捏剑柄，道：“如果见到佟掌柜，替我传话，我家老爷有请，共议降魔大计。”<br>
+言毕，我再拱手“后会有期。”<br>
+《展红绫篇》<br>
+六年前，我托盗圣之福，以一本《缉盗指南》入身六扇门，成为天下第一女捕头，后嫁于追风，名气更盛。夫妻二人携手破案，另各路贼盗闻风丧胆。<br>
+但近月，却有几桩案子着实让我们束手无措。先是少林寺的玄难大师被人点穴至死，后是武当派的白眉道长死于剑下，接着是峨眉派的冲琳师太毙命于掌下。那手法，剑法，掌法分别是葵花点穴手，衡山剑法以及惊涛掌。江湖身怀绝学的人不少，但可以另三大高手一招毙命的人，连郭巨侠也做不到。<br>
+经过侦查，我们发现，三人或许是死于同一人之手，因为他们死前，都接到了一枚火焰令牌——赤焰狂魔。<br>
+赤焰狂魔是男是女，是老是少谁也不知道，只知道他杀人前会送出一枚火焰牌，而接到他令牌的人，都死了。<br>
+六扇门降魔令已发，各派掌门想必已陆续收到，下月初四，只是不知赤焰狂魔是否会出现了。<br>
+还有，他会来吗？我翻开《辑盗指南》，突然想起，已经一年多没有他的消息了。<br>
+听闻七侠镇发生巨变，关中大侠死于非命，同福客栈的人分兵多路追查真凶，至今未回。<br>
+“嗖”一枚暗器破窗而入，我急急躲开，只见房柱上一道赤红令牌末柄而入。<br>
+“赤焰狂魔！”我惊呼。推开门窗，一轮明月西头高挂，房阶银色如洗，哪里有半分人影。<br>
+《赛貂蝉篇》<br>
+从七侠镇回来，我和小翠的心结解开，回关东后，她出资，我们开了一家客栈。<br>
+那日无事，我于客栈前闲坐，手摇香扇，看车马往来，寻日东升。<br>
+“赛掌柜，别来无恙”，有人立在跟前，遮去大半阳光，我眯眼看去，依稀觉得眼熟“您是？”<br>
+“是我。”来者掀开斗笠，露出一张风情万种的鹅蛋脸来。<br>
+“佟掌柜？”，我笑迎道：“你怎么来了，快坐快坐。翠儿～快来呀，看谁来啦～”<br>
+“不忙，”佟掌柜道，“途径这里，甚是叨扰，我那边还有几个朋友，想借住一宿，不知是否方便？”<br>
+“方便方便！”我赶忙道，搀着佟掌柜进门“你这打哪儿走啊？白大哥呢？可在我这走走地位，耍几天要得。”<br>
+佟掌柜突然黯然神伤，道“有事未完，他日一定登门再会。”<br>
+“你这是……咋啦？”我瞧出不对，问“出啥事儿了？跟我说，我义不容辞。”<br>
+佟掌柜凄凄一笑，道了声谢，没有再说下去，她回头道：“展堂～”<br>
+街头几辆那车滚滚而来，带头之人，正是白大哥。<br>
+“白大哥，你的手……”我看见白大哥的食中二指齐断，双掌上的三根手指分外突兀。<br>
+白大哥微微抿嘴，朝我凄凉一笑“叨扰了，出了点小事。”<br>
+“你们这是？”我惊惧不已“到底出啥事了，跟妹子说吧。”<br>
+白大哥佟掌柜对眼一望，回头说“赛掌柜，我们要赴往京城参加降魔大会，恳请你为我们准备几匹快马……”<br>
+我心头狂跳“你们……”<br>
+“还有，你有小贝的消息吗？”佟掌柜突然说，一滴泪从她的眼睛流出，在骄阳下印出一片霞影。<br>
+《蕙兰篇》<br>
+一饮琼瑶百感生。子骏今夜谈生意去了，看月色朦胧甚好，我坐桃树下独醉。<br>
+人生真是妙不可言，两年前我还是一无所有，浪迹天涯的杨惠兰；两年后我已是富甲一方，名声显赫的杜夫人。只是，偶尔回眸，想起当初形骸放浪，也会不禁嗤笑，嗤笑中也有淡淡的落寞。<br>
+枝影疏朗，我伸了个懒腰，一瞥，却看见两条人影闪过……<br>
+“谁！”我横起右手，一记火焰刀蓄势待发。<br>
+“蕙兰，许久不见，”来人从墙头翻身下来，却是两个曼丽女子——小郭，无双。<br>
+“怎么是你们？”我听闻七侠镇发生巨变，一夜间秀才不幸去世，小贝不知所踪，看来都是真的了。<br>
+“我们有事请教，”无双拱手道“你的西域火焰刀师承何处？”<br>
+我略微踌躇，火焰刀乃西域秘传绝技，向来单脉传承，事关家师，不可向他人道来。<br>
+“不知你们为何要问火焰刀之事？”<br>
+小郭恨恨道“因为秀才死于火焰刀下！我们想知道，火焰刀失传已久，除了你还有谁会用。”<br>
+我不禁哑然，“家师远在西域，何况他与秀才无冤无仇，不可能至中原杀人，而我，自嫁给子骏，至今尚未出过门。”<br>
+“我们没有怀疑你”，无双道：“只是，火焰刀难道只有你们师徒二人会用吗？”<br>
+我皱眉：“火焰刀乃不传秘技，除了师傅和我，我想不出还有第三人会用。”<br>
+我又道：“这事疑点众多，非三言两语可以说清，二位不如留下详谈。蕙兰定当尽力协助追拿真凶。”<br>
+“实不相瞒，我们怀疑秀才的死和小贝失踪，都和江湖近期崛起的魔头有关！”小郭掏出一枚火焰令牌：“这是在秀才身上找到的。”<br>
+“赤炎狂魔！”我惊呼。<br>
+“不错”无双看了看小郭“出事后师兄和掌柜一组，我和小郭一组分头寻找真凶，已经一年有余，现在郭巨侠召开降魔大会，我和小郭决定回京赴会，或许可得知真凶。”<br>
+“蕙兰有何事可以相助一二，两位尽管吩咐。”<br>
+“多谢你的好意，”小郭拱手：“杜家财大势大，如果有魔头的消息，请帮忙留意。”<br>
+“那是自然。”<br>
+“告辞了”两人拱手。几个起落，她们的身影已消失在蒙蒙夜色中。<br>
+我放下酒杯，只觉得此事古怪异常，心想还是给师傅修书一封为好。<br>
+“来人～”我喊道。<br>
+四下沉寂，唯虫鸣清耳，风呼啸而过，我突然感觉身后有一道炙热的气焰斩来，匆匆躲过，我翻身看去，只见一个全身黑衣的，面蒙黑巾的人站在房檐下，他起手为刀——火焰刀！<br>
+《画画老人篇》<br>
+我这一生没别的爱好，就喜欢喝二两薄酒，嚼几张肉夹馍，酒足饭饱，也不干什么，就喜欢画上几张武功，过个眼瘾。<br>
+很多人问我叫什么，真名我早忘了，江湖弟兄送的几个外号倒是还记得一点，几十年前，大家都叫我缺德道人，几十年后，又有谁能记得起我。<br>
+最近几年我感觉自己真的老了，眼又瞎，耳又聋，那么多的武功秘籍，我还没画完呢……算了，画了又能怎么样，我的身子骨自己知道，画的了武功，也练不成了。<br>
+但我这一身的武艺，脑中不断浮现的武林秘技，白白在尘土中泯灭实在不甘。所以，我找了弟子，要把我一生所有，倾囊相授。<br>
+不愿学？他敢！我杀他爹娘，杀他爱人，杀他一切在乎的人，杀到他自己来找我。<br>
+今夜，他终于来了。<br>
+“你来晚了”我扬一扬手上的酒坛“酒都喝完了，你来干嘛？”<br>
+“杀你”来人恨道。<br>
+“黄口小儿，武功学全了吗？”我嗤笑“你有把握杀的了我。”<br>
+“我的武功都是你教的，以前没有，现在有了。”他从怀里摸出一把菜刀，6 寸长 3 寸宽，通身玄铁，迸射出一股惊人的杀气。<br>
+“我很早以前就对你说过，杀人要无心，无心才能无形，”我拿起一张肉夹馍，不住磨砂，道：“你现在被杀气充昏了头，刀拿得住吗。”<br>
+“拿得住。”他道：“你派人杀了我母亲，杀了我兄弟，还杀了我最爱的蕙兰！不就想让我再拿起这把刀吗？”<br>
+“哈哈哈哈哈……”我大笑：“你资质太差，这辈子也学不全我的武功，杀的那些人，只是我新弟子的磨刀石而已。”<br>
+“你……”他的手微微颤抖：“你把她给……”<br>
+“不错，你学不了的，她一学就会，你学的会的，她一学就精，她是天生的奇才，是做我传人的最佳人选。”我讥笑道“可惜了这么好的苗子，却不愿意学武功。所以，我只好用了点手段，哈哈哈！”<br>
+“老匹夫！”他怒喝，那杀意直冲云霄，一轮新月印出残红。<br>
+我冷笑，将肉夹馍甩出，挥出弧形，所到之处，事物尽被斩断，包括他拿刀的右手，道：“我今日废你武功，留你一条狗命，滚吧！”<br>
+“我今日留下右手，把你教的武功还你，你我师徒恩义已尽！”他冷汗兢兢道。<br>
+我顺着他的目光低头看向胸口，一把菜刀末柄而入，玄铁的寒意直斥心扉：“哈哈哈……不愧是我的好徒儿，这是……是何刀法？”<br>
+“师傅忘了，”他的声音传来，我已经渐渐听不清了……<br>
+“我，姓，李”！他一字一句道。<br>
+《燕小六篇》（断更了这么久，不好意思大家，现在补上两篇）<br>
+“干了几年铺头，小六已经被郭巨侠提携到六扇门了。七舅姥爷，师傅，小六没给你们丢人……但是，我真的好想七侠镇，好想你们大家啊。”<br>
+“今天又到小六巡班了，带队的老刘和师傅一样，对小六挺照顾的，这里的兄弟虽然不像七侠镇那班人那么有趣，但也讲义气。郭巨侠说，让我好好历练，总有上升的一天。七舅姥爷，师傅，你们放心，小六一定会有出息的。”<br>
+“这几天天可真黑啊，天乌黑乌黑的，就像师傅的两只大手，却又不下雨，闷死小六了。这几天巡逻的人更多了，查禁也更严了，听说郭巨侠要开什么‘耳朵木木鬼大会’，会有很厉害的大盗会出现，希望小六碰到，就可以立大功了。等小六当上总铺头，一定回去接你们……乌云啊乌云，如果你听见了我的话，就飘到十八里铺，把小六说的话告诉我师傅吧”，我走在宫墙脚，抬头看云，从怀里摸出唢呐，忍不住叹了口气。<br>
+“小六”一只手突然搭在我肩上，声音几乎在耳边响起。<br>
+“谁！”我连忙回头，一个全身黑袍的的人站在我眼前，他的脸压低在帽子下，使人看不清楚，但声音，我却是很熟的。<br>
+我半肯定的问：“莫小贝？”<br>
+来人点点头。<br>
+“你咋来这儿了？”我高兴说“我师傅还好吧，无双在七侠镇捕快当的咋样，大家伙过得好吗？”<br>
+迟疑了良久，小贝开口道，“说来话长，我这次来，有事找你。”<br>
+“嘛事”<br>
+“杀你！”小贝突然抬头，还没等我喊出声，我就后脖子一痛，晕了过去，我躺在地上，最后一眼看的是黑压压的云，一滴雨落下来砸在脸上，我心里想的是，下雨了，可我唢呐还没吹呢。<br>
+《白展堂篇》<br>
+如果一个人的人生可以用天气表示，那么我初出江湖的天就是凉爽但又压抑的阴天，我在客栈的天，就是湛蓝又明媚的晴天，而现在，我的天都是雨天。<br>
+二月初四，小雨，今天降魔大会将在京城郭府召开，平时我是不敢见捕快的，但现在，心中的意念让我不惧前行。我和湘玉快马加鞭，京都已经近在眼前。<br>
+秀才惨死，小贝失踪，客栈分崩离析，现在在湘玉的眼里我只能看到泪水和一股执念，还看到一丝疲惫和恨意，看得久了，我哑然发现，里面的失意也有我的倒影。我发誓，一定要揪出幕后真凶，将他绳之以法！<br>
+“展堂，你看前方是谁？”湘玉突然开口。<br>
+我收回心绪，眺望去，只看见一个捕快躺在地上——燕小六。<br>
+我们快速跑到小六那边。“驭……”喝马停下，两人相顾，只从对方眼里看到了自己的疑惑。<br>
+我下马扶起小六，朝湘玉摆摆手，释意让她不必担心，“只是晕过去了。”<br>
+“为什么小六会在这，光天化日，朗朗乾坤，是什么人做的？”湘玉下马问道。<br>
+我摇了摇头。身后却传来一个雌雄莫辨的声音，“是我！”<br>
+我跳到湘玉前面，把她护在身后，随手接过对方投来的暗器——一柄赤炎令牌。<br>
+“赤炎狂魔”我吃惊看去，这个魔头一身黑衣，连面上也蒙了黑巾，让人看不清他的样子。没想到他如此大胆，居然直进京城赴约对付他的降魔大会。<br>
+“你把小贝还给我！”湘玉惨叫一声，向前飞扑过去，我一把拉住她，眼睛却时刻注意着眼前魔头的动向。<br>
+实话说，从刚刚他发镖的身法看，和他动手，我绝对会输，于是用言语拖住他，等京中高手赴会，合力降魔，“你为什么要对一个小捕快动手？”<br>
+我看到赤炎狂魔身影微微颤抖，他用左手狠狠的抓住自己的右手，仿佛要压制住什么东西一样，雌雄莫辨的声音传来“没有饵，怎么引盗圣上钩？”<br>
+果然是冲着我来的，我不禁想道。<br>
+“小贝在哪？”湘玉的泪水夺眶而出，她盯着魔头，却没有再上前。<br>
+沉默良久，魔头缓缓道，“她已经死了。”<br>
+“啊！！！”湘玉痛哭，拔剑冲上前道，“我要你偿命！”<br>
+“不好，”我身法立动，挡在湘玉身前，只见魔头全是颤抖，异乎寻常，仿佛坐以待毙一样，等待湘玉一剑刺下。<br>
+说迟时那时快，我左手拉住湘玉，右手虚掩，却一指点向魔头诸身要穴。魔头略微失神，他一定料不到我居然在救人的时候，敢大胆出手，他极速后退，好一招移形换影。<br>
+这一剑，一拉，一点，一闪，不过刹那，魔头终究晚了半步，他躲过了我凌厉的一指，却被湘玉的长剑挑开了面巾。<br>
+眼前的这张脸，是让我们日思夜想，辗转难眠的一张脸，我愣住了。<br>
+“小贝！”湘玉又惊又喜，又疑又恼的叫道，“怎么是你？”<br>
+“白大哥，嫂子，”小贝失声痛哭，“你们杀了我吧。”<br>
+“你在说什么啊？”湘玉跌跌转转的上前，她拉住小贝的手，用力抱住她。<br>
+小贝却一把推开湘玉，她紧皱眉头，仿佛下定决心一样，大声喊到，“我对不起大家，对不起，秀才是我杀的！！！”<br>
+我们错愕……<br>
+突然听见马蹄声近，带着狂怒，我略微抬头，只见小贝身后一女子飞扑而来，口中大喝“排山倒海！！！”<br>
+《郭芙蓉篇》待更<br>
+二月初四，小雨，我和无双快马加鞭，直奔京城。<br>
+秀才已经离世一年了，我永远也不会忘记，那天，最后一次，他躺在我怀里，眼睛里含着温柔的笑意，他想摸我的脸，却重伤无力。<br>
+我发誓，我一定要让凶手血债血偿！这一年来我勤练惊涛掌，功力居然突飞猛进，一双细皮嫩肉的手掌，也在马背上厚茧增生。但这一切，为了报仇，我义无反顾。<br>
+今日降魔大会，掌柜和老白他们也一定来了吧，不知道他们是否打探到赤焰狂魔的消息？想到此处，我心更切。<br>
+过了京郊，京城就在眼前，我抬头看满天飞雨，时节尚寒，雨中夹杂着细碎的冰屑，娘的寒腿不知有无发作，爹爹是否还好，女儿不孝。<br>
+临近城下，前方依稀有几个人影，我看到一个身穿黑袍的神秘人背对着我，突然，她大声喊到，“秀才是我杀的！”<br>
+我的心好像被人紧紧的揪住，痛不可言，我深吸一口气，心痛转为了愤怒，杀夫仇人就在眼前，我怎能让过。<br>
+“排山倒海！”我飞扑过去，用尽全身力气，势必要她毙命掌下！<br>
+“小郭！”无双在身后惊喝。但我已管不了那么多了。<br>
+这掌即将打在黑袍人身上，突然有人抢出，一把推开了黑袍人。<br>
+掌柜的！<br>
+电光火石，我自收掌不及，这十层功力的惊涛掌，就这样结结实实的打在了她身上。<br>
+“湘玉！”老白冲上来，他一把抱住掌柜，神色甚切。<br>
+我低头看向自己的双手，血迹斑斑，那是掌柜的血！<br>
+抬头，看黑袍下，小贝哭的涕泗横流，她泣不能声，愣愣的看着一切。<br>
+“小贝～小贝，你过来”掌柜的轻轻招呼，她的胸襟上都是呕出的血，鲜红无比。<br>
+小贝走过去，她跪在地上，失声喊道“嫂子！”<br>
+“你跟嫂子…说实话…你为什么…要…要杀秀才”<br>
+“我中了移魂大法，那时候我也不知道怎么回事，等我醒过来，秀才哥哥就被我打死了。”<br>
+“果然…果然是他”掌柜眼里的生气渐渐流逝，她伸出一只手，轻轻的抵在小贝的额头，道“好孩子，那不关你的事，把一切都忘了吧。”<br>
+移魂大法！<br>
+“嫂子对…对不起你，以后，你要…一个人，好…好好的活下去。”湘玉姐柔柔着注视着小贝，她最后看看了一眼白大哥，那一眼，让我想起秀才死前看我的眼神。<br>
+白大哥痛哭流涕，他批上小贝的黑袍，轻轻吻了湘玉姐，说“你放心。”<br>
+雁过留痕，白大哥已蒙面飞入京城，黑袍上，是一朵火红的赤炎。<br>
+“怎么会这样呢？”我看着眼前的一切，心神大乱“怎么会这样呢！”<br>
+“小郭！”无双上来，拦在小贝面前，她是怕我对小贝动手吗？<br>
+我怎么能再动手？<br>
+“湘玉姐，我……我……”我突然吐出一口血，真气在我体内四处流窜，我哈哈哈大笑，“为什么会这样！！！”<br>
+“小郭？”声音远远的传来。<br>
+眼前的女子是谁，郭芙蓉是谁？我为什么要在这里，我？我是谁？<br>
+《我是谁》<br>
+我不知道自己是谁，我也不知道自己要到哪里去，我醒来看的第一个人，是一个温柔美丽的女子，她说她叫祝无双。<br>
+我是谁？我问她<br>
+她轻轻一笑，笑容中有一份无可奈何，她说我叫祝白玉，是她的妹妹。<br>
+我再问，为什么我什么都不记得了，为什么我们长得不像。<br>
+她说江湖中本来就没有那么多为什么。话了，她给我盖上被子，说出去拿点吃的。<br>
+“等等，”我叫住她，“佟湘玉和白展堂是谁，为什么我脑海里一直响着他们的名字？”<br>
+她略微纳罕，只是刹那，神色又变得柔和起来，“他们是当世侠侣，以前你最喜欢听说书的讲他们的故事了。”<br>
+我疑惑，想再问，她已经出去了。<br>
+躺在床上十分难受，我忍不住起身，看到桌子上有纸笔，拿起来，发现自己居然还记得写字，我写下“白展堂，佟湘玉”这几个字，脑海中仿佛有什么东西要破壳而出，不经思索，我提笔又写下“莫小贝，郭芙蓉，吕轻候，李大嘴”这几个字。<br>
+为什么这些名字我如此耳熟，他们的容貌我却没半分印象。<br>
+我再提笔，写“祝白玉”这三字，这个名字我为何如此陌生？<br>
+“把笔放下，你刚好，不能使力”无双姐走进来，她看到我写字，立刻放下手上吃的，把我扶上床。<br>
+她看了那些名字，留下一滴泪。<br>
+“你怎么了”我问。<br>
+“没什么，”无双姐拭去泪，说“吃吧，等你好了，我们就回家。”<br>
+“回家，回哪儿？”<br>
+“同福客栈。”<br>
+（全书完）</p>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Afreto</li>
+            <li><strong>原文链接：</strong>https://afret0.github.io/如果武林外传这个故事一直发展下去会是什么样子/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        <div id="otherpost">
+            
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/用flask实现自定义Prometheus的exporter/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">用flask实现自定义Prometheus的exporter</h4>
+                </div>
+            </div>
+            <div class="prev-post">
+                上一篇 <a href="https://afret0.github.io/用flask实现自定义Prometheus的exporter/">用flask实现自定义Prometheus的exporter</a>
+            </div>
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/用王家卫的方式改编《武林外传》/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">用王家卫的方式改编《武林外传》</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://afret0.github.io/用王家卫的方式改编《武林外传》/">用王家卫的方式改编《武林外传》</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+            </div>
+            <div id="comment" style="background: white">
+                <div class="commentcontainer">
+                    
+                    <style>
+    @media screen and (min-width: 1300px) {
+        .veditor::placeholder {
+            color: #b3b3b3;
+            font-size: 18px;
+            text-align: center;
+            line-height: 3rem;
+            font-family: kaiti;
+        }
+    }
+</style>
+
+<body>
+    <div id="vcomments">
+    </div>
+    <script src='https://afret0.github.io/media/js/valine.min.js'></script>
+    <script src="https://afret0.github.io/media/js/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
+            appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
+            notify: true,
+            verify: false,
+            avatar: 'retro',
+            pageSize: 10,
+            placeholder: '既然来了，何不畅所欲言呢？',
+            visitor: true, // 阅读量统计
+        });
+    </script>
+    <script type="text/javascript">
+        // jinrishici.load(function (result) {
+        //     var jrsc_plac = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+        //         .dynasty + " · " + result.data.origin.author;
+        //     if (jrsc_plac != undefined)
+        //         document.getElementById("veditor").setAttribute("placeholder", jrsc_plac);
+        // 
+        var jrsc = '既然来了，何不畅所欲言呢？';
+        jinrishici.load(function (result) {
+                // 自己的处理逻辑
+                jrsc = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+                 .dynasty + " · " + result.data.origin.author;
+            });
+    </script> 
+</body>
+                    <div class="clear"></div>
+                    
+                </div>
+            </div>
+            
+                <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</head>
+<body>
+    <div class="miniMode">
+        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default">
+        </meting-js>
+    </div>   
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script>
+    var aplayerid = "169914194";
+    var aplayerserver = "netease";
+    var aplayerorder = "random";
+    var aplayer = $("#myaplayer");
+    aplayer.attr("server",aplayerserver);
+    aplayer.attr("id",aplayerid);
+    aplayer.attr("order",aplayerorder);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+            
+        </div>
+        
+        <div class="toc-container">
+            
+        </div>
+    </div>
+    </div>
+    <div class="toggleContainer">
+        <div class="toggle">
+            <i class="fas fa-angle-double-up"></i>
+        </div>
+    </div>
+    <div id="bg">
+    </div>
+    <div id="bgchoice" style="display: none">link</div>
+    
+    <div id="bgurl" style="display:none">https://raw.githubusercontent.com/Afret1/image/master/img/test1.jpg</div>
+    
+    </div>
+    <!-- 响应式布局，针对手机端内容显示 -->
+    <div class="nav-small">
+        <head>
+  <!-- 引入Bootstrap核心样式文件 -->
+  <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#barmenu" aria-expanded="false" id="barbutton">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://afret0.github.io">Afreto&#39;s blog&nbsp;&nbsp;|</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="barmenu">
+        <ul class="nav navbar-nav">
+          
+          
+          <li>
+            <a href="tags">
+              home
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archives">
+              archives
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags">
+              tags
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/post/about">
+              about
+            </a>
+          </li>
+          
+          
+          
+          
+          <li><a href="https://afret0.github.io/friends">友链</a></li>
+
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+  var btstate = false;
+  var bt = $("#barbutton");
+  var bm = $("#barmenu");
+  bt.click(function(){
+    dropdown();
+  })
+  function dropdown(){
+    console.log(btstate);
+    //下拉
+    if(btstate==false){
+      bt.removeClass("collapsed");
+      bt.attr("aria-expanded","true");
+      bm.attr("aria-expanded","true")
+      bm.fadeIn(700);
+      btstate = true;
+    }
+    else{
+      bt.addClass("collapsed");
+      bt.attr("aria-expanded","false");
+      bm.removeClass("in");
+      bm.hide();
+      bm.attr("aria-expanded","false");
+      btstate = false;
+    }
+  }
+  </script> 
+</body>
+        <div style="margin-top:30px"></div>
+        <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;">
+                
+                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2018-10-26</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 19 min read</div>
+            <div class="posttag">
+                
+                <a href="https://afret0.github.io/n16nqH-vB/" class="postlink">
+                    <i class="fa fa-tag"></i> cave
+                </a>
+                
+            </div>
+        </div>
+        
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2>如果武林外传这个故事一直发展下去会是什么样子</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://afret0.github.io/如果武林外传这个故事一直发展下去会是什么样子/</div>
+                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
+                <span id="hotnum" class="leancloud_visitors" data-flag-title="如果武林外传这个故事一直发展下去会是什么样子">
+                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
+                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="leancloud-visitors-count">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <!-- more -->
+<p>《小青篇》<br>
+我奉老爷之命找回小姐，小雨时节出门，到今日，算来一年有余。<br>
+一路停停走走，我又来到七侠镇。抬头一望，《同福客栈》的匾额落漆斑斑，石阶上青苔厚如浓砚。这就是小姐生活过三年的地方，我把手按在那道哀尘遍布大门上，思绪万千。<br>
+“诶！……客栈已经关门了！”身后有人急切的喊。我回头一望，一个身穿麻布，头绑粗巾的胖大哥手提扫帚站在我身后。<br>
+“是你！”二人同时开口说道。我微微一笑，看到他拿的清扫器具，对其来意了然。<br>
+“还在找小郭呢？”李大嘴问。<br>
+我点头：“找不到小姐，我就不回去。”<br>
+“是是是，小贝她……”李大嘴叹口气：“放心吧，秀才那里就包我身上了。”<br>
+我从包里取出四十两银子，放在大嘴手里，道“姑爷那，就拜托你了。”<br>
+“诶！”他仿佛又没什么可说的了，讪讪的笑笑，又说“进来坐坐吧。”<br>
+“不了，我这次回来，是想打听一下有没有佟掌柜他们的消息”<br>
+“掌柜的回汉中了，听说和老白一年前就出门了，现在也不知道找着小贝没有。”<br>
+我暗暗捏了捏剑柄，道：“如果见到佟掌柜，替我传话，我家老爷有请，共议降魔大计。”<br>
+言毕，我再拱手“后会有期。”<br>
+《展红绫篇》<br>
+六年前，我托盗圣之福，以一本《缉盗指南》入身六扇门，成为天下第一女捕头，后嫁于追风，名气更盛。夫妻二人携手破案，另各路贼盗闻风丧胆。<br>
+但近月，却有几桩案子着实让我们束手无措。先是少林寺的玄难大师被人点穴至死，后是武当派的白眉道长死于剑下，接着是峨眉派的冲琳师太毙命于掌下。那手法，剑法，掌法分别是葵花点穴手，衡山剑法以及惊涛掌。江湖身怀绝学的人不少，但可以另三大高手一招毙命的人，连郭巨侠也做不到。<br>
+经过侦查，我们发现，三人或许是死于同一人之手，因为他们死前，都接到了一枚火焰令牌——赤焰狂魔。<br>
+赤焰狂魔是男是女，是老是少谁也不知道，只知道他杀人前会送出一枚火焰牌，而接到他令牌的人，都死了。<br>
+六扇门降魔令已发，各派掌门想必已陆续收到，下月初四，只是不知赤焰狂魔是否会出现了。<br>
+还有，他会来吗？我翻开《辑盗指南》，突然想起，已经一年多没有他的消息了。<br>
+听闻七侠镇发生巨变，关中大侠死于非命，同福客栈的人分兵多路追查真凶，至今未回。<br>
+“嗖”一枚暗器破窗而入，我急急躲开，只见房柱上一道赤红令牌末柄而入。<br>
+“赤焰狂魔！”我惊呼。推开门窗，一轮明月西头高挂，房阶银色如洗，哪里有半分人影。<br>
+《赛貂蝉篇》<br>
+从七侠镇回来，我和小翠的心结解开，回关东后，她出资，我们开了一家客栈。<br>
+那日无事，我于客栈前闲坐，手摇香扇，看车马往来，寻日东升。<br>
+“赛掌柜，别来无恙”，有人立在跟前，遮去大半阳光，我眯眼看去，依稀觉得眼熟“您是？”<br>
+“是我。”来者掀开斗笠，露出一张风情万种的鹅蛋脸来。<br>
+“佟掌柜？”，我笑迎道：“你怎么来了，快坐快坐。翠儿～快来呀，看谁来啦～”<br>
+“不忙，”佟掌柜道，“途径这里，甚是叨扰，我那边还有几个朋友，想借住一宿，不知是否方便？”<br>
+“方便方便！”我赶忙道，搀着佟掌柜进门“你这打哪儿走啊？白大哥呢？可在我这走走地位，耍几天要得。”<br>
+佟掌柜突然黯然神伤，道“有事未完，他日一定登门再会。”<br>
+“你这是……咋啦？”我瞧出不对，问“出啥事儿了？跟我说，我义不容辞。”<br>
+佟掌柜凄凄一笑，道了声谢，没有再说下去，她回头道：“展堂～”<br>
+街头几辆那车滚滚而来，带头之人，正是白大哥。<br>
+“白大哥，你的手……”我看见白大哥的食中二指齐断，双掌上的三根手指分外突兀。<br>
+白大哥微微抿嘴，朝我凄凉一笑“叨扰了，出了点小事。”<br>
+“你们这是？”我惊惧不已“到底出啥事了，跟妹子说吧。”<br>
+白大哥佟掌柜对眼一望，回头说“赛掌柜，我们要赴往京城参加降魔大会，恳请你为我们准备几匹快马……”<br>
+我心头狂跳“你们……”<br>
+“还有，你有小贝的消息吗？”佟掌柜突然说，一滴泪从她的眼睛流出，在骄阳下印出一片霞影。<br>
+《蕙兰篇》<br>
+一饮琼瑶百感生。子骏今夜谈生意去了，看月色朦胧甚好，我坐桃树下独醉。<br>
+人生真是妙不可言，两年前我还是一无所有，浪迹天涯的杨惠兰；两年后我已是富甲一方，名声显赫的杜夫人。只是，偶尔回眸，想起当初形骸放浪，也会不禁嗤笑，嗤笑中也有淡淡的落寞。<br>
+枝影疏朗，我伸了个懒腰，一瞥，却看见两条人影闪过……<br>
+“谁！”我横起右手，一记火焰刀蓄势待发。<br>
+“蕙兰，许久不见，”来人从墙头翻身下来，却是两个曼丽女子——小郭，无双。<br>
+“怎么是你们？”我听闻七侠镇发生巨变，一夜间秀才不幸去世，小贝不知所踪，看来都是真的了。<br>
+“我们有事请教，”无双拱手道“你的西域火焰刀师承何处？”<br>
+我略微踌躇，火焰刀乃西域秘传绝技，向来单脉传承，事关家师，不可向他人道来。<br>
+“不知你们为何要问火焰刀之事？”<br>
+小郭恨恨道“因为秀才死于火焰刀下！我们想知道，火焰刀失传已久，除了你还有谁会用。”<br>
+我不禁哑然，“家师远在西域，何况他与秀才无冤无仇，不可能至中原杀人，而我，自嫁给子骏，至今尚未出过门。”<br>
+“我们没有怀疑你”，无双道：“只是，火焰刀难道只有你们师徒二人会用吗？”<br>
+我皱眉：“火焰刀乃不传秘技，除了师傅和我，我想不出还有第三人会用。”<br>
+我又道：“这事疑点众多，非三言两语可以说清，二位不如留下详谈。蕙兰定当尽力协助追拿真凶。”<br>
+“实不相瞒，我们怀疑秀才的死和小贝失踪，都和江湖近期崛起的魔头有关！”小郭掏出一枚火焰令牌：“这是在秀才身上找到的。”<br>
+“赤炎狂魔！”我惊呼。<br>
+“不错”无双看了看小郭“出事后师兄和掌柜一组，我和小郭一组分头寻找真凶，已经一年有余，现在郭巨侠召开降魔大会，我和小郭决定回京赴会，或许可得知真凶。”<br>
+“蕙兰有何事可以相助一二，两位尽管吩咐。”<br>
+“多谢你的好意，”小郭拱手：“杜家财大势大，如果有魔头的消息，请帮忙留意。”<br>
+“那是自然。”<br>
+“告辞了”两人拱手。几个起落，她们的身影已消失在蒙蒙夜色中。<br>
+我放下酒杯，只觉得此事古怪异常，心想还是给师傅修书一封为好。<br>
+“来人～”我喊道。<br>
+四下沉寂，唯虫鸣清耳，风呼啸而过，我突然感觉身后有一道炙热的气焰斩来，匆匆躲过，我翻身看去，只见一个全身黑衣的，面蒙黑巾的人站在房檐下，他起手为刀——火焰刀！<br>
+《画画老人篇》<br>
+我这一生没别的爱好，就喜欢喝二两薄酒，嚼几张肉夹馍，酒足饭饱，也不干什么，就喜欢画上几张武功，过个眼瘾。<br>
+很多人问我叫什么，真名我早忘了，江湖弟兄送的几个外号倒是还记得一点，几十年前，大家都叫我缺德道人，几十年后，又有谁能记得起我。<br>
+最近几年我感觉自己真的老了，眼又瞎，耳又聋，那么多的武功秘籍，我还没画完呢……算了，画了又能怎么样，我的身子骨自己知道，画的了武功，也练不成了。<br>
+但我这一身的武艺，脑中不断浮现的武林秘技，白白在尘土中泯灭实在不甘。所以，我找了弟子，要把我一生所有，倾囊相授。<br>
+不愿学？他敢！我杀他爹娘，杀他爱人，杀他一切在乎的人，杀到他自己来找我。<br>
+今夜，他终于来了。<br>
+“你来晚了”我扬一扬手上的酒坛“酒都喝完了，你来干嘛？”<br>
+“杀你”来人恨道。<br>
+“黄口小儿，武功学全了吗？”我嗤笑“你有把握杀的了我。”<br>
+“我的武功都是你教的，以前没有，现在有了。”他从怀里摸出一把菜刀，6 寸长 3 寸宽，通身玄铁，迸射出一股惊人的杀气。<br>
+“我很早以前就对你说过，杀人要无心，无心才能无形，”我拿起一张肉夹馍，不住磨砂，道：“你现在被杀气充昏了头，刀拿得住吗。”<br>
+“拿得住。”他道：“你派人杀了我母亲，杀了我兄弟，还杀了我最爱的蕙兰！不就想让我再拿起这把刀吗？”<br>
+“哈哈哈哈哈……”我大笑：“你资质太差，这辈子也学不全我的武功，杀的那些人，只是我新弟子的磨刀石而已。”<br>
+“你……”他的手微微颤抖：“你把她给……”<br>
+“不错，你学不了的，她一学就会，你学的会的，她一学就精，她是天生的奇才，是做我传人的最佳人选。”我讥笑道“可惜了这么好的苗子，却不愿意学武功。所以，我只好用了点手段，哈哈哈！”<br>
+“老匹夫！”他怒喝，那杀意直冲云霄，一轮新月印出残红。<br>
+我冷笑，将肉夹馍甩出，挥出弧形，所到之处，事物尽被斩断，包括他拿刀的右手，道：“我今日废你武功，留你一条狗命，滚吧！”<br>
+“我今日留下右手，把你教的武功还你，你我师徒恩义已尽！”他冷汗兢兢道。<br>
+我顺着他的目光低头看向胸口，一把菜刀末柄而入，玄铁的寒意直斥心扉：“哈哈哈……不愧是我的好徒儿，这是……是何刀法？”<br>
+“师傅忘了，”他的声音传来，我已经渐渐听不清了……<br>
+“我，姓，李”！他一字一句道。<br>
+《燕小六篇》（断更了这么久，不好意思大家，现在补上两篇）<br>
+“干了几年铺头，小六已经被郭巨侠提携到六扇门了。七舅姥爷，师傅，小六没给你们丢人……但是，我真的好想七侠镇，好想你们大家啊。”<br>
+“今天又到小六巡班了，带队的老刘和师傅一样，对小六挺照顾的，这里的兄弟虽然不像七侠镇那班人那么有趣，但也讲义气。郭巨侠说，让我好好历练，总有上升的一天。七舅姥爷，师傅，你们放心，小六一定会有出息的。”<br>
+“这几天天可真黑啊，天乌黑乌黑的，就像师傅的两只大手，却又不下雨，闷死小六了。这几天巡逻的人更多了，查禁也更严了，听说郭巨侠要开什么‘耳朵木木鬼大会’，会有很厉害的大盗会出现，希望小六碰到，就可以立大功了。等小六当上总铺头，一定回去接你们……乌云啊乌云，如果你听见了我的话，就飘到十八里铺，把小六说的话告诉我师傅吧”，我走在宫墙脚，抬头看云，从怀里摸出唢呐，忍不住叹了口气。<br>
+“小六”一只手突然搭在我肩上，声音几乎在耳边响起。<br>
+“谁！”我连忙回头，一个全身黑袍的的人站在我眼前，他的脸压低在帽子下，使人看不清楚，但声音，我却是很熟的。<br>
+我半肯定的问：“莫小贝？”<br>
+来人点点头。<br>
+“你咋来这儿了？”我高兴说“我师傅还好吧，无双在七侠镇捕快当的咋样，大家伙过得好吗？”<br>
+迟疑了良久，小贝开口道，“说来话长，我这次来，有事找你。”<br>
+“嘛事”<br>
+“杀你！”小贝突然抬头，还没等我喊出声，我就后脖子一痛，晕了过去，我躺在地上，最后一眼看的是黑压压的云，一滴雨落下来砸在脸上，我心里想的是，下雨了，可我唢呐还没吹呢。<br>
+《白展堂篇》<br>
+如果一个人的人生可以用天气表示，那么我初出江湖的天就是凉爽但又压抑的阴天，我在客栈的天，就是湛蓝又明媚的晴天，而现在，我的天都是雨天。<br>
+二月初四，小雨，今天降魔大会将在京城郭府召开，平时我是不敢见捕快的，但现在，心中的意念让我不惧前行。我和湘玉快马加鞭，京都已经近在眼前。<br>
+秀才惨死，小贝失踪，客栈分崩离析，现在在湘玉的眼里我只能看到泪水和一股执念，还看到一丝疲惫和恨意，看得久了，我哑然发现，里面的失意也有我的倒影。我发誓，一定要揪出幕后真凶，将他绳之以法！<br>
+“展堂，你看前方是谁？”湘玉突然开口。<br>
+我收回心绪，眺望去，只看见一个捕快躺在地上——燕小六。<br>
+我们快速跑到小六那边。“驭……”喝马停下，两人相顾，只从对方眼里看到了自己的疑惑。<br>
+我下马扶起小六，朝湘玉摆摆手，释意让她不必担心，“只是晕过去了。”<br>
+“为什么小六会在这，光天化日，朗朗乾坤，是什么人做的？”湘玉下马问道。<br>
+我摇了摇头。身后却传来一个雌雄莫辨的声音，“是我！”<br>
+我跳到湘玉前面，把她护在身后，随手接过对方投来的暗器——一柄赤炎令牌。<br>
+“赤炎狂魔”我吃惊看去，这个魔头一身黑衣，连面上也蒙了黑巾，让人看不清他的样子。没想到他如此大胆，居然直进京城赴约对付他的降魔大会。<br>
+“你把小贝还给我！”湘玉惨叫一声，向前飞扑过去，我一把拉住她，眼睛却时刻注意着眼前魔头的动向。<br>
+实话说，从刚刚他发镖的身法看，和他动手，我绝对会输，于是用言语拖住他，等京中高手赴会，合力降魔，“你为什么要对一个小捕快动手？”<br>
+我看到赤炎狂魔身影微微颤抖，他用左手狠狠的抓住自己的右手，仿佛要压制住什么东西一样，雌雄莫辨的声音传来“没有饵，怎么引盗圣上钩？”<br>
+果然是冲着我来的，我不禁想道。<br>
+“小贝在哪？”湘玉的泪水夺眶而出，她盯着魔头，却没有再上前。<br>
+沉默良久，魔头缓缓道，“她已经死了。”<br>
+“啊！！！”湘玉痛哭，拔剑冲上前道，“我要你偿命！”<br>
+“不好，”我身法立动，挡在湘玉身前，只见魔头全是颤抖，异乎寻常，仿佛坐以待毙一样，等待湘玉一剑刺下。<br>
+说迟时那时快，我左手拉住湘玉，右手虚掩，却一指点向魔头诸身要穴。魔头略微失神，他一定料不到我居然在救人的时候，敢大胆出手，他极速后退，好一招移形换影。<br>
+这一剑，一拉，一点，一闪，不过刹那，魔头终究晚了半步，他躲过了我凌厉的一指，却被湘玉的长剑挑开了面巾。<br>
+眼前的这张脸，是让我们日思夜想，辗转难眠的一张脸，我愣住了。<br>
+“小贝！”湘玉又惊又喜，又疑又恼的叫道，“怎么是你？”<br>
+“白大哥，嫂子，”小贝失声痛哭，“你们杀了我吧。”<br>
+“你在说什么啊？”湘玉跌跌转转的上前，她拉住小贝的手，用力抱住她。<br>
+小贝却一把推开湘玉，她紧皱眉头，仿佛下定决心一样，大声喊到，“我对不起大家，对不起，秀才是我杀的！！！”<br>
+我们错愕……<br>
+突然听见马蹄声近，带着狂怒，我略微抬头，只见小贝身后一女子飞扑而来，口中大喝“排山倒海！！！”<br>
+《郭芙蓉篇》待更<br>
+二月初四，小雨，我和无双快马加鞭，直奔京城。<br>
+秀才已经离世一年了，我永远也不会忘记，那天，最后一次，他躺在我怀里，眼睛里含着温柔的笑意，他想摸我的脸，却重伤无力。<br>
+我发誓，我一定要让凶手血债血偿！这一年来我勤练惊涛掌，功力居然突飞猛进，一双细皮嫩肉的手掌，也在马背上厚茧增生。但这一切，为了报仇，我义无反顾。<br>
+今日降魔大会，掌柜和老白他们也一定来了吧，不知道他们是否打探到赤焰狂魔的消息？想到此处，我心更切。<br>
+过了京郊，京城就在眼前，我抬头看满天飞雨，时节尚寒，雨中夹杂着细碎的冰屑，娘的寒腿不知有无发作，爹爹是否还好，女儿不孝。<br>
+临近城下，前方依稀有几个人影，我看到一个身穿黑袍的神秘人背对着我，突然，她大声喊到，“秀才是我杀的！”<br>
+我的心好像被人紧紧的揪住，痛不可言，我深吸一口气，心痛转为了愤怒，杀夫仇人就在眼前，我怎能让过。<br>
+“排山倒海！”我飞扑过去，用尽全身力气，势必要她毙命掌下！<br>
+“小郭！”无双在身后惊喝。但我已管不了那么多了。<br>
+这掌即将打在黑袍人身上，突然有人抢出，一把推开了黑袍人。<br>
+掌柜的！<br>
+电光火石，我自收掌不及，这十层功力的惊涛掌，就这样结结实实的打在了她身上。<br>
+“湘玉！”老白冲上来，他一把抱住掌柜，神色甚切。<br>
+我低头看向自己的双手，血迹斑斑，那是掌柜的血！<br>
+抬头，看黑袍下，小贝哭的涕泗横流，她泣不能声，愣愣的看着一切。<br>
+“小贝～小贝，你过来”掌柜的轻轻招呼，她的胸襟上都是呕出的血，鲜红无比。<br>
+小贝走过去，她跪在地上，失声喊道“嫂子！”<br>
+“你跟嫂子…说实话…你为什么…要…要杀秀才”<br>
+“我中了移魂大法，那时候我也不知道怎么回事，等我醒过来，秀才哥哥就被我打死了。”<br>
+“果然…果然是他”掌柜眼里的生气渐渐流逝，她伸出一只手，轻轻的抵在小贝的额头，道“好孩子，那不关你的事，把一切都忘了吧。”<br>
+移魂大法！<br>
+“嫂子对…对不起你，以后，你要…一个人，好…好好的活下去。”湘玉姐柔柔着注视着小贝，她最后看看了一眼白大哥，那一眼，让我想起秀才死前看我的眼神。<br>
+白大哥痛哭流涕，他批上小贝的黑袍，轻轻吻了湘玉姐，说“你放心。”<br>
+雁过留痕，白大哥已蒙面飞入京城，黑袍上，是一朵火红的赤炎。<br>
+“怎么会这样呢？”我看着眼前的一切，心神大乱“怎么会这样呢！”<br>
+“小郭！”无双上来，拦在小贝面前，她是怕我对小贝动手吗？<br>
+我怎么能再动手？<br>
+“湘玉姐，我……我……”我突然吐出一口血，真气在我体内四处流窜，我哈哈哈大笑，“为什么会这样！！！”<br>
+“小郭？”声音远远的传来。<br>
+眼前的女子是谁，郭芙蓉是谁？我为什么要在这里，我？我是谁？<br>
+《我是谁》<br>
+我不知道自己是谁，我也不知道自己要到哪里去，我醒来看的第一个人，是一个温柔美丽的女子，她说她叫祝无双。<br>
+我是谁？我问她<br>
+她轻轻一笑，笑容中有一份无可奈何，她说我叫祝白玉，是她的妹妹。<br>
+我再问，为什么我什么都不记得了，为什么我们长得不像。<br>
+她说江湖中本来就没有那么多为什么。话了，她给我盖上被子，说出去拿点吃的。<br>
+“等等，”我叫住她，“佟湘玉和白展堂是谁，为什么我脑海里一直响着他们的名字？”<br>
+她略微纳罕，只是刹那，神色又变得柔和起来，“他们是当世侠侣，以前你最喜欢听说书的讲他们的故事了。”<br>
+我疑惑，想再问，她已经出去了。<br>
+躺在床上十分难受，我忍不住起身，看到桌子上有纸笔，拿起来，发现自己居然还记得写字，我写下“白展堂，佟湘玉”这几个字，脑海中仿佛有什么东西要破壳而出，不经思索，我提笔又写下“莫小贝，郭芙蓉，吕轻候，李大嘴”这几个字。<br>
+为什么这些名字我如此耳熟，他们的容貌我却没半分印象。<br>
+我再提笔，写“祝白玉”这三字，这个名字我为何如此陌生？<br>
+“把笔放下，你刚好，不能使力”无双姐走进来，她看到我写字，立刻放下手上吃的，把我扶上床。<br>
+她看了那些名字，留下一滴泪。<br>
+“你怎么了”我问。<br>
+“没什么，”无双姐拭去泪，说“吃吧，等你好了，我们就回家。”<br>
+“回家，回哪儿？”<br>
+“同福客栈。”<br>
+（全书完）</p>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Afreto</li>
+            <li><strong>原文链接：</strong>https://afret0.github.io/如果武林外传这个故事一直发展下去会是什么样子/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        <div id="otherpost">
+            
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/用flask实现自定义Prometheus的exporter/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">用flask实现自定义Prometheus的exporter</h4>
+                </div>
+            </div>
+            <div class="prev-post">
+                上一篇 <a href="https://afret0.github.io/用flask实现自定义Prometheus的exporter/">用flask实现自定义Prometheus的exporter</a>
+            </div>
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/用王家卫的方式改编《武林外传》/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">用王家卫的方式改编《武林外传》</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://afret0.github.io/用王家卫的方式改编《武林外传》/">用王家卫的方式改编《武林外传》</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+        <div name="comment" style="background: white;margin-top:100px">
+            <div class="commentcontainer">
+                
+                <body>
+    <div id="vcomments1"></div>
+
+<script src='https://afret0.github.io/media/js/valine.min.js'></script>
+<script src="https://afret0.github.io/media/js/jquery.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+    new Valine({
+        el: '#vcomments1',
+        appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
+        appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
+        notify: true,
+        verify: false,
+        avatar: 'retro',
+        pageSize: 10,
+        placeholder: '既然来了，那就留个痕迹吧~',
+        visitor: true // 阅读量统计
+    })
+</script>
+
+</body>
+
+                <div class="clear"></div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var img = $("img");
+    for (var i = 0; i < img.length; i++) {
+        if (img.eq(i).attr("class") == undefined) {
+            img.eq(i).attr("class", "lazyload");
+            var imgsrc = img.eq(i).attr("src");
+            img.eq(i).attr("data-original", imgsrc);
+            img.eq(i).attr("src", "");
+            img.eq(i).hide();
+        }
+    }
+</script>
+<script src="https://afret0.github.io/media/js/post.js"></script>
+<script>
+    //寻找所有code标签，加复制按钮鸭！(行内代码除外)
+    var codes = document.getElementsByTagName('code');
+    if (codes.length) {
+        for (var i = 0; i < codes.length; i++) {
+            //高度/行高=文本行数
+            // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
+            // console.log("当前有"+rowNum+"行");
+            var code_id = "code_id_" + i;
+            codes[i].setAttribute("id", code_id);
+            var ci = "#" + code_id;
+            var codedot = $(ci);
+            var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
+            if (rowNum <= 1) continue;
+            var btn = document.createElement("button");
+            btn.setAttribute("class", "copybt");
+            btn.setAttribute("data-clipboard-target", "#" + code_id);
+            btn.innerHTML = '复制代码';
+            codes[i].parentNode.insertBefore(btn, codes[i]);
+        }
+    };
+    var cop = new ClipboardJS('.copybt');
+    var codeCopyText = $("#codeCopyText").html();
+    cop.on('success', function (e) {
+        alert(codeCopyText);
+        e.clearSelection();
+    });
+    cop.on('error', function (e) {
+        alert("矮油，复制失败了...手动复制吧勇士！");
+        e.clearSelection();
+    });
+</script>
+
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "https://afret0.github.io/media/live2d/assets/tororo.model.json");
+</script>
+
+<script>
+    $(function () {
+        $('.toggleContainer').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st > 30) {
+                $(".toggleContainer").fadeIn(400);
+            } else {
+                $(".toggleContainer").fadeOut(100);
+            }
+        });
+    });
+</script>
+
+<script>
+    var bgchoice = $('#bgchoice').html();
+    var bg = $('#bg');
+    var bgurl = document.getElementById("bgurl").innerHTML;
+    if (bgchoice == 'default')
+        for (var i = 0; i < 3; i++)
+            bgurl = bgurl.replace("\\", "/");
+    bg.css("background", "url('" + bgurl + "')");
+</script>
+
+
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+
+<!-- 动态更改上(下)一篇博客图片框长宽 -->
+<script>
+    npcontainer = document.querySelector('#npcontainer');
+    npstyle = window.getComputedStyle(npcontainer, null);
+    npwidth = npstyle.width;
+    npheight = 0.6 * Number(npwidth.replace("px", ""));
+    npheight = npheight.toString() + "px";
+    var op = $(".opimg");
+    op.css("height", npheight);
+</script>
+
+<script src="https://afret0.github.io/media/share/dist/Share.js"></script>
+
+<script>
+    var avatarSrc = $(".menutopavatar").attr("src");
+    var dp = document.getElementsByClassName("navbar-brand")[1].innerHTML;
+</script>
+
+
+<script>
+    var title = document.getElementById("texttitle").getElementsByTagName("h2");
+    
+    var share = new Share('.share', {
+        title: title[0].innerHTML,
+        initialized: true,
+        //默认获取网站描述
+        description: dp,
+        //网站图片默认获取的是设置的用户头像
+        image: avatarSrc,
+        //激活的分享网站
+        sites: ["weibo", "qq", "wechat", "douban", "qzone", "facebook", "twitter", "google"],
+        //微信分享PC端会生成二维码分享,移动端如果可以唤起微信最好
+        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+        wechatQrcodeHelper: '<p>微信里扫一下二维码</p><p>便可将本文分享至朋友圈。</p>',
+        //关闭的网站分享
+        disabled: ['google', 'linkedin'],
+        wechatQrcodePosition: 'bottom'
+    });
+
+    //点击分享按钮展现出分享icons
+    var sharebtnTag = false;
+    $(".sharebtn").click(function () {
+        if(!sharebtnTag)
+        {
+            $(".share").show();
+            sharebtnTag = true;
+        }
+        else
+        {
+            $(".share").hide();
+            sharebtnTag = false;
+        }
+    })
+
+    var donatebtnTag = false;
+    $(".donateImg").click(function () {
+        if(!donatebtnTag)
+        {
+            $(".donate").show();
+            donatebtnTag = true;
+        }
+        else{
+            $(".donate").hide();
+            donatebtnTag = false;
+        }
+    })
+
+    window.onload=function(){
+        var sharepc = $(".share").eq(0).html();
+        $(".share").eq(1).html(sharepc);
+        setTimeout(function(){
+            var hn = $(".leancloud-visitors-count").eq(0).html();
+            hn = '<i class="fa fa-eye" aria-hidden="true"'+
+                            'style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i'+
+                            'class="leancloud-visitors-count">'+hn+'</i></h4>'
+            $(".readercount").eq(1).html(hn);
+        }, 1000);
+        document.getElementById("veditor").setAttribute("placeholder", jrsc);
+    }
+</script>
+
+
+<script>
+    jQuery(document).ready(function ($) {
+        function lazyload() {
+            var oLazyload = $("img.lazyload"),
+                fLazyload = function (hLazyload) {
+                    var nLazyload = $(window).height() + $(document).scrollTop();
+                    oLazyload.each(function () {
+                        $(this).offset().top < nLazyload && ($(this).trigger("appear"), oLazyload =
+                            oLazyload.not(this));
+                    }), 0 == oLazyload.length && $(window).unbind("scroll", fLazyload);
+                };
+            oLazyload.each(function () {
+                $(this).one("appear", function () {
+                    $(this).attr("src", $(this).attr("data-original"));
+                    $(this).fadeIn(500);
+                });
+            }), $(window).bind("scroll", fLazyload), fLazyload();
+        }
+        lazyload();
+    });
+</script>

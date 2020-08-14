@@ -1,0 +1,1201 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="
+温故而知新, 可以为师矣...
+
+
+报文
+HTTP 报文都是纯文本, 不是二进制代码
+HTTP 报文包括三个部分:
+
+起始行 报文的第一行就是起始行, 在请求报文中用来说明要做什么, 在响应报文里面说明出现了什么状况
+首部字段 起始行后面..." />
+    <meta name="keywords" content="note" />
+    <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://afret0.github.io/styles/main.css">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/rainbow.min.css">
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script src="https://afret0.github.io/media/js/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://afret0.github.io/media/css/live2d.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
+    <title>Afreto's blog</title>
+    
+    <style>
+        .markdownIt-TOC {
+            padding-left: 2px;
+            width: 100%;
+        }
+
+        .markdownIt-TOC li {
+            padding-left: 2%;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+    </div>
+    <div id="codeCopyText" style="display: none">代码复制成功了哦</div>
+    <div id="domainname" style="display:none">https://afret0.github.io</div>
+    <!-- 响应式布局，针对PC端内容显示 -->
+    <div id="content">
+        <div class="nav-large">
+            <div class="row">
+                <div class="side"><body>
+    
+
+
+
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://afret0.github.io"
+                    style="font-size:21px">Afreto&#39;s blog&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+                <a class="navbar-brand" href=""
+                    style="font-size:15px;font-family:kaiti">江湖沒什麼好的，也就酒還行～
+
+</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                
+                <div class="search nav navbar-nav" style="margin-top:8px">
+                    <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
+                    <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
+                    <div class="search-results"></div>
+                </div>
+                
+                <div class="search nav navbar-nav">
+                <a title="text" onclick="document.getElementById('socialMenu').style.display='block'"><i><img class="social"
+                    src="https://afret0.github.io/media/images/social.png" alt=""></i></a>
+            </div>
+            <ul class="nav navbar-nav" style="float: right;margin-right:5%">
+                
+                
+                <li>
+                    <a href="tags" style="color:white">
+                        home
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/archives" style="color:white">
+                        archives
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/tags" style="color:white">
+                        tags
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/post/about" style="color:white">
+                        about
+                    </a>
+                </li>
+                
+                
+                
+                  
+                <li><a href="https://afret0.github.io/friends" style="color:white">友链</a></li>
+                
+                  <li><img src="https://afret0.github.io/images/avatar.png?v=1597397760518" alt=""
+                class="menutopavatar"></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="socialMenu">
+        <div class="animate">
+            <div class="socialContainer">
+                
+                
+                
+                
+                
+                
+            </div>
+            <div id="qq" style="display:none"></div>
+        </div>
+    </div>
+    <!-- 引入jQuery核心js文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script>
+        var social = document.getElementById('socialMenu');
+        // 鼠标点击模型外区域关闭登录框
+        window.onclick = function (event) {
+            if (event.target == social) {
+                social.style.display = "none";
+            }
+        }
+    </script>
+    
+</body>
+<script>
+    //-------------------------------------------------搜索
+    // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
+    var searchInput = document.querySelector('.search-input');
+    var searchResults = document.querySelector('.search-results');
+
+    // 申明保存文章的标题、链接、内容的数组变量
+    var searchValue = '',
+        arrItems = [],
+        arrLinks = [],
+        arrTitles = [],
+        arrResults = [],
+        indexItem = [],
+        itemLength = 0;
+    var tmpDiv = document.createElement('div');
+    tmpDiv.className = 'result-item';
+
+    // ajax 的兼容写法
+    var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            xml = xhr.responseXML;
+            arrItems = xml.getElementsByTagName('entry');
+            itemLength = arrItems.length;
+            // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
+            // 同时过滤掉 HTML 标签
+            for (i = 0; i < itemLength; i++) {
+                var link = arrItems[i].getElementsByTagName('link')[0];
+                arrLinks[i] = link.getAttribute("href");
+                arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
+                childNodes[0].nodeValue.replace(/<.*?>/g, '');
+            }
+        }
+    }
+
+    // 开始获取根目录下 feed.xml 文件内的数据
+    xhr.open('get', '/atom.xml', true);
+    xhr.send();
+
+
+
+    // 输入框内容变化后就开始匹配，可以不用点按钮
+    // 经测试，onkeydown, onchange 等方法效果不太理想，
+    // 存在输入延迟等问题，最后发现触发 input 事件最理想，
+    // 并且可以处理中文输入法拼写的变化
+    searchInput.oninput = function () {
+        setTimeout(searchConfirm, 0);
+    }
+    searchInput.onfocus = function () {
+        searchResults.style.display = 'block';
+    }
+
+    function searchConfirm() {
+        if (searchInput.value == '') {
+            searchResults.style.display = 'none';
+        } else if (searchInput.value.search(/^\s+$/) >= 0) {
+            // 检测输入值全是空白的情况
+            searchInit();
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '请输入有效内容...';
+            searchResults.appendChild(itemDiv);
+        } else {
+            // 合法输入值的情况
+            searchInit();
+            searchValue = searchInput.value;
+            // 在标题、内容中查找
+            searchMatching(arrTitles, searchValue);
+        }
+    }
+
+    // 每次搜索完成后的初始化
+    function searchInit() {
+        arrResults = [];
+        indexItem = [];
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'block';
+    }
+
+    function searchMatching(arr1, input) {
+        // 忽略输入大小写
+        input = new RegExp(input, 'i');
+        // 在所有文章标题、内容中匹配查询值
+        for (i = 0; i < itemLength; i++) {
+            if (arr1[i].search(input) !== -1) {
+                var arr = arr1;
+                indexItem.push(i); // 保存匹配值的索引
+                var indexContent = arr[i].search(input);
+                // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
+                var l = input.toString().length - 3;
+                var step = 10;
+
+                // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
+                arrResults.push(arr[i].slice(indexContent - step, indexContent));
+            }
+        }
+
+        // 输出总共匹配到的数目
+        var totalDiv = tmpDiv.cloneNode(true);
+        totalDiv.innerHTML = '<b>总匹配：' + indexItem.length + ' 项<hr></b>';
+        searchResults.appendChild(totalDiv);
+
+        // 未匹配到内容的情况
+        if (indexItem.length == 0) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '未匹配到内容...';
+            searchResults.appendChild(itemDiv);
+        }
+
+        // 将所有匹配内容进行组合
+        for (i = 0; i < arrResults.length; i++) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerHTML = '<b>[' + arrTitles[indexItem[i]] +
+                ']</b><p>' + arrResults[i] + "</p><hr />";
+            itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
+            searchResults.appendChild(itemDiv);
+        }
+    }
+
+    function changeHref(href) {
+        location.href = href;
+    }
+
+    function showqq() {
+        var qq = document.getElementById("qq").innerHTML;
+        if (qq != '')
+            window.location.href = "tencent://message/?uin=" + qq + "&Site=&Menu=yes";
+        else
+            alert("博主暂未设置QQ联系方式");
+    }
+</script>
+</div>
+                
+            <div id="main" class="col-xs-12 col-sm-7" style="width:50%;margin-top:50px;left:27%">
+                <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;">
+                
+                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2018-11-22</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
+            <div class="posttag">
+                
+                <a href="https://afret0.github.io/MinUaFE2mN-/" class="postlink">
+                    <i class="fa fa-tag"></i> note
+                </a>
+                
+            </div>
+        </div>
+        
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2>Http 权威指南读书笔记</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://afret0.github.io/Http-权威指南读书笔记/</div>
+                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
+                <span id="hotnum" class="leancloud_visitors" data-flag-title="Http 权威指南读书笔记">
+                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
+                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="leancloud-visitors-count">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <blockquote>
+<p><em>温故而知新, 可以为师矣...</em></p>
+</blockquote>
+<!-- more -->
+<h1 id="报文">报文</h1>
+<p>HTTP 报文都是纯文本, 不是二进制代码<br>
+HTTP 报文包括三个部分:</p>
+<ul>
+<li><strong>起始行</strong> 报文的第一行就是起始行, 在请求报文中用来说明要做什么, 在响应报文里面说明出现了什么状况</li>
+<li><strong>首部字段</strong> 起始行后面有零或多个首部字段. <code>key: value</code> 格式.首部以一个空行结束.添加一个首部字段和添加一个新行一样简单.</li>
+<li><strong>主体</strong>  空行之后就是可选的报文主体</li>
+</ul>
+<h1 id="连接">连接</h1>
+<h2 id="tcpip">TCP/IP</h2>
+<p>HTTP 是应用层协议,不操心网络通信的具体细节<br>
+TCP/IP 提供:</p>
+<ul>
+<li>无差错的数据传输</li>
+<li>按序传输(数据总是会按照发送的顺序到达)</li>
+<li>未分段的数据流(可以在任意时刻以任意尺寸将数据发送出去)</li>
+</ul>
+<h1 id="web-结构组件">Web 结构组件</h1>
+<ul>
+<li>代理</li>
+<li>缓存</li>
+<li>网关</li>
+<li>隧道 <em>对 HTTP 通信报文进行盲转发的特殊代理</em></li>
+<li>Agent 代理 _发起自动 HTTP 请求的半智能 Web 客户端</li>
+</ul>
+<h1 id="连接-2">连接</h1>
+<h2 id="http-时延">HTTP 时延</h2>
+<ul>
+<li>dns 解析耗时</li>
+<li>TCP 连接建立握手</li>
+<li>TCP 慢启动拥塞控制
+<blockquote>
+<p>TCP 连接会随着时间进行自我调谐, 起初会限制连接的最大速度,如果苏剧成功传输,会随着时间的推移提高传输的速度,这种调谐成为 TCP 慢启动, 用于防止突然过载和拥塞<br>
+TCP 慢启动限制了一个 TCP 端点在任意时刻可以传输的分组数.</p>
+</blockquote>
+</li>
+<li>数据聚集的 Nagle 算法</li>
+<li>用于稍待确认的 TCP 延迟确认算法</li>
+<li>TIME_WAIT时延和端口耗尽</li>
+</ul>
+<h2 id="幂等性">幂等性</h2>
+<p>如果一个事务, 不管是执行一次还是很多次,得到的结果都相同,这个事务就是幂等的,实现者们可以认为 GET, HEAD, PUT, DELETE, TRACE 和 OPTIONS 方法都共享这一特性</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">HTTP Method</th>
+<th style="text-align:center">Idempotent</th>
+<th style="text-align:center">Safe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">OPTIONS</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">HEAD</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">PUT</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">PATCH</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">no</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关闭连接">关闭连接</h2>
+<p>TCP 连接时双向的. TCP 连接的每一端都有一个输入队和一个输出队列,用于数据的读写.放入一端输出队列中的数据最终会出现在另一端的输入队列中</p>
+<h3 id="完全关闭和半关闭">完全关闭和半关闭</h3>
+<p>应用程序可以关闭 TCP 输入和输出信道中的任意一个,或者将两者都关闭了.套接字调用 close() 会将 TCP 连接的输入和输出信道都关闭了,称为完全关闭.还可以用套接字调用 shutdown() 单独关闭输入或输出信道,称为瓣关闭.</p>
+<h1 id="web-服务器">Web 服务器</h1>
+<ul>
+<li>建立连接 <em>接受一个客户端连接,或者如果不希望与这个客户端建立连接,就将其关闭</em></li>
+<li>接收请求 <em>从网络中读取一条 HTTP 请求报文</em>
+<ul>
+<li>解析请求行,查找请求方法和指定的资源标识符和版本号.</li>
+<li>读取以 CRLF 结尾的保温首部</li>
+<li>检测到以 CRLF 结尾的, 标识首部结束的空行 <em>(如果有的话)</em></li>
+<li>读取请求主体 <em>(如果有的话)</em></li>
+</ul>
+</li>
+<li>处理请求 <em>对请求报文进行解释,并处理</em></li>
+<li>访问资源 <em>访问报文中指定的资源</em></li>
+<li>构建响应 <em>创建带有正确首部的 HTTP 响应报文</em><br>
+如果有响应主体的话,相应报文中通常包括:
+<ul>
+<li>描述了响应主体 MIME 类型的 Content-Type 首部</li>
+<li>描述了响应主题长度的 Content-Length 首部</li>
+</ul>
+</li>
+<li>发送响应 <em>将相应回送给客户端</em></li>
+<li>记录事务处理过程 <em>日志</em></li>
+</ul>
+<h1 id="代理">代理</h1>
+<h2 id="如何获取流量">如何获取流量</h2>
+<ul>
+<li>修改客户端</li>
+<li>修改网络</li>
+<li>dns</li>
+<li>web 服务重定向</li>
+</ul>
+<h1 id="cookie">cookie</h1>
+<p>会话 cookie | 持久cookie<br>
+区别在于他们的过期时间</p>
+<h2 id="工作方式">工作方式</h2>
+<p>类似标签, Web 服务器给当前用户贴上一个由 <code>key=value</code> 这样的信息构成的任意列表,并通过 Set-Cookie 首部将其贴到用户身上. cookie 可以包含任意信息.</p>
+<h1 id="内容发布">内容发布</h1>
+<h1 id="tips">Tips</h1>
+<h2 id="有条件的请求">有条件的请求</h2>
+<p>有条件的请求是通过以 'IF-' 开头的有条件的首部来实现的.<br>
+验证码分为 <strong>弱验证码</strong> 和 <strong>强验证码</strong></p>
+<pre><code>GET /announce.html HTTP/1.0
+If-Modified-Since:Sat,29 Jun 2002,14:30:00 GMT
+</code></pre>
+<p>如果 - 从 ... 之后 ?? 修改过<br>
+每个有条件的请求都通过特定的验证码来发挥作用. 验证码是文档实例的一个特殊属性,用它来测试条件为真.</p>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Afreto</li>
+            <li><strong>原文链接：</strong>https://afret0.github.io/Http-权威指南读书笔记/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        <div id="otherpost">
+            
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/vue-的几个方法/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">vue 的几个方法</h4>
+                </div>
+            </div>
+            <div class="prev-post">
+                上一篇 <a href="https://afret0.github.io/vue-的几个方法/">vue 的几个方法</a>
+            </div>
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/Effective-Python-读书笔记/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">Effective Python 读书笔记</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://afret0.github.io/Effective-Python-读书笔记/">Effective Python 读书笔记</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+            </div>
+            <div id="comment" style="background: white">
+                <div class="commentcontainer">
+                    
+                    <style>
+    @media screen and (min-width: 1300px) {
+        .veditor::placeholder {
+            color: #b3b3b3;
+            font-size: 18px;
+            text-align: center;
+            line-height: 3rem;
+            font-family: kaiti;
+        }
+    }
+</style>
+
+<body>
+    <div id="vcomments">
+    </div>
+    <script src='https://afret0.github.io/media/js/valine.min.js'></script>
+    <script src="https://afret0.github.io/media/js/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
+            appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
+            notify: true,
+            verify: false,
+            avatar: 'retro',
+            pageSize: 10,
+            placeholder: '既然来了，何不畅所欲言呢？',
+            visitor: true, // 阅读量统计
+        });
+    </script>
+    <script type="text/javascript">
+        // jinrishici.load(function (result) {
+        //     var jrsc_plac = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+        //         .dynasty + " · " + result.data.origin.author;
+        //     if (jrsc_plac != undefined)
+        //         document.getElementById("veditor").setAttribute("placeholder", jrsc_plac);
+        // 
+        var jrsc = '既然来了，何不畅所欲言呢？';
+        jinrishici.load(function (result) {
+                // 自己的处理逻辑
+                jrsc = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+                 .dynasty + " · " + result.data.origin.author;
+            });
+    </script> 
+</body>
+                    <div class="clear"></div>
+                    
+                </div>
+            </div>
+            
+                <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</head>
+<body>
+    <div class="miniMode">
+        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default">
+        </meting-js>
+    </div>   
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script>
+    var aplayerid = "169914194";
+    var aplayerserver = "netease";
+    var aplayerorder = "random";
+    var aplayer = $("#myaplayer");
+    aplayer.attr("server",aplayerserver);
+    aplayer.attr("id",aplayerid);
+    aplayer.attr("order",aplayerorder);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+            
+        </div>
+        
+        <div class="toc-container">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E6%8A%A5%E6%96%87">报文</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5">连接</a>
+<ul>
+<li><a href="#tcpip">TCP/IP</a></li>
+</ul>
+</li>
+<li><a href="#web-%E7%BB%93%E6%9E%84%E7%BB%84%E4%BB%B6">Web 结构组件</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5-2">连接</a>
+<ul>
+<li><a href="#http-%E6%97%B6%E5%BB%B6">HTTP 时延</a></li>
+<li><a href="#%E5%B9%82%E7%AD%89%E6%80%A7">幂等性</a></li>
+<li><a href="#%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5">关闭连接</a>
+<ul>
+<li><a href="#%E5%AE%8C%E5%85%A8%E5%85%B3%E9%97%AD%E5%92%8C%E5%8D%8A%E5%85%B3%E9%97%AD">完全关闭和半关闭</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#web-%E6%9C%8D%E5%8A%A1%E5%99%A8">Web 服务器</a></li>
+<li><a href="#%E4%BB%A3%E7%90%86">代理</a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%B5%81%E9%87%8F">如何获取流量</a></li>
+</ul>
+</li>
+<li><a href="#cookie">cookie</a>
+<ul>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F">工作方式</a></li>
+</ul>
+</li>
+<li><a href="#%E5%86%85%E5%AE%B9%E5%8F%91%E5%B8%83">内容发布</a></li>
+<li><a href="#tips">Tips</a>
+<ul>
+<li><a href="#%E6%9C%89%E6%9D%A1%E4%BB%B6%E7%9A%84%E8%AF%B7%E6%B1%82">有条件的请求</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    </div>
+    </div>
+    <div class="toggleContainer">
+        <div class="toggle">
+            <i class="fas fa-angle-double-up"></i>
+        </div>
+    </div>
+    <div id="bg">
+    </div>
+    <div id="bgchoice" style="display: none">link</div>
+    
+    <div id="bgurl" style="display:none">https://raw.githubusercontent.com/Afret1/image/master/img/test1.jpg</div>
+    
+    </div>
+    <!-- 响应式布局，针对手机端内容显示 -->
+    <div class="nav-small">
+        <head>
+  <!-- 引入Bootstrap核心样式文件 -->
+  <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#barmenu" aria-expanded="false" id="barbutton">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://afret0.github.io">Afreto&#39;s blog&nbsp;&nbsp;|</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="barmenu">
+        <ul class="nav navbar-nav">
+          
+          
+          <li>
+            <a href="tags">
+              home
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archives">
+              archives
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags">
+              tags
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/post/about">
+              about
+            </a>
+          </li>
+          
+          
+          
+          
+          <li><a href="https://afret0.github.io/friends">友链</a></li>
+
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+  var btstate = false;
+  var bt = $("#barbutton");
+  var bm = $("#barmenu");
+  bt.click(function(){
+    dropdown();
+  })
+  function dropdown(){
+    console.log(btstate);
+    //下拉
+    if(btstate==false){
+      bt.removeClass("collapsed");
+      bt.attr("aria-expanded","true");
+      bm.attr("aria-expanded","true")
+      bm.fadeIn(700);
+      btstate = true;
+    }
+    else{
+      bt.addClass("collapsed");
+      bt.attr("aria-expanded","false");
+      bm.removeClass("in");
+      bm.hide();
+      bm.attr("aria-expanded","false");
+      btstate = false;
+    }
+  }
+  </script> 
+</body>
+        <div style="margin-top:30px"></div>
+        <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;">
+                
+                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2018-11-22</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
+            <div class="posttag">
+                
+                <a href="https://afret0.github.io/MinUaFE2mN-/" class="postlink">
+                    <i class="fa fa-tag"></i> note
+                </a>
+                
+            </div>
+        </div>
+        
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2>Http 权威指南读书笔记</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://afret0.github.io/Http-权威指南读书笔记/</div>
+                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
+                <span id="hotnum" class="leancloud_visitors" data-flag-title="Http 权威指南读书笔记">
+                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
+                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="leancloud-visitors-count">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <blockquote>
+<p><em>温故而知新, 可以为师矣...</em></p>
+</blockquote>
+<!-- more -->
+<h1 id="报文">报文</h1>
+<p>HTTP 报文都是纯文本, 不是二进制代码<br>
+HTTP 报文包括三个部分:</p>
+<ul>
+<li><strong>起始行</strong> 报文的第一行就是起始行, 在请求报文中用来说明要做什么, 在响应报文里面说明出现了什么状况</li>
+<li><strong>首部字段</strong> 起始行后面有零或多个首部字段. <code>key: value</code> 格式.首部以一个空行结束.添加一个首部字段和添加一个新行一样简单.</li>
+<li><strong>主体</strong>  空行之后就是可选的报文主体</li>
+</ul>
+<h1 id="连接">连接</h1>
+<h2 id="tcpip">TCP/IP</h2>
+<p>HTTP 是应用层协议,不操心网络通信的具体细节<br>
+TCP/IP 提供:</p>
+<ul>
+<li>无差错的数据传输</li>
+<li>按序传输(数据总是会按照发送的顺序到达)</li>
+<li>未分段的数据流(可以在任意时刻以任意尺寸将数据发送出去)</li>
+</ul>
+<h1 id="web-结构组件">Web 结构组件</h1>
+<ul>
+<li>代理</li>
+<li>缓存</li>
+<li>网关</li>
+<li>隧道 <em>对 HTTP 通信报文进行盲转发的特殊代理</em></li>
+<li>Agent 代理 _发起自动 HTTP 请求的半智能 Web 客户端</li>
+</ul>
+<h1 id="连接-2">连接</h1>
+<h2 id="http-时延">HTTP 时延</h2>
+<ul>
+<li>dns 解析耗时</li>
+<li>TCP 连接建立握手</li>
+<li>TCP 慢启动拥塞控制
+<blockquote>
+<p>TCP 连接会随着时间进行自我调谐, 起初会限制连接的最大速度,如果苏剧成功传输,会随着时间的推移提高传输的速度,这种调谐成为 TCP 慢启动, 用于防止突然过载和拥塞<br>
+TCP 慢启动限制了一个 TCP 端点在任意时刻可以传输的分组数.</p>
+</blockquote>
+</li>
+<li>数据聚集的 Nagle 算法</li>
+<li>用于稍待确认的 TCP 延迟确认算法</li>
+<li>TIME_WAIT时延和端口耗尽</li>
+</ul>
+<h2 id="幂等性">幂等性</h2>
+<p>如果一个事务, 不管是执行一次还是很多次,得到的结果都相同,这个事务就是幂等的,实现者们可以认为 GET, HEAD, PUT, DELETE, TRACE 和 OPTIONS 方法都共享这一特性</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">HTTP Method</th>
+<th style="text-align:center">Idempotent</th>
+<th style="text-align:center">Safe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">OPTIONS</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">HEAD</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">PUT</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">PATCH</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">no</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关闭连接">关闭连接</h2>
+<p>TCP 连接时双向的. TCP 连接的每一端都有一个输入队和一个输出队列,用于数据的读写.放入一端输出队列中的数据最终会出现在另一端的输入队列中</p>
+<h3 id="完全关闭和半关闭">完全关闭和半关闭</h3>
+<p>应用程序可以关闭 TCP 输入和输出信道中的任意一个,或者将两者都关闭了.套接字调用 close() 会将 TCP 连接的输入和输出信道都关闭了,称为完全关闭.还可以用套接字调用 shutdown() 单独关闭输入或输出信道,称为瓣关闭.</p>
+<h1 id="web-服务器">Web 服务器</h1>
+<ul>
+<li>建立连接 <em>接受一个客户端连接,或者如果不希望与这个客户端建立连接,就将其关闭</em></li>
+<li>接收请求 <em>从网络中读取一条 HTTP 请求报文</em>
+<ul>
+<li>解析请求行,查找请求方法和指定的资源标识符和版本号.</li>
+<li>读取以 CRLF 结尾的保温首部</li>
+<li>检测到以 CRLF 结尾的, 标识首部结束的空行 <em>(如果有的话)</em></li>
+<li>读取请求主体 <em>(如果有的话)</em></li>
+</ul>
+</li>
+<li>处理请求 <em>对请求报文进行解释,并处理</em></li>
+<li>访问资源 <em>访问报文中指定的资源</em></li>
+<li>构建响应 <em>创建带有正确首部的 HTTP 响应报文</em><br>
+如果有响应主体的话,相应报文中通常包括:
+<ul>
+<li>描述了响应主体 MIME 类型的 Content-Type 首部</li>
+<li>描述了响应主题长度的 Content-Length 首部</li>
+</ul>
+</li>
+<li>发送响应 <em>将相应回送给客户端</em></li>
+<li>记录事务处理过程 <em>日志</em></li>
+</ul>
+<h1 id="代理">代理</h1>
+<h2 id="如何获取流量">如何获取流量</h2>
+<ul>
+<li>修改客户端</li>
+<li>修改网络</li>
+<li>dns</li>
+<li>web 服务重定向</li>
+</ul>
+<h1 id="cookie">cookie</h1>
+<p>会话 cookie | 持久cookie<br>
+区别在于他们的过期时间</p>
+<h2 id="工作方式">工作方式</h2>
+<p>类似标签, Web 服务器给当前用户贴上一个由 <code>key=value</code> 这样的信息构成的任意列表,并通过 Set-Cookie 首部将其贴到用户身上. cookie 可以包含任意信息.</p>
+<h1 id="内容发布">内容发布</h1>
+<h1 id="tips">Tips</h1>
+<h2 id="有条件的请求">有条件的请求</h2>
+<p>有条件的请求是通过以 'IF-' 开头的有条件的首部来实现的.<br>
+验证码分为 <strong>弱验证码</strong> 和 <strong>强验证码</strong></p>
+<pre><code>GET /announce.html HTTP/1.0
+If-Modified-Since:Sat,29 Jun 2002,14:30:00 GMT
+</code></pre>
+<p>如果 - 从 ... 之后 ?? 修改过<br>
+每个有条件的请求都通过特定的验证码来发挥作用. 验证码是文档实例的一个特殊属性,用它来测试条件为真.</p>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Afreto</li>
+            <li><strong>原文链接：</strong>https://afret0.github.io/Http-权威指南读书笔记/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        <div id="otherpost">
+            
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/vue-的几个方法/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">vue 的几个方法</h4>
+                </div>
+            </div>
+            <div class="prev-post">
+                上一篇 <a href="https://afret0.github.io/vue-的几个方法/">vue 的几个方法</a>
+            </div>
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/Effective-Python-读书笔记/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">Effective Python 读书笔记</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://afret0.github.io/Effective-Python-读书笔记/">Effective Python 读书笔记</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+        <div name="comment" style="background: white;margin-top:100px">
+            <div class="commentcontainer">
+                
+                <body>
+    <div id="vcomments1"></div>
+
+<script src='https://afret0.github.io/media/js/valine.min.js'></script>
+<script src="https://afret0.github.io/media/js/jquery.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+    new Valine({
+        el: '#vcomments1',
+        appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
+        appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
+        notify: true,
+        verify: false,
+        avatar: 'retro',
+        pageSize: 10,
+        placeholder: '既然来了，那就留个痕迹吧~',
+        visitor: true // 阅读量统计
+    })
+</script>
+
+</body>
+
+                <div class="clear"></div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var img = $("img");
+    for (var i = 0; i < img.length; i++) {
+        if (img.eq(i).attr("class") == undefined) {
+            img.eq(i).attr("class", "lazyload");
+            var imgsrc = img.eq(i).attr("src");
+            img.eq(i).attr("data-original", imgsrc);
+            img.eq(i).attr("src", "");
+            img.eq(i).hide();
+        }
+    }
+</script>
+<script src="https://afret0.github.io/media/js/post.js"></script>
+<script>
+    //寻找所有code标签，加复制按钮鸭！(行内代码除外)
+    var codes = document.getElementsByTagName('code');
+    if (codes.length) {
+        for (var i = 0; i < codes.length; i++) {
+            //高度/行高=文本行数
+            // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
+            // console.log("当前有"+rowNum+"行");
+            var code_id = "code_id_" + i;
+            codes[i].setAttribute("id", code_id);
+            var ci = "#" + code_id;
+            var codedot = $(ci);
+            var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
+            if (rowNum <= 1) continue;
+            var btn = document.createElement("button");
+            btn.setAttribute("class", "copybt");
+            btn.setAttribute("data-clipboard-target", "#" + code_id);
+            btn.innerHTML = '复制代码';
+            codes[i].parentNode.insertBefore(btn, codes[i]);
+        }
+    };
+    var cop = new ClipboardJS('.copybt');
+    var codeCopyText = $("#codeCopyText").html();
+    cop.on('success', function (e) {
+        alert(codeCopyText);
+        e.clearSelection();
+    });
+    cop.on('error', function (e) {
+        alert("矮油，复制失败了...手动复制吧勇士！");
+        e.clearSelection();
+    });
+</script>
+
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "https://afret0.github.io/media/live2d/assets/tororo.model.json");
+</script>
+
+<script>
+    $(function () {
+        $('.toggleContainer').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st > 30) {
+                $(".toggleContainer").fadeIn(400);
+            } else {
+                $(".toggleContainer").fadeOut(100);
+            }
+        });
+    });
+</script>
+
+<script>
+    var bgchoice = $('#bgchoice').html();
+    var bg = $('#bg');
+    var bgurl = document.getElementById("bgurl").innerHTML;
+    if (bgchoice == 'default')
+        for (var i = 0; i < 3; i++)
+            bgurl = bgurl.replace("\\", "/");
+    bg.css("background", "url('" + bgurl + "')");
+</script>
+
+
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+
+<!-- 动态更改上(下)一篇博客图片框长宽 -->
+<script>
+    npcontainer = document.querySelector('#npcontainer');
+    npstyle = window.getComputedStyle(npcontainer, null);
+    npwidth = npstyle.width;
+    npheight = 0.6 * Number(npwidth.replace("px", ""));
+    npheight = npheight.toString() + "px";
+    var op = $(".opimg");
+    op.css("height", npheight);
+</script>
+
+<script src="https://afret0.github.io/media/share/dist/Share.js"></script>
+
+<script>
+    var avatarSrc = $(".menutopavatar").attr("src");
+    var dp = document.getElementsByClassName("navbar-brand")[1].innerHTML;
+</script>
+
+
+<script>
+    var title = document.getElementById("texttitle").getElementsByTagName("h2");
+    
+    var share = new Share('.share', {
+        title: title[0].innerHTML,
+        initialized: true,
+        //默认获取网站描述
+        description: dp,
+        //网站图片默认获取的是设置的用户头像
+        image: avatarSrc,
+        //激活的分享网站
+        sites: ["weibo", "qq", "wechat", "douban", "qzone", "facebook", "twitter", "google"],
+        //微信分享PC端会生成二维码分享,移动端如果可以唤起微信最好
+        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+        wechatQrcodeHelper: '<p>微信里扫一下二维码</p><p>便可将本文分享至朋友圈。</p>',
+        //关闭的网站分享
+        disabled: ['google', 'linkedin'],
+        wechatQrcodePosition: 'bottom'
+    });
+
+    //点击分享按钮展现出分享icons
+    var sharebtnTag = false;
+    $(".sharebtn").click(function () {
+        if(!sharebtnTag)
+        {
+            $(".share").show();
+            sharebtnTag = true;
+        }
+        else
+        {
+            $(".share").hide();
+            sharebtnTag = false;
+        }
+    })
+
+    var donatebtnTag = false;
+    $(".donateImg").click(function () {
+        if(!donatebtnTag)
+        {
+            $(".donate").show();
+            donatebtnTag = true;
+        }
+        else{
+            $(".donate").hide();
+            donatebtnTag = false;
+        }
+    })
+
+    window.onload=function(){
+        var sharepc = $(".share").eq(0).html();
+        $(".share").eq(1).html(sharepc);
+        setTimeout(function(){
+            var hn = $(".leancloud-visitors-count").eq(0).html();
+            hn = '<i class="fa fa-eye" aria-hidden="true"'+
+                            'style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i'+
+                            'class="leancloud-visitors-count">'+hn+'</i></h4>'
+            $(".readercount").eq(1).html(hn);
+        }, 1000);
+        document.getElementById("veditor").setAttribute("placeholder", jrsc);
+    }
+</script>
+
+
+<script>
+    jQuery(document).ready(function ($) {
+        function lazyload() {
+            var oLazyload = $("img.lazyload"),
+                fLazyload = function (hLazyload) {
+                    var nLazyload = $(window).height() + $(document).scrollTop();
+                    oLazyload.each(function () {
+                        $(this).offset().top < nLazyload && ($(this).trigger("appear"), oLazyload =
+                            oLazyload.not(this));
+                    }), 0 == oLazyload.length && $(window).unbind("scroll", fLazyload);
+                };
+            oLazyload.each(function () {
+                $(this).one("appear", function () {
+                    $(this).attr("src", $(this).attr("data-original"));
+                    $(this).fadeIn(500);
+                });
+            }), $(window).bind("scroll", fLazyload), fLazyload();
+        }
+        lazyload();
+    });
+</script>

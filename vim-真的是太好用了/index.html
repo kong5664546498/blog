@@ -1,0 +1,1484 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="差那么点意思啊
+
+参考教程
+记个终端的
+ctrl + b 前移光标
+ctrl + f 后移光标
+
+基操 勿六
+
+
+
+上
+下
+左
+右
+
+
+
+
+j
+k
+h
+l
+
+
+
+
+
+
+命令
+操作
+
+
+
+
+ddp
+交换上下行
+
+
+yyp
+复制当前行
+
+
+gd..." />
+    <meta name="keywords" content="vim" />
+    <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://afret0.github.io/styles/main.css">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/rainbow.min.css">
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script src="https://afret0.github.io/media/js/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://afret0.github.io/media/css/live2d.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
+    <title>Afreto's blog</title>
+    
+    <style>
+        .markdownIt-TOC {
+            padding-left: 2px;
+            width: 100%;
+        }
+
+        .markdownIt-TOC li {
+            padding-left: 2%;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+    </div>
+    <div id="codeCopyText" style="display: none">代码复制成功了哦</div>
+    <div id="domainname" style="display:none">https://afret0.github.io</div>
+    <!-- 响应式布局，针对PC端内容显示 -->
+    <div id="content">
+        <div class="nav-large">
+            <div class="row">
+                <div class="side"><body>
+    
+
+
+
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://afret0.github.io"
+                    style="font-size:21px">Afreto&#39;s blog&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+                <a class="navbar-brand" href=""
+                    style="font-size:15px;font-family:kaiti">江湖沒什麼好的，也就酒還行～
+
+</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                
+                <div class="search nav navbar-nav" style="margin-top:8px">
+                    <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
+                    <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
+                    <div class="search-results"></div>
+                </div>
+                
+                <div class="search nav navbar-nav">
+                <a title="text" onclick="document.getElementById('socialMenu').style.display='block'"><i><img class="social"
+                    src="https://afret0.github.io/media/images/social.png" alt=""></i></a>
+            </div>
+            <ul class="nav navbar-nav" style="float: right;margin-right:5%">
+                
+                
+                <li>
+                    <a href="tags" style="color:white">
+                        home
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/archives" style="color:white">
+                        archives
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/tags" style="color:white">
+                        tags
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/post/about" style="color:white">
+                        about
+                    </a>
+                </li>
+                
+                
+                
+                  
+                <li><a href="https://afret0.github.io/friends" style="color:white">友链</a></li>
+                
+                  <li><img src="https://afret0.github.io/images/avatar.png?v=1597397760518" alt=""
+                class="menutopavatar"></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="socialMenu">
+        <div class="animate">
+            <div class="socialContainer">
+                
+                
+                
+                
+                
+                
+            </div>
+            <div id="qq" style="display:none"></div>
+        </div>
+    </div>
+    <!-- 引入jQuery核心js文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script>
+        var social = document.getElementById('socialMenu');
+        // 鼠标点击模型外区域关闭登录框
+        window.onclick = function (event) {
+            if (event.target == social) {
+                social.style.display = "none";
+            }
+        }
+    </script>
+    
+</body>
+<script>
+    //-------------------------------------------------搜索
+    // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
+    var searchInput = document.querySelector('.search-input');
+    var searchResults = document.querySelector('.search-results');
+
+    // 申明保存文章的标题、链接、内容的数组变量
+    var searchValue = '',
+        arrItems = [],
+        arrLinks = [],
+        arrTitles = [],
+        arrResults = [],
+        indexItem = [],
+        itemLength = 0;
+    var tmpDiv = document.createElement('div');
+    tmpDiv.className = 'result-item';
+
+    // ajax 的兼容写法
+    var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            xml = xhr.responseXML;
+            arrItems = xml.getElementsByTagName('entry');
+            itemLength = arrItems.length;
+            // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
+            // 同时过滤掉 HTML 标签
+            for (i = 0; i < itemLength; i++) {
+                var link = arrItems[i].getElementsByTagName('link')[0];
+                arrLinks[i] = link.getAttribute("href");
+                arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
+                childNodes[0].nodeValue.replace(/<.*?>/g, '');
+            }
+        }
+    }
+
+    // 开始获取根目录下 feed.xml 文件内的数据
+    xhr.open('get', '/atom.xml', true);
+    xhr.send();
+
+
+
+    // 输入框内容变化后就开始匹配，可以不用点按钮
+    // 经测试，onkeydown, onchange 等方法效果不太理想，
+    // 存在输入延迟等问题，最后发现触发 input 事件最理想，
+    // 并且可以处理中文输入法拼写的变化
+    searchInput.oninput = function () {
+        setTimeout(searchConfirm, 0);
+    }
+    searchInput.onfocus = function () {
+        searchResults.style.display = 'block';
+    }
+
+    function searchConfirm() {
+        if (searchInput.value == '') {
+            searchResults.style.display = 'none';
+        } else if (searchInput.value.search(/^\s+$/) >= 0) {
+            // 检测输入值全是空白的情况
+            searchInit();
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '请输入有效内容...';
+            searchResults.appendChild(itemDiv);
+        } else {
+            // 合法输入值的情况
+            searchInit();
+            searchValue = searchInput.value;
+            // 在标题、内容中查找
+            searchMatching(arrTitles, searchValue);
+        }
+    }
+
+    // 每次搜索完成后的初始化
+    function searchInit() {
+        arrResults = [];
+        indexItem = [];
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'block';
+    }
+
+    function searchMatching(arr1, input) {
+        // 忽略输入大小写
+        input = new RegExp(input, 'i');
+        // 在所有文章标题、内容中匹配查询值
+        for (i = 0; i < itemLength; i++) {
+            if (arr1[i].search(input) !== -1) {
+                var arr = arr1;
+                indexItem.push(i); // 保存匹配值的索引
+                var indexContent = arr[i].search(input);
+                // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
+                var l = input.toString().length - 3;
+                var step = 10;
+
+                // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
+                arrResults.push(arr[i].slice(indexContent - step, indexContent));
+            }
+        }
+
+        // 输出总共匹配到的数目
+        var totalDiv = tmpDiv.cloneNode(true);
+        totalDiv.innerHTML = '<b>总匹配：' + indexItem.length + ' 项<hr></b>';
+        searchResults.appendChild(totalDiv);
+
+        // 未匹配到内容的情况
+        if (indexItem.length == 0) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '未匹配到内容...';
+            searchResults.appendChild(itemDiv);
+        }
+
+        // 将所有匹配内容进行组合
+        for (i = 0; i < arrResults.length; i++) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerHTML = '<b>[' + arrTitles[indexItem[i]] +
+                ']</b><p>' + arrResults[i] + "</p><hr />";
+            itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
+            searchResults.appendChild(itemDiv);
+        }
+    }
+
+    function changeHref(href) {
+        location.href = href;
+    }
+
+    function showqq() {
+        var qq = document.getElementById("qq").innerHTML;
+        if (qq != '')
+            window.location.href = "tencent://message/?uin=" + qq + "&Site=&Menu=yes";
+        else
+            alert("博主暂未设置QQ联系方式");
+    }
+</script>
+</div>
+                
+            <div id="main" class="col-xs-12 col-sm-7" style="width:50%;margin-top:50px;left:27%">
+                <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;">
+                
+                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2019-06-26</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 7 min read</div>
+            <div class="posttag">
+                
+                <a href="https://afret0.github.io/o90Pwizch5/" class="postlink">
+                    <i class="fa fa-tag"></i> vim
+                </a>
+                
+            </div>
+        </div>
+        
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2>vim 真的是太好用了</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://afret0.github.io/vim-真的是太好用了/</div>
+                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
+                <span id="hotnum" class="leancloud_visitors" data-flag-title="vim 真的是太好用了">
+                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
+                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="leancloud-visitors-count">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <p>差那么点意思啊</p>
+<!--more-->
+<p><a href="https://www.imooc.com/video/19453">参考教程</a></p>
+<h1 id="记个终端的">记个终端的</h1>
+<pre><code class="language-bash">ctrl + b 前移光标
+ctrl + f 后移光标
+</code></pre>
+<h1 id="基操-勿六">基操 勿六</h1>
+<table>
+<thead>
+<tr>
+<th>上</th>
+<th>下</th>
+<th>左</th>
+<th>右</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>j</td>
+<td>k</td>
+<td>h</td>
+<td>l</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ddp</td>
+<td>交换上下行</td>
+</tr>
+<tr>
+<td>yyp</td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td>gd</td>
+<td>跳到定义</td>
+</tr>
+<tr>
+<td>/def</td>
+<td>跳到下个函数开始的地方</td>
+</tr>
+<tr>
+<td>cf.</td>
+<td>直接修改到下个 .</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用设置">常用设置</h2>
+<p>设置 syntax on</p>
+<p>设置 行号 <code>set nu</code></p>
+<p>设置自动缩进 <code>set autoindent</code></p>
+<p><code>:e!</code> 重新加载并且不保存文件</p>
+<h1 id="移动">移动</h1>
+<h2 id="基于单词的移动">基于单词的移动</h2>
+<pre><code class="language-vim">w (word) 下一个单词
+b (back word) 移动回上一个单词
+</code></pre>
+<h2 id="行移动">行移动</h2>
+<pre><code class="language-vim">:18 移动光标到 18 行
+14G 移动到 14 行
+0 移动光标到行首
+^ 移动到第一个非空白字符
+$ 移动光标到行尾
+g_ 移动到行尾非空白字符
+</code></pre>
+<h2 id="行间搜索移动">行间搜索移动</h2>
+<ul>
+<li>使用 f{char} 可以移动到 char 字符上, t 移动到 char 前一个字符</li>
+<li>使用 ; 或 , 继续搜索下一个或上一个</li>
+</ul>
+<h2 id="单词移动">单词移动</h2>
+<p>word: 以非空白符分割的单词</p>
+<p>WORD: 以空白符分割的单词</p>
+<ul>
+<li>w/W 移动到下一个 word/WORD 开头, e/E 下一个 word/WORD 尾</li>
+<li>b/B 回到上一个 word/WORD 开头</li>
+</ul>
+<h2 id="翻页">翻页</h2>
+<ul>
+<li>gg 移动到文件开头</li>
+<li>G 移动到文件结尾</li>
+<li>ctrl + O 返回到刚刚移动的位置</li>
+<li>H/M/L 跳转到屏幕的开头, 中间和 结尾</li>
+<li>ctrl + f, ctrl+u 上下翻页,</li>
+<li>zz 把屏幕放在中间</li>
+</ul>
+<h1 id="增">增</h1>
+<pre><code class="language-vim">a/A (append)
+i/I (insert)
+o/O (open a line)
+</code></pre>
+<p>a 会在当前字母的后面插入</p>
+<p>i 会在当前字母的前面插入</p>
+<p>o 会打开一个新行</p>
+<p>A 在行末添加</p>
+<p>I 在行首插入</p>
+<p>O 在当前行的上方插入</p>
+<h1 id="删除">删除</h1>
+<pre><code class="language-vim">d (delete)
+dw (del word)
+dd (del line)
+x (删除一个字符)
+diw (del inner word) 删除不包含空格的单词
+daw (del around word)
+ctrl + h 删除上一个字符
+ctrl + w 删除上一个单词
+ctrl + u 删除当前行
+</code></pre>
+<p>d,x 都可以搭配数字执行多次</p>
+<ul>
+<li>
+<p>2dd/2x 删除两行/删除两个字符</p>
+</li>
+<li>
+<p>dt] del to ], 删除到 ] 的所有内容</p>
+</li>
+<li>
+<p>d0/d&amp; 快速删除行首和行尾</p>
+</li>
+</ul>
+<h1 id="改">改</h1>
+<ul>
+<li>r  replace</li>
+<li>c change</li>
+<li>s substitue</li>
+</ul>
+<p>normal 模式下使用 r 替换一个字符, s 替换并进入插入模式</p>
+<p>使用 c 配合文本对象, 可以进行快速修改</p>
+<pre><code class="language-vim">c (change)
+ciw (change inner word) 自动删除单词并进入插入模式
+ct) (chang to ) )??  修改到右括号
+ci&quot; 删除双引号的内容并进入插入模式
+</code></pre>
+<h1 id="查">查</h1>
+<pre><code class="language-vim">f find
+fs 查找当前行一个出现的 s, 使用 ; 查找下一个
+/keyword 查找单词
+?keyword 向前查找
+
+</code></pre>
+<p>使用 n/N 跳转到下一个或者上一个匹配</p>
+<h1 id="翻页-2">翻页</h1>
+<pre><code class="language-vim">ctrl + f (forward)
+ctrl + u (upward)
+</code></pre>
+<h1 id="粘贴复制">粘贴复制</h1>
+<pre><code class="language-vim">y yank
+p paste
+</code></pre>
+<h1 id="分屏">分屏</h1>
+<pre><code class="language-vim">vs vertical split
+sp split
+</code></pre>
+<h1 id="搜索和替换">搜索和替换</h1>
+<pre><code class="language-vim">% s/foo/bar/g
+</code></pre>
+<h1 id="其它常用命令">其它常用命令</h1>
+<h2 id="设置行号">设置行号</h2>
+<p><code>:set nu</code></p>
+<h1 id="visual-模式">visual 模式</h1>
+<p>一般用来块状选择文本</p>
+<p>normal 模式下使用 v 进入 visual 模式</p>
+<pre><code class="language-vim">V  选中行
+ctrl + v 进行块选择
+viw 选中单词
+vaw 选中单词带空格
+</code></pre>
+<h1 id="快速切换-insert-normal-模式">快速切换 insert normal 模式</h1>
+<ul>
+<li>ctrl + c (可能会中断插件) 或者 ctrl + [</li>
+<li>gi  快速跳转到最后一次编辑的地方并进入 insert 模式</li>
+</ul>
+<h1 id="多文件">多文件</h1>
+<h2 id="buffer-windows-tab">buffer windows tab</h2>
+<p>buffer 指打开的文件的一个内存缓冲区</p>
+<p>窗口是 buffer 可视化的分割区</p>
+<p>tab 是窗口的工作区</p>
+<h1 id="文本对象操作方式">文本对象操作方式</h1>
+<p><code>[number] &lt;command&gt; [text object]</code><br>
+`[次数] &lt;命令 (delete change yank)&gt;[文本对象 (单词 w, 句子 s, 段落 p)]</p>
+<h1 id="复制粘贴和寄存器的使用">复制粘贴和寄存器的使用</h1>
+<p>Vim 里面剪切 (cut) 复制 (copy) 粘贴 (paste) 分别是 delete/yank/put</p>
+<h2 id="normal-模式">normal 模式</h2>
+<p>normal 模式下复制粘贴分别使用 y(yank) 和 p(put), 剪贴 d 和 p</p>
+<p>可以使用 v(visual) 命令选中要复制的地方, 然后使用 p 粘贴</p>
+<p>配合文本对象使用:</br></p>
+<ul>
+<li>yiw 复制一个单词</li>
+<li>yy 复制一行</li>
+</ul>
+<h2 id="insert-模式下的复制粘贴">insert 模式下的复制粘贴</h2>
+<p>很多人会使用鼠标进行选中, 然后使用 <code>ctrl + v</code> 进行粘贴, 这里和其它编辑器差不多, 但是粘贴代码的时候会有个坑</p>
+<p>当设置了 autoindent, 粘贴代码时缩进会混乱</p>
+<p>这个时候需要使用 <code>set: paste</code> 和 <code>set: nopaste</code> 解决</p>
+<h2 id="寄存器">寄存器</h2>
+<p>Vim 操作的是寄存器, 不是系统剪贴板</p>
+<p>默认我们使用 d 删除 或者 y 复制的内容都会放到这个 寄存器</p>
+<p>使用 x 删除一个字符放到寄存器, 然后使用 p 粘贴, 可以调换两个字符</p>
+<h3 id="指定寄存器">指定寄存器</h3>
+<p>通过 &quot;{register}&quot; 前缀可以指定寄存器, 不指定则默认使用无名寄存器</p>
+<p>比如, 使用 <code>&quot;ayiw</code> 复制一个单词到寄存器 a 中, <code>&quot;bdd</code> 删除当前行到寄存器 b 中</p>
+<p>Vim 中 <code>&quot;&quot;</code> 表示无名寄存器, 缺省使用. <code>&quot;&quot;p</code> 等同于 <code>p</code></p>
+<h3 id="其它一些寄存器">其它一些寄存器</h3>
+<p>复制专用寄存器 `&quot;0 使用 y 复制文本同时会被拷贝到复制寄存器 0</p>
+<p>系统剪贴板 &quot;+ 可以在复制前加上 &quot;+ 复制到系统剪贴板, 可以使用系统剪贴板粘贴到其它地方</p>
+<p><code>&quot;% 当前文件名,</code>&quot;. 上次插入的文本</p>
+<h2 id="设置系统剪贴板为默认无名寄存器">设置系统剪贴板为默认无名寄存器</h2>
+<p><code>set clipboard=unnamed</code></p>
+<h1 id="vim-宏macro">vim 宏(macro)</h1>
+<h2 id="什么是宏">什么是宏</h2>
+<p>宏 是一系列命令的集合</p>
+<p>我们可以使用宏 [录制] 一系列操作, 然后用于 [回放]</p>
+<h2 id="使用宏">使用宏</h2>
+<p>宏的使用分为录制和回放</p>
+<p>normal 模式下使用 q 来录制, 同时也是 q 来结束录制</p>
+<p>使用 q{register} 选择要保存的寄存器, 把录制的命令保存其中</p>
+<p>使用 @{register} 回放寄存器中保存的一系列命令</p>
+<h1 id="vim-中的补全">vim 中的补全</h1>
+<p>使用 ctrl + n 和 ctrl + p 补全单词</p>
+<p>使用 ctrl + x 和 ctrl + f 补全文件名</p>
+<p>使用 ctrl + x  ctrl + o 补全代码, 需要开启文件类型检查, 安装插件</p>
+<p>使用 ctrl + xf 补全文件路径</p>
+<h1 id="vim-换色">vim 换色</h1>
+<p>使用 :colorscheme 显示当前的主题配色, 默认 default</p>
+<p>使用 :colorscheme &lt;ctrl + d&gt; 可以显示所有的配色</p>
+<p>使用 :colorscheme 配色名可以修改配色</p>
+<h1 id="vim-配置">vim 配置</h1>
+<p>配置文件 ~/.vimrc, 常用设置</p>
+<h1 id="idea-和-vscode-输入法自动切换">idea 和 vscode 输入法自动切换</h1>
+<h2 id="idea">idea</h2>
+<p>使用  <a href="https://github.com/hadix-lin/ideavim_extension">ideavim_extension</a></p>
+<h2 id="vscode">vscode</h2>
+<p>使用 <a href="https://github.com/daipeihust/im-select#installation">im-select</a></p>
+<p>配置 vscode , 在 setting.json 中添加</p>
+<pre><code class="language-json">    &quot;vim.autoSwitchInputMethod.enable&quot;: true,
+    &quot;vim.autoSwitchInputMethod.defaultIM&quot;: &quot;com.apple.keylayout.ABC&quot;,
+    &quot;vim.autoSwitchInputMethod.obtainIMCmd&quot;: &quot;/usr/local/bin/im-select&quot;,
+    &quot;vim.autoSwitchInputMethod.switchIMCmd&quot;: &quot;/usr/local/bin/im-select {im}&quot;
+</code></pre>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Afreto</li>
+            <li><strong>原文链接：</strong>https://afret0.github.io/vim-真的是太好用了/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        <div id="otherpost">
+            
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/redis使用笔记/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">redis tips</h4>
+                </div>
+            </div>
+            <div class="prev-post">
+                上一篇 <a href="https://afret0.github.io/redis使用笔记/">redis tips</a>
+            </div>
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/git-咋用啊/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">git 咋用啊</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://afret0.github.io/git-咋用啊/">git 咋用啊</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+            </div>
+            <div id="comment" style="background: white">
+                <div class="commentcontainer">
+                    
+                    <style>
+    @media screen and (min-width: 1300px) {
+        .veditor::placeholder {
+            color: #b3b3b3;
+            font-size: 18px;
+            text-align: center;
+            line-height: 3rem;
+            font-family: kaiti;
+        }
+    }
+</style>
+
+<body>
+    <div id="vcomments">
+    </div>
+    <script src='https://afret0.github.io/media/js/valine.min.js'></script>
+    <script src="https://afret0.github.io/media/js/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
+            appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
+            notify: true,
+            verify: false,
+            avatar: 'retro',
+            pageSize: 10,
+            placeholder: '既然来了，何不畅所欲言呢？',
+            visitor: true, // 阅读量统计
+        });
+    </script>
+    <script type="text/javascript">
+        // jinrishici.load(function (result) {
+        //     var jrsc_plac = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+        //         .dynasty + " · " + result.data.origin.author;
+        //     if (jrsc_plac != undefined)
+        //         document.getElementById("veditor").setAttribute("placeholder", jrsc_plac);
+        // 
+        var jrsc = '既然来了，何不畅所欲言呢？';
+        jinrishici.load(function (result) {
+                // 自己的处理逻辑
+                jrsc = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+                 .dynasty + " · " + result.data.origin.author;
+            });
+    </script> 
+</body>
+                    <div class="clear"></div>
+                    
+                </div>
+            </div>
+            
+                <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</head>
+<body>
+    <div class="miniMode">
+        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default">
+        </meting-js>
+    </div>   
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script>
+    var aplayerid = "169914194";
+    var aplayerserver = "netease";
+    var aplayerorder = "random";
+    var aplayer = $("#myaplayer");
+    aplayer.attr("server",aplayerserver);
+    aplayer.attr("id",aplayerid);
+    aplayer.attr("order",aplayerorder);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+            
+        </div>
+        
+        <div class="toc-container">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E8%AE%B0%E4%B8%AA%E7%BB%88%E7%AB%AF%E7%9A%84">记个终端的</a></li>
+<li><a href="#%E5%9F%BA%E6%93%8D-%E5%8B%BF%E5%85%AD">基操 勿六</a>
+<ul>
+<li><a href="#%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE">常用设置</a></li>
+</ul>
+</li>
+<li><a href="#%E7%A7%BB%E5%8A%A8">移动</a>
+<ul>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E5%8D%95%E8%AF%8D%E7%9A%84%E7%A7%BB%E5%8A%A8">基于单词的移动</a></li>
+<li><a href="#%E8%A1%8C%E7%A7%BB%E5%8A%A8">行移动</a></li>
+<li><a href="#%E8%A1%8C%E9%97%B4%E6%90%9C%E7%B4%A2%E7%A7%BB%E5%8A%A8">行间搜索移动</a></li>
+<li><a href="#%E5%8D%95%E8%AF%8D%E7%A7%BB%E5%8A%A8">单词移动</a></li>
+<li><a href="#%E7%BF%BB%E9%A1%B5">翻页</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A2%9E">增</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4">删除</a></li>
+<li><a href="#%E6%94%B9">改</a></li>
+<li><a href="#%E6%9F%A5">查</a></li>
+<li><a href="#%E7%BF%BB%E9%A1%B5-2">翻页</a></li>
+<li><a href="#%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6">粘贴复制</a></li>
+<li><a href="#%E5%88%86%E5%B1%8F">分屏</a></li>
+<li><a href="#%E6%90%9C%E7%B4%A2%E5%92%8C%E6%9B%BF%E6%8D%A2">搜索和替换</a></li>
+<li><a href="#%E5%85%B6%E5%AE%83%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">其它常用命令</a>
+<ul>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E8%A1%8C%E5%8F%B7">设置行号</a></li>
+</ul>
+</li>
+<li><a href="#visual-%E6%A8%A1%E5%BC%8F">visual 模式</a></li>
+<li><a href="#%E5%BF%AB%E9%80%9F%E5%88%87%E6%8D%A2-insert-normal-%E6%A8%A1%E5%BC%8F">快速切换 insert normal 模式</a></li>
+<li><a href="#%E5%A4%9A%E6%96%87%E4%BB%B6">多文件</a>
+<ul>
+<li><a href="#buffer-windows-tab">buffer windows tab</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E8%B1%A1%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F">文本对象操作方式</a></li>
+<li><a href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%92%8C%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8">复制粘贴和寄存器的使用</a>
+<ul>
+<li><a href="#normal-%E6%A8%A1%E5%BC%8F">normal 模式</a></li>
+<li><a href="#insert-%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4">insert 模式下的复制粘贴</a></li>
+<li><a href="#%E5%AF%84%E5%AD%98%E5%99%A8">寄存器</a>
+<ul>
+<li><a href="#%E6%8C%87%E5%AE%9A%E5%AF%84%E5%AD%98%E5%99%A8">指定寄存器</a></li>
+<li><a href="#%E5%85%B6%E5%AE%83%E4%B8%80%E4%BA%9B%E5%AF%84%E5%AD%98%E5%99%A8">其它一些寄存器</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF%E4%B8%BA%E9%BB%98%E8%AE%A4%E6%97%A0%E5%90%8D%E5%AF%84%E5%AD%98%E5%99%A8">设置系统剪贴板为默认无名寄存器</a></li>
+</ul>
+</li>
+<li><a href="#vim-%E5%AE%8Fmacro">vim 宏(macro)</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%8F">什么是宏</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%AE%8F">使用宏</a></li>
+</ul>
+</li>
+<li><a href="#vim-%E4%B8%AD%E7%9A%84%E8%A1%A5%E5%85%A8">vim 中的补全</a></li>
+<li><a href="#vim-%E6%8D%A2%E8%89%B2">vim 换色</a></li>
+<li><a href="#vim-%E9%85%8D%E7%BD%AE">vim 配置</a></li>
+<li><a href="#idea-%E5%92%8C-vscode-%E8%BE%93%E5%85%A5%E6%B3%95%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2">idea 和 vscode 输入法自动切换</a>
+<ul>
+<li><a href="#idea">idea</a></li>
+<li><a href="#vscode">vscode</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    </div>
+    </div>
+    <div class="toggleContainer">
+        <div class="toggle">
+            <i class="fas fa-angle-double-up"></i>
+        </div>
+    </div>
+    <div id="bg">
+    </div>
+    <div id="bgchoice" style="display: none">link</div>
+    
+    <div id="bgurl" style="display:none">https://raw.githubusercontent.com/Afret1/image/master/img/test1.jpg</div>
+    
+    </div>
+    <!-- 响应式布局，针对手机端内容显示 -->
+    <div class="nav-small">
+        <head>
+  <!-- 引入Bootstrap核心样式文件 -->
+  <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#barmenu" aria-expanded="false" id="barbutton">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://afret0.github.io">Afreto&#39;s blog&nbsp;&nbsp;|</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="barmenu">
+        <ul class="nav navbar-nav">
+          
+          
+          <li>
+            <a href="tags">
+              home
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archives">
+              archives
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags">
+              tags
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/post/about">
+              about
+            </a>
+          </li>
+          
+          
+          
+          
+          <li><a href="https://afret0.github.io/friends">友链</a></li>
+
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+  var btstate = false;
+  var bt = $("#barbutton");
+  var bm = $("#barmenu");
+  bt.click(function(){
+    dropdown();
+  })
+  function dropdown(){
+    console.log(btstate);
+    //下拉
+    if(btstate==false){
+      bt.removeClass("collapsed");
+      bt.attr("aria-expanded","true");
+      bm.attr("aria-expanded","true")
+      bm.fadeIn(700);
+      btstate = true;
+    }
+    else{
+      bt.addClass("collapsed");
+      bt.attr("aria-expanded","false");
+      bm.removeClass("in");
+      bm.hide();
+      bm.attr("aria-expanded","false");
+      btstate = false;
+    }
+  }
+  </script> 
+</body>
+        <div style="margin-top:30px"></div>
+        <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;">
+                
+                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2019-06-26</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 7 min read</div>
+            <div class="posttag">
+                
+                <a href="https://afret0.github.io/o90Pwizch5/" class="postlink">
+                    <i class="fa fa-tag"></i> vim
+                </a>
+                
+            </div>
+        </div>
+        
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2>vim 真的是太好用了</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://afret0.github.io/vim-真的是太好用了/</div>
+                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
+                <span id="hotnum" class="leancloud_visitors" data-flag-title="vim 真的是太好用了">
+                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
+                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="leancloud-visitors-count">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <p>差那么点意思啊</p>
+<!--more-->
+<p><a href="https://www.imooc.com/video/19453">参考教程</a></p>
+<h1 id="记个终端的">记个终端的</h1>
+<pre><code class="language-bash">ctrl + b 前移光标
+ctrl + f 后移光标
+</code></pre>
+<h1 id="基操-勿六">基操 勿六</h1>
+<table>
+<thead>
+<tr>
+<th>上</th>
+<th>下</th>
+<th>左</th>
+<th>右</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>j</td>
+<td>k</td>
+<td>h</td>
+<td>l</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ddp</td>
+<td>交换上下行</td>
+</tr>
+<tr>
+<td>yyp</td>
+<td>复制当前行</td>
+</tr>
+<tr>
+<td>gd</td>
+<td>跳到定义</td>
+</tr>
+<tr>
+<td>/def</td>
+<td>跳到下个函数开始的地方</td>
+</tr>
+<tr>
+<td>cf.</td>
+<td>直接修改到下个 .</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用设置">常用设置</h2>
+<p>设置 syntax on</p>
+<p>设置 行号 <code>set nu</code></p>
+<p>设置自动缩进 <code>set autoindent</code></p>
+<p><code>:e!</code> 重新加载并且不保存文件</p>
+<h1 id="移动">移动</h1>
+<h2 id="基于单词的移动">基于单词的移动</h2>
+<pre><code class="language-vim">w (word) 下一个单词
+b (back word) 移动回上一个单词
+</code></pre>
+<h2 id="行移动">行移动</h2>
+<pre><code class="language-vim">:18 移动光标到 18 行
+14G 移动到 14 行
+0 移动光标到行首
+^ 移动到第一个非空白字符
+$ 移动光标到行尾
+g_ 移动到行尾非空白字符
+</code></pre>
+<h2 id="行间搜索移动">行间搜索移动</h2>
+<ul>
+<li>使用 f{char} 可以移动到 char 字符上, t 移动到 char 前一个字符</li>
+<li>使用 ; 或 , 继续搜索下一个或上一个</li>
+</ul>
+<h2 id="单词移动">单词移动</h2>
+<p>word: 以非空白符分割的单词</p>
+<p>WORD: 以空白符分割的单词</p>
+<ul>
+<li>w/W 移动到下一个 word/WORD 开头, e/E 下一个 word/WORD 尾</li>
+<li>b/B 回到上一个 word/WORD 开头</li>
+</ul>
+<h2 id="翻页">翻页</h2>
+<ul>
+<li>gg 移动到文件开头</li>
+<li>G 移动到文件结尾</li>
+<li>ctrl + O 返回到刚刚移动的位置</li>
+<li>H/M/L 跳转到屏幕的开头, 中间和 结尾</li>
+<li>ctrl + f, ctrl+u 上下翻页,</li>
+<li>zz 把屏幕放在中间</li>
+</ul>
+<h1 id="增">增</h1>
+<pre><code class="language-vim">a/A (append)
+i/I (insert)
+o/O (open a line)
+</code></pre>
+<p>a 会在当前字母的后面插入</p>
+<p>i 会在当前字母的前面插入</p>
+<p>o 会打开一个新行</p>
+<p>A 在行末添加</p>
+<p>I 在行首插入</p>
+<p>O 在当前行的上方插入</p>
+<h1 id="删除">删除</h1>
+<pre><code class="language-vim">d (delete)
+dw (del word)
+dd (del line)
+x (删除一个字符)
+diw (del inner word) 删除不包含空格的单词
+daw (del around word)
+ctrl + h 删除上一个字符
+ctrl + w 删除上一个单词
+ctrl + u 删除当前行
+</code></pre>
+<p>d,x 都可以搭配数字执行多次</p>
+<ul>
+<li>
+<p>2dd/2x 删除两行/删除两个字符</p>
+</li>
+<li>
+<p>dt] del to ], 删除到 ] 的所有内容</p>
+</li>
+<li>
+<p>d0/d&amp; 快速删除行首和行尾</p>
+</li>
+</ul>
+<h1 id="改">改</h1>
+<ul>
+<li>r  replace</li>
+<li>c change</li>
+<li>s substitue</li>
+</ul>
+<p>normal 模式下使用 r 替换一个字符, s 替换并进入插入模式</p>
+<p>使用 c 配合文本对象, 可以进行快速修改</p>
+<pre><code class="language-vim">c (change)
+ciw (change inner word) 自动删除单词并进入插入模式
+ct) (chang to ) )??  修改到右括号
+ci&quot; 删除双引号的内容并进入插入模式
+</code></pre>
+<h1 id="查">查</h1>
+<pre><code class="language-vim">f find
+fs 查找当前行一个出现的 s, 使用 ; 查找下一个
+/keyword 查找单词
+?keyword 向前查找
+
+</code></pre>
+<p>使用 n/N 跳转到下一个或者上一个匹配</p>
+<h1 id="翻页-2">翻页</h1>
+<pre><code class="language-vim">ctrl + f (forward)
+ctrl + u (upward)
+</code></pre>
+<h1 id="粘贴复制">粘贴复制</h1>
+<pre><code class="language-vim">y yank
+p paste
+</code></pre>
+<h1 id="分屏">分屏</h1>
+<pre><code class="language-vim">vs vertical split
+sp split
+</code></pre>
+<h1 id="搜索和替换">搜索和替换</h1>
+<pre><code class="language-vim">% s/foo/bar/g
+</code></pre>
+<h1 id="其它常用命令">其它常用命令</h1>
+<h2 id="设置行号">设置行号</h2>
+<p><code>:set nu</code></p>
+<h1 id="visual-模式">visual 模式</h1>
+<p>一般用来块状选择文本</p>
+<p>normal 模式下使用 v 进入 visual 模式</p>
+<pre><code class="language-vim">V  选中行
+ctrl + v 进行块选择
+viw 选中单词
+vaw 选中单词带空格
+</code></pre>
+<h1 id="快速切换-insert-normal-模式">快速切换 insert normal 模式</h1>
+<ul>
+<li>ctrl + c (可能会中断插件) 或者 ctrl + [</li>
+<li>gi  快速跳转到最后一次编辑的地方并进入 insert 模式</li>
+</ul>
+<h1 id="多文件">多文件</h1>
+<h2 id="buffer-windows-tab">buffer windows tab</h2>
+<p>buffer 指打开的文件的一个内存缓冲区</p>
+<p>窗口是 buffer 可视化的分割区</p>
+<p>tab 是窗口的工作区</p>
+<h1 id="文本对象操作方式">文本对象操作方式</h1>
+<p><code>[number] &lt;command&gt; [text object]</code><br>
+`[次数] &lt;命令 (delete change yank)&gt;[文本对象 (单词 w, 句子 s, 段落 p)]</p>
+<h1 id="复制粘贴和寄存器的使用">复制粘贴和寄存器的使用</h1>
+<p>Vim 里面剪切 (cut) 复制 (copy) 粘贴 (paste) 分别是 delete/yank/put</p>
+<h2 id="normal-模式">normal 模式</h2>
+<p>normal 模式下复制粘贴分别使用 y(yank) 和 p(put), 剪贴 d 和 p</p>
+<p>可以使用 v(visual) 命令选中要复制的地方, 然后使用 p 粘贴</p>
+<p>配合文本对象使用:</br></p>
+<ul>
+<li>yiw 复制一个单词</li>
+<li>yy 复制一行</li>
+</ul>
+<h2 id="insert-模式下的复制粘贴">insert 模式下的复制粘贴</h2>
+<p>很多人会使用鼠标进行选中, 然后使用 <code>ctrl + v</code> 进行粘贴, 这里和其它编辑器差不多, 但是粘贴代码的时候会有个坑</p>
+<p>当设置了 autoindent, 粘贴代码时缩进会混乱</p>
+<p>这个时候需要使用 <code>set: paste</code> 和 <code>set: nopaste</code> 解决</p>
+<h2 id="寄存器">寄存器</h2>
+<p>Vim 操作的是寄存器, 不是系统剪贴板</p>
+<p>默认我们使用 d 删除 或者 y 复制的内容都会放到这个 寄存器</p>
+<p>使用 x 删除一个字符放到寄存器, 然后使用 p 粘贴, 可以调换两个字符</p>
+<h3 id="指定寄存器">指定寄存器</h3>
+<p>通过 &quot;{register}&quot; 前缀可以指定寄存器, 不指定则默认使用无名寄存器</p>
+<p>比如, 使用 <code>&quot;ayiw</code> 复制一个单词到寄存器 a 中, <code>&quot;bdd</code> 删除当前行到寄存器 b 中</p>
+<p>Vim 中 <code>&quot;&quot;</code> 表示无名寄存器, 缺省使用. <code>&quot;&quot;p</code> 等同于 <code>p</code></p>
+<h3 id="其它一些寄存器">其它一些寄存器</h3>
+<p>复制专用寄存器 `&quot;0 使用 y 复制文本同时会被拷贝到复制寄存器 0</p>
+<p>系统剪贴板 &quot;+ 可以在复制前加上 &quot;+ 复制到系统剪贴板, 可以使用系统剪贴板粘贴到其它地方</p>
+<p><code>&quot;% 当前文件名,</code>&quot;. 上次插入的文本</p>
+<h2 id="设置系统剪贴板为默认无名寄存器">设置系统剪贴板为默认无名寄存器</h2>
+<p><code>set clipboard=unnamed</code></p>
+<h1 id="vim-宏macro">vim 宏(macro)</h1>
+<h2 id="什么是宏">什么是宏</h2>
+<p>宏 是一系列命令的集合</p>
+<p>我们可以使用宏 [录制] 一系列操作, 然后用于 [回放]</p>
+<h2 id="使用宏">使用宏</h2>
+<p>宏的使用分为录制和回放</p>
+<p>normal 模式下使用 q 来录制, 同时也是 q 来结束录制</p>
+<p>使用 q{register} 选择要保存的寄存器, 把录制的命令保存其中</p>
+<p>使用 @{register} 回放寄存器中保存的一系列命令</p>
+<h1 id="vim-中的补全">vim 中的补全</h1>
+<p>使用 ctrl + n 和 ctrl + p 补全单词</p>
+<p>使用 ctrl + x 和 ctrl + f 补全文件名</p>
+<p>使用 ctrl + x  ctrl + o 补全代码, 需要开启文件类型检查, 安装插件</p>
+<p>使用 ctrl + xf 补全文件路径</p>
+<h1 id="vim-换色">vim 换色</h1>
+<p>使用 :colorscheme 显示当前的主题配色, 默认 default</p>
+<p>使用 :colorscheme &lt;ctrl + d&gt; 可以显示所有的配色</p>
+<p>使用 :colorscheme 配色名可以修改配色</p>
+<h1 id="vim-配置">vim 配置</h1>
+<p>配置文件 ~/.vimrc, 常用设置</p>
+<h1 id="idea-和-vscode-输入法自动切换">idea 和 vscode 输入法自动切换</h1>
+<h2 id="idea">idea</h2>
+<p>使用  <a href="https://github.com/hadix-lin/ideavim_extension">ideavim_extension</a></p>
+<h2 id="vscode">vscode</h2>
+<p>使用 <a href="https://github.com/daipeihust/im-select#installation">im-select</a></p>
+<p>配置 vscode , 在 setting.json 中添加</p>
+<pre><code class="language-json">    &quot;vim.autoSwitchInputMethod.enable&quot;: true,
+    &quot;vim.autoSwitchInputMethod.defaultIM&quot;: &quot;com.apple.keylayout.ABC&quot;,
+    &quot;vim.autoSwitchInputMethod.obtainIMCmd&quot;: &quot;/usr/local/bin/im-select&quot;,
+    &quot;vim.autoSwitchInputMethod.switchIMCmd&quot;: &quot;/usr/local/bin/im-select {im}&quot;
+</code></pre>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Afreto</li>
+            <li><strong>原文链接：</strong>https://afret0.github.io/vim-真的是太好用了/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        <div id="otherpost">
+            
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/redis使用笔记/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">redis tips</h4>
+                </div>
+            </div>
+            <div class="prev-post">
+                上一篇 <a href="https://afret0.github.io/redis使用笔记/">redis tips</a>
+            </div>
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/git-咋用啊/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">git 咋用啊</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://afret0.github.io/git-咋用啊/">git 咋用啊</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+        <div name="comment" style="background: white;margin-top:100px">
+            <div class="commentcontainer">
+                
+                <body>
+    <div id="vcomments1"></div>
+
+<script src='https://afret0.github.io/media/js/valine.min.js'></script>
+<script src="https://afret0.github.io/media/js/jquery.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+    new Valine({
+        el: '#vcomments1',
+        appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
+        appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
+        notify: true,
+        verify: false,
+        avatar: 'retro',
+        pageSize: 10,
+        placeholder: '既然来了，那就留个痕迹吧~',
+        visitor: true // 阅读量统计
+    })
+</script>
+
+</body>
+
+                <div class="clear"></div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var img = $("img");
+    for (var i = 0; i < img.length; i++) {
+        if (img.eq(i).attr("class") == undefined) {
+            img.eq(i).attr("class", "lazyload");
+            var imgsrc = img.eq(i).attr("src");
+            img.eq(i).attr("data-original", imgsrc);
+            img.eq(i).attr("src", "");
+            img.eq(i).hide();
+        }
+    }
+</script>
+<script src="https://afret0.github.io/media/js/post.js"></script>
+<script>
+    //寻找所有code标签，加复制按钮鸭！(行内代码除外)
+    var codes = document.getElementsByTagName('code');
+    if (codes.length) {
+        for (var i = 0; i < codes.length; i++) {
+            //高度/行高=文本行数
+            // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
+            // console.log("当前有"+rowNum+"行");
+            var code_id = "code_id_" + i;
+            codes[i].setAttribute("id", code_id);
+            var ci = "#" + code_id;
+            var codedot = $(ci);
+            var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
+            if (rowNum <= 1) continue;
+            var btn = document.createElement("button");
+            btn.setAttribute("class", "copybt");
+            btn.setAttribute("data-clipboard-target", "#" + code_id);
+            btn.innerHTML = '复制代码';
+            codes[i].parentNode.insertBefore(btn, codes[i]);
+        }
+    };
+    var cop = new ClipboardJS('.copybt');
+    var codeCopyText = $("#codeCopyText").html();
+    cop.on('success', function (e) {
+        alert(codeCopyText);
+        e.clearSelection();
+    });
+    cop.on('error', function (e) {
+        alert("矮油，复制失败了...手动复制吧勇士！");
+        e.clearSelection();
+    });
+</script>
+
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "https://afret0.github.io/media/live2d/assets/tororo.model.json");
+</script>
+
+<script>
+    $(function () {
+        $('.toggleContainer').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st > 30) {
+                $(".toggleContainer").fadeIn(400);
+            } else {
+                $(".toggleContainer").fadeOut(100);
+            }
+        });
+    });
+</script>
+
+<script>
+    var bgchoice = $('#bgchoice').html();
+    var bg = $('#bg');
+    var bgurl = document.getElementById("bgurl").innerHTML;
+    if (bgchoice == 'default')
+        for (var i = 0; i < 3; i++)
+            bgurl = bgurl.replace("\\", "/");
+    bg.css("background", "url('" + bgurl + "')");
+</script>
+
+
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+
+<!-- 动态更改上(下)一篇博客图片框长宽 -->
+<script>
+    npcontainer = document.querySelector('#npcontainer');
+    npstyle = window.getComputedStyle(npcontainer, null);
+    npwidth = npstyle.width;
+    npheight = 0.6 * Number(npwidth.replace("px", ""));
+    npheight = npheight.toString() + "px";
+    var op = $(".opimg");
+    op.css("height", npheight);
+</script>
+
+<script src="https://afret0.github.io/media/share/dist/Share.js"></script>
+
+<script>
+    var avatarSrc = $(".menutopavatar").attr("src");
+    var dp = document.getElementsByClassName("navbar-brand")[1].innerHTML;
+</script>
+
+
+<script>
+    var title = document.getElementById("texttitle").getElementsByTagName("h2");
+    
+    var share = new Share('.share', {
+        title: title[0].innerHTML,
+        initialized: true,
+        //默认获取网站描述
+        description: dp,
+        //网站图片默认获取的是设置的用户头像
+        image: avatarSrc,
+        //激活的分享网站
+        sites: ["weibo", "qq", "wechat", "douban", "qzone", "facebook", "twitter", "google"],
+        //微信分享PC端会生成二维码分享,移动端如果可以唤起微信最好
+        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+        wechatQrcodeHelper: '<p>微信里扫一下二维码</p><p>便可将本文分享至朋友圈。</p>',
+        //关闭的网站分享
+        disabled: ['google', 'linkedin'],
+        wechatQrcodePosition: 'bottom'
+    });
+
+    //点击分享按钮展现出分享icons
+    var sharebtnTag = false;
+    $(".sharebtn").click(function () {
+        if(!sharebtnTag)
+        {
+            $(".share").show();
+            sharebtnTag = true;
+        }
+        else
+        {
+            $(".share").hide();
+            sharebtnTag = false;
+        }
+    })
+
+    var donatebtnTag = false;
+    $(".donateImg").click(function () {
+        if(!donatebtnTag)
+        {
+            $(".donate").show();
+            donatebtnTag = true;
+        }
+        else{
+            $(".donate").hide();
+            donatebtnTag = false;
+        }
+    })
+
+    window.onload=function(){
+        var sharepc = $(".share").eq(0).html();
+        $(".share").eq(1).html(sharepc);
+        setTimeout(function(){
+            var hn = $(".leancloud-visitors-count").eq(0).html();
+            hn = '<i class="fa fa-eye" aria-hidden="true"'+
+                            'style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i'+
+                            'class="leancloud-visitors-count">'+hn+'</i></h4>'
+            $(".readercount").eq(1).html(hn);
+        }, 1000);
+        document.getElementById("veditor").setAttribute("placeholder", jrsc);
+    }
+</script>
+
+
+<script>
+    jQuery(document).ready(function ($) {
+        function lazyload() {
+            var oLazyload = $("img.lazyload"),
+                fLazyload = function (hLazyload) {
+                    var nLazyload = $(window).height() + $(document).scrollTop();
+                    oLazyload.each(function () {
+                        $(this).offset().top < nLazyload && ($(this).trigger("appear"), oLazyload =
+                            oLazyload.not(this));
+                    }), 0 == oLazyload.length && $(window).unbind("scroll", fLazyload);
+                };
+            oLazyload.each(function () {
+                $(this).one("appear", function () {
+                    $(this).attr("src", $(this).attr("data-original"));
+                    $(this).fadeIn(500);
+                });
+            }), $(window).bind("scroll", fLazyload), fLazyload();
+        }
+        lazyload();
+    });
+</script>
