@@ -1,933 +1,40 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="docker 用的太水了  要学习一波怎么骚操作
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Afreto&#39;s blog</title>
+<meta name="description" content="江湖沒什麼好的，也就酒還行～
 
-安装
-wget -qO- https://get.docker.com/ | sh
-配置
-配置 docker 服务
-配置 docker 用户组
-sudo usermod -aG docke..." />
-    <meta name="keywords" content="docker" />
-    <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://afret0.github.io/styles/main.css">
-    
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/rainbow.min.css">
-    
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
-    <script src="https://afret0.github.io/media/js/clipboard.min.js"></script>
-    <link rel="stylesheet" href="https://afret0.github.io/media/css/live2d.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
-    <!-- 数学公式 -->
-    
-    <title>Afreto's blog</title>
-    
-    <style>
-        .markdownIt-TOC {
-            padding-left: 2px;
-            width: 100%;
-        }
+" />
+<link rel="shortcut icon" href="https://afret0.github.io/favicon.ico?v=1597398771441">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-        .markdownIt-TOC li {
-            padding-left: 2%;
-        }
-    </style>
-    
-</head>
-
-<body>
-    <div id="landlord">
-        <div class="message" style="opacity:0"></div>
-        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-    </div>
-    <div id="codeCopyText" style="display: none">代码复制成功了哦</div>
-    <div id="domainname" style="display:none">https://afret0.github.io</div>
-    <!-- 响应式布局，针对PC端内容显示 -->
-    <div id="content">
-        <div class="nav-large">
-            <div class="row">
-                <div class="side"><body>
-    
+<link rel="stylesheet" href="https://afret0.github.io/styles/main.css">
 
 
 
-    
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="https://afret0.github.io"
-                    style="font-size:21px">Afreto&#39;s blog&nbsp;&nbsp;|&nbsp;&nbsp;</a>
-                <a class="navbar-brand" href=""
-                    style="font-size:15px;font-family:kaiti">江湖沒什麼好的，也就酒還行～
-
-</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse">
-                
-                <div class="search nav navbar-nav" style="margin-top:8px">
-                    <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
-                    <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
-                    <div class="search-results"></div>
-                </div>
-                
-                <div class="search nav navbar-nav">
-                <a title="text" onclick="document.getElementById('socialMenu').style.display='block'"><i><img class="social"
-                    src="https://afret0.github.io/media/images/social.png" alt=""></i></a>
-            </div>
-            <ul class="nav navbar-nav" style="float: right;margin-right:5%">
-                
-                
-                <li>
-                    <a href="https://afret0.github.io" style="color:white">
-                        home
-                    </a>
-                </li>
-                
-                
-                
-                <li>
-                    <a href="/archives" style="color:white">
-                        archives
-                    </a>
-                </li>
-                
-                
-                
-                <li>
-                    <a href="/tags" style="color:white">
-                        tags
-                    </a>
-                </li>
-                
-                
-                
-                  
-                  <li><img src="https://afret0.github.io/images/avatar.png?v=1597398696537" alt=""
-                class="menutopavatar"></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-    <div id="socialMenu">
-        <div class="animate">
-            <div class="socialContainer">
-                
-                
-                
-                
-                
-                
-            </div>
-            <div id="qq" style="display:none"></div>
-        </div>
-    </div>
-    <!-- 引入jQuery核心js文件 -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <script>
-        var social = document.getElementById('socialMenu');
-        // 鼠标点击模型外区域关闭登录框
-        window.onclick = function (event) {
-            if (event.target == social) {
-                social.style.display = "none";
-            }
-        }
-    </script>
-    
-</body>
-<script>
-    //-------------------------------------------------搜索
-    // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
-    var searchInput = document.querySelector('.search-input');
-    var searchResults = document.querySelector('.search-results');
-
-    // 申明保存文章的标题、链接、内容的数组变量
-    var searchValue = '',
-        arrItems = [],
-        arrLinks = [],
-        arrTitles = [],
-        arrResults = [],
-        indexItem = [],
-        itemLength = 0;
-    var tmpDiv = document.createElement('div');
-    tmpDiv.className = 'result-item';
-
-    // ajax 的兼容写法
-    var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            xml = xhr.responseXML;
-            arrItems = xml.getElementsByTagName('entry');
-            itemLength = arrItems.length;
-            // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
-            // 同时过滤掉 HTML 标签
-            for (i = 0; i < itemLength; i++) {
-                var link = arrItems[i].getElementsByTagName('link')[0];
-                arrLinks[i] = link.getAttribute("href");
-                arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
-                childNodes[0].nodeValue.replace(/<.*?>/g, '');
-            }
-        }
-    }
-
-    // 开始获取根目录下 feed.xml 文件内的数据
-    xhr.open('get', '/atom.xml', true);
-    xhr.send();
-
-
-
-    // 输入框内容变化后就开始匹配，可以不用点按钮
-    // 经测试，onkeydown, onchange 等方法效果不太理想，
-    // 存在输入延迟等问题，最后发现触发 input 事件最理想，
-    // 并且可以处理中文输入法拼写的变化
-    searchInput.oninput = function () {
-        setTimeout(searchConfirm, 0);
-    }
-    searchInput.onfocus = function () {
-        searchResults.style.display = 'block';
-    }
-
-    function searchConfirm() {
-        if (searchInput.value == '') {
-            searchResults.style.display = 'none';
-        } else if (searchInput.value.search(/^\s+$/) >= 0) {
-            // 检测输入值全是空白的情况
-            searchInit();
-            var itemDiv = tmpDiv.cloneNode(true);
-            itemDiv.innerText = '请输入有效内容...';
-            searchResults.appendChild(itemDiv);
-        } else {
-            // 合法输入值的情况
-            searchInit();
-            searchValue = searchInput.value;
-            // 在标题、内容中查找
-            searchMatching(arrTitles, searchValue);
-        }
-    }
-
-    // 每次搜索完成后的初始化
-    function searchInit() {
-        arrResults = [];
-        indexItem = [];
-        searchResults.innerHTML = '';
-        searchResults.style.display = 'block';
-    }
-
-    function searchMatching(arr1, input) {
-        // 忽略输入大小写
-        input = new RegExp(input, 'i');
-        // 在所有文章标题、内容中匹配查询值
-        for (i = 0; i < itemLength; i++) {
-            if (arr1[i].search(input) !== -1) {
-                var arr = arr1;
-                indexItem.push(i); // 保存匹配值的索引
-                var indexContent = arr[i].search(input);
-                // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
-                var l = input.toString().length - 3;
-                var step = 10;
-
-                // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
-                arrResults.push(arr[i].slice(indexContent - step, indexContent));
-            }
-        }
-
-        // 输出总共匹配到的数目
-        var totalDiv = tmpDiv.cloneNode(true);
-        totalDiv.innerHTML = '<b>总匹配：' + indexItem.length + ' 项<hr></b>';
-        searchResults.appendChild(totalDiv);
-
-        // 未匹配到内容的情况
-        if (indexItem.length == 0) {
-            var itemDiv = tmpDiv.cloneNode(true);
-            itemDiv.innerText = '未匹配到内容...';
-            searchResults.appendChild(itemDiv);
-        }
-
-        // 将所有匹配内容进行组合
-        for (i = 0; i < arrResults.length; i++) {
-            var itemDiv = tmpDiv.cloneNode(true);
-            itemDiv.innerHTML = '<b>[' + arrTitles[indexItem[i]] +
-                ']</b><p>' + arrResults[i] + "</p><hr />";
-            itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
-            searchResults.appendChild(itemDiv);
-        }
-    }
-
-    function changeHref(href) {
-        location.href = href;
-    }
-
-    function showqq() {
-        var qq = document.getElementById("qq").innerHTML;
-        if (qq != '')
-            window.location.href = "tencent://message/?uin=" + qq + "&Site=&Menu=yes";
-        else
-            alert("博主暂未设置QQ联系方式");
-    }
-</script>
-</div>
-                
-            <div id="main" class="col-xs-12 col-sm-7" style="width:50%;margin-top:50px;left:27%">
-                <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
-
-<body>
-    <div class="allcontent" id="postdetail">
-        <div class="postshow" style="padding-bottom: 0;">
-            
-            <div class="postdetailimg" style="width:100%;overflow: hidden;">
-                
-                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
-                
-            </div>
-            <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2019-08-28</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 22 min read</div>
-            <div class="posttag">
-                
-                <a href="https://afret0.github.io/qxT6chRJUW/" class="postlink">
-                    <i class="fa fa-tag"></i> docker
-                </a>
-                
-            </div>
-        </div>
-        
-        <div id="articlecontent">
-            <div id="texttitle" style="text-align: center">
-                <h2>docker 使用记录</h2>
-                <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://afret0.github.io/docker-使用记录/</div>
-                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
-                <span id="hotnum" class="leancloud_visitors" data-flag-title="docker 使用记录">
-                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
-                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
-                            class="leancloud-visitors-count">loading...</i></h4>
-                </span>
-            </div>
-            <div class="text ">
-                <p>docker 用的太水了  要学习一波怎么骚操作</p>
-<!-- more -->
-<h1 id="安装">安装</h1>
-<p><code>wget -qO- https://get.docker.com/ | sh</code></p>
-<h1 id="配置">配置</h1>
-<h2 id="配置-docker-服务">配置 docker 服务</h2>
-<p>配置 docker 用户组</p>
-<p><code>sudo usermod -aG docker USER_NAME</code></p>
-<blockquote>
-<p>docker 服务默认配置 <code>/etc/default/docker</code></p>
-<p>可通过修改其中的 DOCKER_OPTS 来修改服务启动的参数</p>
-</blockquote>
-<h1 id="镜像">镜像</h1>
-<p>使用  <code>docker pull</code> 命令可以拉取镜像</p>
-<p><code>docker pull NAME[:TAG]</code></p>
-<p>NAME 是镜像仓库的名字, 用来区分镜像, TAG 是镜像的标签, 常用来表示版本信息</p>
-<p>通常情况下, 描述一个镜像需要 &quot;名字 + 标签&quot;</p>
-<blockquote>
-<p>对于 docker 镜像, 如果不显示指定 TAG, 则默认会选择 latest 标签</p>
-<p>镜像仓库名称中应该添加仓库地址(即 registry, 注册服务器)作为前缀, 我们默认的是 <code>docker hub</code> 服务, 该前缀可以省略</p>
-</blockquote>
-<p>下载 ubuntu 镜像:</p>
-<pre><code class="language-shell">docker pull ubuntu
-Using default tag: latest
-latest: Pulling from library/ubuntu
-35c102085707: Pull complete
-251f5509d51d: Pull complete
-8e829fe70a46: Pull complete
-6001e1789921: Pull complete
-Digest: sha256:d1d454df0f579c6be4d8161d227462d69e163a8ff9d20a847533989cf0c94d90
-Status: Downloaded newer image for ubuntu:latest
-docker.io/library/ubuntu:latest
-</code></pre>
-<h2 id="查看镜像信息">查看镜像信息</h2>
-<p><code>docker images</code></p>
-<p>images 子命令支持如下选项</p>
-<ul>
-<li><code>-a, --all=true|false</code> 所有镜像文件(包括临时文件), 默认为 false</li>
-<li><code>--digests=true|false</code> 镜像的数字摘要值 默认为 false</li>
-<li><code>-f , --filter=[]</code>  过滤列出的镜像, 如 <code>dangling=true</code> 只显示没有被使用的镜像; 也可指定带有特定标注的镜像</li>
-<li><code>--format=&quot;TEMPLATE&quot;</code> 控制输出格式, 如 <code>.ID</code> 代表 ID 信息, <code>.Repository</code> 代表仓库信息</li>
-<li><code>--no-trunc=true|false</code> 对输出结果中太长的部分进行截断, 默认为 true</li>
-<li><code>-q, --quiet=true|false</code> 仅输出 ID 信息</li>
-</ul>
-<h2 id="使用-tag-命令添加镜像标签">使用 tag 命令添加镜像标签</h2>
-<p><code>docker tag ubuntu:latest myubuntu:latest</code></p>
-<h2 id="使用-inspect-命令查看详细信息">使用 inspect 命令查看详细信息</h2>
-<p><code>docker inspect ubuntu:latest</code></p>
-<h2 id="使用-history-查看镜像历史">使用 history 查看镜像历史</h2>
-<p>可以使用 history 命令查看各层的创建信息</p>
-<p><code>docker history ubuntu:latest</code></p>
-<h2 id="搜索镜像">搜索镜像</h2>
-<p>使用 docker search 搜索仓库中共享的镜像</p>
-<p><code>docker search TERM</code></p>
-<p>参数:</p>
-<ul>
-<li><code>--automated=true|false</code> 仅显示默认创建的镜像, 默认为 false</li>
-<li><code>--no-trunc=true|false</code> 输出信息不截断, 默认为 false</li>
-<li><code>-s, --starx=X</code> 指定显示评价为星级以上的镜像, 默认为 0, 即默认输出所有镜像</li>
-</ul>
-<h2 id="删除镜像">删除镜像</h2>
-<h3 id="使用标签删除镜像">使用标签删除镜像</h3>
-<p><code>docker rmi IMAGE[IMAGE...]</code> IMAGE 可以为标签或者 ID</p>
-<p>当同一个镜像拥有多个标签时, <code>docker rmi</code> 只删除多个标签中的指定标签</p>
-<blockquote>
-<p>当镜像只剩下一个标签时, <code>docker rmi</code> 会删除镜像</p>
-</blockquote>
-<h3 id="使用镜像-id-删除镜像">使用镜像 ID 删除镜像</h3>
-<p>使用 <code>docker rmi</code> 命令根据镜像 ID 删除时,会先尝试删除所有指向该镜像的标签, 然后删除该镜像本身</p>
-<blockquote>
-<p>也可以是能进行区分的部分镜像 ID 串前缀</p>
-</blockquote>
-<blockquote>
-<p>当该镜像创建的容器存在时, 镜像无法被删除</p>
-</blockquote>
-<h2 id="创建镜像">创建镜像</h2>
-<p>创建镜像的方法主要有三种: 基于已有的容器创建, 基于本地模板导入, 基于 dockerfile 创建</p>
-<h2 id="导出和载入镜像">导出和载入镜像</h2>
-<p><code>docker save</code>, <code>docker load</code></p>
-<h3 id="save-导出镜像到文件">save 导出镜像到文件</h3>
-<p><code>docker save -o ubuntu_14.04.tar ubuntu:latest</code></p>
-<h3 id="载入镜像">载入镜像</h3>
-<p><code>docker load --input ubuntu_14.04.tar</code></p>
-<p>或</p>
-<p><code>docker load &lt; ubuntu_14.04.tar</code></p>
-<h2 id="上传镜像">上传镜像</h2>
-<p><code>docker push NAME[:TAG] | [REGISTRY_HOST[:REGISTRY_PORT]/]NAME[:TAG]</code></p>
-<h1 id="容器">容器</h1>
-<h2 id="创建容器">创建容器</h2>
-<h3 id="新建容器">新建容器</h3>
-<p><code>docker create</code></p>
-<ul>
-<li><code>-l, --label=[]</code> 以键值对的方式制定容器的标签信息</li>
-<li><code>--label-file=[]</code> 从文件中读取标签信息</li>
-</ul>
-<blockquote>
-<p><code>docker create -it ubuntu:latest</code></p>
-</blockquote>
-<p>使用 docker create 命令创建的容器处于停止状态, 可以使用 <code>docker start</code> 启动</p>
-<h3 id="启动容器">启动容器</h3>
-<p><code>docker start</code></p>
-<h2 id="新建并启动容器">新建并启动容器</h2>
-<p><code>docker run</code></p>
-<blockquote>
-<p><code>docker run ubuntu /bin/echo/ 'hello world'</code></p>
-</blockquote>
-<p>当使用 <code>docker run</code>来创建并启动容器时, docker 在后台运行的操作:</p>
-<ul>
-<li>检查本地是否存在指定的镜像, 不存在则从公共仓库下载</li>
-<li>使用镜像创建一个容器, 并启动</li>
-<li>分配一个文件系统给容器, 并在只读的镜像层外面挂载一层可读写层</li>
-<li>从宿主机配置的网桥接口中桥接一个虚拟接口到容器</li>
-<li>从网桥的地址池中配置一个 IP 给容器</li>
-<li>执行用户制定的应用程序</li>
-<li>执行完毕后容器自动终止</li>
-</ul>
-<p>如下命令启动一个 bash, 允许用户进行交互</p>
-<p><code>docker run -it ubuntu:latesd /bin/bash</code></p>
-<ul>
-<li><code>-t</code> 让 docker 分配一个伪终端并绑定到容器的标准输出上</li>
-<li><code>-i</code> 让容器的标准输入保持打开</li>
-</ul>
-<blockquote>
-<p>常见错误码</p>
-<ul>
-<li>125 docker deamon 执行出错, 例如指定了不支持的 docker 参数</li>
-<li>126 指定的命令无法执行, 例如权限出错</li>
-<li>127 容器内命令无法找到</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>在执行 docker run 的时候 添加 -rm 命令, 则容器在停止后会立即删除</p>
-<p><strong>--rm 和 -d 参数不能同时使用</strong></p>
-</blockquote>
-<h2 id="后台运行">后台运行</h2>
-<p>可以通过添加 <code>-d</code> 参数实现</p>
-<h2 id="停止容器">停止容器</h2>
-<p><code>docker stop[-t|--time[=10]][CONTAINEWR..]</code></p>
-<p>首先向容器发送 SIGTERM 信号, 等待一段时间(默认 10 秒) 后, 再发送 SIGKILL 信号来停止容器</p>
-<p><code>docker kill</code> 命令会直接发送 SIGKILL 信号强行 kill  容器</p>
-<h2 id="docker-restart">docker restart</h2>
-<h2 id="进入容器">进入容器</h2>
-<h3 id="attach">attach</h3>
-<p><code>attach</code>  是 docker 自带的命令</p>
-<p><code>docker attach [--detach-keys[=[]]] [-no-stdin] [--sig-proxy[=true]] CONTAINER</code></p>
-<ul>
-<li><code>--detach-keys[=[]]</code> 指定退出 attach 模式的快捷键序列, 默认是 <code>CTRL_p, CTRL-q</code></li>
-<li><code>--no-stdin=true|false</code> 是否关闭标准输入, 默认 false</li>
-<li><code>--sig-proxy=true | false</code> 是否代理收到的系统信号给应用进程, 默认 true</li>
-</ul>
-<p>当多个窗口同时使用 attach 命令连到同一个容器的时候, 所有窗口都会同步显示. 当某个窗口因命令阻塞时, 其他窗口也无法执行操作.</p>
-<h3 id="exec">exec</h3>
-<p>docker 在 1.3.0 版本起提供了一个更加方便的 exec 命令, 可以在容器内直接执行任意命令.</p>
-<p><code>docker exec [-d|--detach] [--detach-keys[=[]]] [-i|--interactive] [--privileged] [-t|--tty] [-u|--user[=USER]] CONTAINER COMMAND [ARG...]</code></p>
-<ul>
-<li><code>-i, --interactive=true | false</code> 打开标准输入接受用户输入命令, 默认 false</li>
-<li><code>--privileged=true | false</code> 是否给执行命令以高权限, 默认 false</li>
-<li><code>-t, --tty=true | false</code> 分配伪终端, 默认 false</li>
-<li><code>-u, --user==&quot;&quot;</code>  执行命令的用户名或 ID</li>
-</ul>
-<p>例如 进入刚创建的容器并启动一个 bash</p>
-<p><code>docker exec -it ID /bin/bash</code></p>
-<h3 id="nsenter-工具">nsenter 工具</h3>
-<p>在 util-linux 软件包版本 2.23+ 中包含 nsenter 工具</p>
-<h2 id="删除容器">删除容器</h2>
-<p><code>docker rm [-f | --force] [-l | --link] [-v |--volumes] CONTAINER[CONTAINER...]</code></p>
-<ul>
-<li><code>-f, --force=false</code>  rm -f</li>
-<li><code>-l, --link=false</code> 删除容器的链接, 但保留容器</li>
-<li><code>-v, --volumes=false</code> 删除容器挂载的数据卷</li>
-</ul>
-<h2 id="容器的导入和导出">容器的导入和导出</h2>
-<h3 id="导出">导出</h3>
-<p><code>docker export [-o | --output[=&quot;&quot;]] CONTAINER</code></p>
-<h3 id="导入">导入</h3>
-<p><code>docker import [-c | --changes[=[]]] [-m | --message[=MESSAGE]] file | URL | - [REPOSITORY] [:TAG]</code></p>
-<ul>
-<li><code>-c, --changes</code> 在导入时执行对容器修改的 dockerfile 指令</li>
-</ul>
-<h1 id="数据管理">数据管理</h1>
-<ul>
-<li>数据卷 容器内数据直接映射到本地主机环境</li>
-<li>数据卷容器  使用特定容器维护数据卷</li>
-</ul>
-<h2 id="数据卷">数据卷</h2>
-<p>数据卷是一个可供容器使用的特殊目录, 将操作系统目录直接映射进容器, 类似于 linux 下的 mount 操作</p>
-<blockquote>
-<ul>
-<li>数据卷可以在容器之间共享和重用</li>
-<li>对数据卷内数据的修改会立马生效, 无论是容器内操作还是本地操作</li>
-<li>对数据卷的更新不会影响镜像, 解耦应用和数据</li>
-<li>卷会一直存在, 直到没有容器使用, 可以安全卸载</li>
-</ul>
-</blockquote>
-<h3 id="在容器内创建一个数据卷">在容器内创建一个数据卷</h3>
-<p>在用 docker run 命令的时候, 使用 -v 标记可以在容器内创建多个数据卷, 多次重复使用 -v 可以创建多个数据卷</p>
-<h3 id="挂载一个主机目录作为数据卷">挂载一个主机目录作为数据卷</h3>
-<p><code>docker run -d -P --name web -v /src/webapp:/opt/webapp training/webapp python app.py</code></p>
-<p>挂载主机的 <code>/src/webapp</code> 目录到容器的 <code>/opt/webapp</code> 目录</p>
-<p>也可通过 <code>ro</code> 指定为只读</p>
-<p><code>docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp python app.py</code></p>
-<p>这样, 容器内则无法修改挂载的数据</p>
-<h3 id="挂载一个本地主机文件作为数据卷">挂载一个本地主机文件作为数据卷</h3>
-<p><code>docker run -rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash</code></p>
-<p>这样就可以记录在容器输入过的历史命令</p>
-<blockquote>
-<p>若直接挂在一个文件到容器, 使用文件编辑工具,  包括 <code>vi</code>  或者 <code>sed--in-place</code> 的时候, 可能会造成文件 inode 的改变, 从 docker 1.1.0 起, 会导致错误发生, 所以推荐的方式是直接挂载文件所在的目录</p>
-</blockquote>
-<h2 id="数据卷容器">数据卷容器</h2>
-<p>如果需要在多个容器之间共享一些持续更新的数据, 最简单的方式是使用数据卷容器.</p>
-<p>数据卷容器也是一个容器, 但是它的是专门用来提供数据卷供其它容器挂载</p>
-<p>首先, 创建一个数据卷容器 dbdata, 并在其中创建一个数据卷挂载到 /dbdata</p>
-<p><code>docker run -it -v /dbdata --name dbdata ubuntu</code></p>
-<p>然后在其它容器中使用 <code>--volumes-from</code> 来挂载 dbdata 容器中的数据卷</p>
-<p>创建 db1 和 db2 两个容器, 并从 dbdata 容器挂载数据卷</p>
-<p><code>docker run -it --volumes-from dbdata --name db1 ubuntu</code></p>
-<p><code>docker run -itd --volumes-from dbdata --name db2 ubuntu</code></p>
-<blockquote>
-<p>使用 <code>--volumes-from</code> 参数所挂载的数据卷的容器自身并不需要保持在运行状态</p>
-<p>如果删除了挂载的容器( 包裹 dbdata db1 db2), 数据卷并不会被删除</p>
-<p>如果要删除一个数据卷, 必须在删除最后一个还挂载着它的容器时显式的使用 <code>docker rm -v</code> 来指定同时删除关联的容器</p>
-</blockquote>
-<h3 id="利用数据卷容器来迁移数据">利用数据卷容器来迁移数据</h3>
-<h4 id="备份">备份</h4>
-<p><code>docker run --volumes-from dbdata -v $(pwd):/backup --name worker ubuntu tar cvf /backup/backup.tar /dbdata</code></p>
-<ul>
-<li>首先使用 ubuntu 镜像创建了一个容器 worker</li>
-<li>使用 <code>--volumes-from dbdata</code> 让 worker 容器挂载 dbdata 容器的数据卷</li>
-<li>使用 <code>-v$(pwd):/backup</code> 来挂载本地的当前目录到 worker 容器的 /backup</li>
-<li>worker 启动后, 使用 <code>tar cvf /backup/backup.tar /dbdata</code> 将 /dbdata 下内容备份为容器内的 /backup/backup.tar, 即宿主机当前目录下的 backup.tar</li>
-</ul>
-<h4 id="恢复">恢复</h4>
-<p>创建一个带有数据卷的容器 dbdata2</p>
-<p><code>docker run -v /dbdata --name dbdata2 ubuntu /bin/bash</code></p>
-<p>然后创建另一个新容器, 挂在 dbdata2 的容器, 并解压备份文件到所挂载的容器卷中</p>
-<p><code>docker run --volumes-from dbdata2 -v $(pwd):/backup tar xvf /backup/backup.tar</code></p>
-<h1 id="端口映射和容器互联">端口映射和容器互联</h1>
-<h2 id="从外部访问容器应用">从外部访问容器应用</h2>
-<p>通过 <code>-p</code> 或 <code>-P</code> 参数来指定端口映射</p>
-<ul>
-<li><code>-P</code> docker 会随机映射一个 49000 - 49900 的端口到内部容器开放的网络端口</li>
-<li><code>-p</code>  指定要映射的端口, 并且在指定的端口上只可以绑定一个容器, 支持的格式: <code>IP: HostPort: ContainerPort| IP: :ContainerPort | HostPort: ContainerPort</code></li>
-</ul>
-<h3 id="映射所有接口地址">映射所有接口地址</h3>
-<p>使用 <code>Host: Port: ContainerPort</code> 格式将本地的 5000 端口映射到容器的 5000 端口</p>
-<p><code>docker run -d -p 5000:5000 training/webapp python app.py</code></p>
-<h3 id="映射到指定地址的指定端口">映射到指定地址的指定端口</h3>
-<p>使用 <code>IP: HostPort: ContainerPort</code> 格式指定映射使用一个特定地址, 比如 localhost</p>
-<p><code>docker run -d -p 127.0.0.1:5000:5000 training/webapp python addp.py</code></p>
-<h3 id="映射到指定地址的任意端口">映射到指定地址的任意端口</h3>
-<p>使用 <code>IP: : ContainerPort</code> 绑定 localhost 的任意端口到容器的 5000 端口, 本地主机会自动分配一个端口</p>
-<p><code>docker run -d -p 127.0.0.1::5000 training/webapp python web.py</code></p>
-<h3 id="查看映射端口配置">查看映射端口配置</h3>
-<p>使用 docker port 命令来查看当前映射的端口配置, 也可以查看到绑定的地址</p>
-<p><code>docker port ubuntu 5000</code></p>
-<blockquote>
-<p>容器有自己的内部网络和 IP 地址, 使用 <code>docker inspect ContainerID</code> 可以获取容器的具体信息</p>
-</blockquote>
-<h2 id="互联机制实现便捷访问">互联机制实现便捷访问</h2>
-<p>容器的互联是一种让多个容器中应用进行快速交互的方式, 它会在源和接收器之间创建链接关系, 接收容器可以通过容器名快速访问到源容器, 而不用指定具体的 IP 地址</p>
-<h3 id="自定义容器命名">自定义容器命名</h3>
-<p>连接系统根据容器的名称来执行, 因此首先要起一个好名字</p>
-<p>使用 <code>--name</code> 可以为容器自定义命名</p>
-<blockquote>
-<p>容器的名称是唯一的</p>
-<p>如果已经有一个名字了, 需要先删除之前创建的同名容器</p>
-</blockquote>
-<h3 id="容器互联">容器互联</h3>
-<p>使用 --link 参数可以让容器之间安全的进行交互</p>
-<blockquote>
-<p>--link 参数的格式为 <code>--link name: alias</code> 其中 name  是要链接的容器的名称, alias 是这个链接的别名</p>
-</blockquote>
-<p>创建一个新的数据库容器</p>
-<p><code>docker run -d --name db training/postgres</code></p>
-<p>创建一个 web 容器, 并将它链接到 db 容器</p>
-<p><code>docker run -d -P --name web --link db:db trainling/webapp python web.py</code></p>
-<p>此时 db 容器和 web 容器建立互联关系</p>
-<p>docker 通过两种方式为容器公开信息</p>
-<ul>
-<li>更新环境变量</li>
-<li>更新 <code>/etc/hosts</code> 文件</li>
-</ul>
-<blockquote>
-<p>其中 DB_ 开头的环境变量是供容器链接 db 容器使用的, 前缀采用大写的链接别名</p>
-<p>除了环境变量之外, Docker 还添加 host 信息到父容器的 <code>/etc/hosts</code>文件</p>
-</blockquote>
-<h1 id="dockerfile">Dockerfile</h1>
-<h2 id="基本结构">基本结构</h2>
-<p>Dockerfile 由一行行命令语句组成, 支持 <code>#</code> 开头的注释</p>
-<p>一般而言 Dockfile 分为四部分:</p>
-<ul>
-<li>基础镜像信息</li>
-<li>维护者信息</li>
-<li>镜像操作指令</li>
-<li>容器启动时执行指令</li>
-</ul>
-<h2 id="指令">指令</h2>
-<p>指令的一般格式为 <code>INSTRUCTION arguments</code>, 指令包括 <code>FROM MAINTAINER RUN</code></p>
-<h4 id="from"><strong>FROM</strong></h4>
-<ul>
-<li>说明：指定该镜像的基础镜像</li>
-<li>格式如：<code>FROM &lt;image&gt;</code>或 <code>FROM &lt;image&gt;:&lt;tag&gt;</code></li>
-<li>示例：<code>FROM centos:7</code></li>
-<li>注意：<code>FROM</code>一般出现在文件头，且每个镜像都需要有一个 <code>FROM</code>来指定基础镜像。</li>
-</ul>
-<h4 id="maintainer"><strong>MAINTAINER</strong></h4>
-<ul>
-<li>说明：指定作者信息</li>
-<li>格式如：<code>MAINTAINER &lt;name&gt;</code></li>
-<li>示例：<code>MAINTAINER afreto &quot;&quot;</code></li>
-</ul>
-<h4 id="run"><strong>RUN</strong></h4>
-<ul>
-<li>说明：在构建镜像时执行脚本</li>
-<li>格式如：RUN <command>或RUN [&quot;exec&quot;, &quot;par1&quot;, &quot;par2&quot;], 后一个指令会被解析成 json 数组, 因此必须使用双引号 , 前者默认将在 shell终端中运行命令. 后者则使用 exec 执行, 不会启动 shell环境, 指定使用其它终端类型可以通过第二种方式实现, 如 RUN[&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;echo hello&quot;]</li>
-<li>示例：<code>RUN ls -l</code>（以详细信息方式列表当前目录下的文件，跟在 shell 终端运行一样）</li>
-</ul>
-<blockquote>
-<p>每条指令会在当前镜像的基础上执行指定命令, 并提交为新镜像</p>
-<p>命令过长可以使用 <code>\</code> 来换行</p>
-</blockquote>
-<h4 id="cmd"><strong>CMD</strong></h4>
-<ul>
-<li>说明：用来指定启动容器时默认执行的命令.</li>
-<li>格式:
-<ul>
-<li><code>CMD[&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]</code>, 使用 <code>exec</code> 执行, 是 <strong><u><em>推荐的方式</em></u></strong></li>
-<li><code>CMD command param1 param2</code> 在 <code>/bin/sh</code> 中执行, 提供给需要交互的应用</li>
-<li><code>CMD[&quot;param1&quot;, &quot;param2&quot;]</code> 提供给 <code>ENTRYPOINT</code> 的默认参数</li>
-</ul>
-</li>
-<li>示例：<code>CMD [&quot;ls&quot;, &quot;-l&quot;]</code></li>
-<li>注意：一个 Dockerfile 中只有一条 <code>CMD</code>，如果有多条只执行最后一条；在运行容器时如果用户指定了运行命令则 Dockerfile 中的 CMD 将被覆盖。</li>
-</ul>
-<h4 id="label">LABEL</h4>
-<ul>
-<li>说明: 用来指定生成镜像的元数据标签</li>
-<li>格式: <code>LABEL&lt;key&gt;=&lt;value&gt;&lt;key&gt;=&lt;value&gt;...</code></li>
-<li>示例: <code>LABEL version=&quot;1.0&quot;</code></li>
-</ul>
-<h4 id="entrypoint"><strong>ENTRYPOINT</strong></h4>
-<ul>
-<li>说明：指定镜像的默认入口命令, 该入口命令会在启动容器时作为根命令执行</li>
-<li>格式如：<code>ENTRYPOINT [&quot;exec&quot;, &quot;par1&quot;, &quot;par2&quot;]</code>、<code>ENTRYPOINT command par1 par2</code></li>
-<li>示例：<code>ENTRYPOINT [&quot;catalina.sh&quot;, &quot;run&quot;]</code></li>
-<li>注意：一个 Dockerfile 中只有一条 <code>ENTRYPOINT</code>，如果有多条只执行最后一条, 在运行时可以被 <code>--entrypoint</code> 参数覆盖. 如<code>docker run --entrypoint</code></li>
-</ul>
-<h4 id="expose"><strong>EXPOSE</strong></h4>
-<ul>
-<li>说明：让 Docker 暴露容器的端口号，供其他容器使用，在宿主机以外的网络中是无法使用的</li>
-<li>格式如：<code>EXPOSE &lt;port&gt; ...</code></li>
-<li>示例：<code>EXPOSE 8080</code></li>
-<li>注意：
-<ul>
-<li>该指令只起到声明作用, 并不会完成端口映射</li>
-<li>在 Docker 中有两种暴露端口的概念，一种叫 <code>EXPOSE</code>隐式暴露，只供 Docker 服务内部使用；另一种叫 <code>PUBLISH</code>显式暴露，供外部网络使用，<code>PUBLISH</code>只是一个概念在 Dockerfile 中没有这个指令。</li>
-<li><code>EXPOSE</code>只在 Dockerfile 中出现</li>
-<li><code>PUBLISH</code>没有该指令而是通过 <code>docker run</code>命令的参数 <code>-p</code>、<code>-P</code>或在 <code>docker-compose</code>中的 <code>ports</code>来体现</li>
-<li><code>-P</code>：大写是属于自动映射，将 Dockerfile 中 <code>EXPOSE</code>所暴露的所有端口分别映射到宿主机的随机端口，每次启动或重启容器时端口都可能有所不同</li>
-<li><code>-p</code>：小写是属于固定映射，格式如：<code>-p 宿主端口:容器端口</code>，宿主端口和容器端口可以是纯数字也可以是一个范围，如：<code>-p 8060-8080:8060-8080</code>，意为将宿主机的 <code>8060</code>（含）到 <code>8080</code>（含）的端口映射到容器的 <code>8060</code>（含）到 <code>8080</code>（含）端口，需要注意的是在使用范围时，宿主端口个数应该与容器端口个数匹配；但上面这个例子可以写成：<code>-p 7060-7080:8060-8080</code>，这样宿主的端口就在 <code>7060-7080</code>范围内</li>
-</ul>
-</li>
-</ul>
-<h4 id="env"><strong>ENV</strong></h4>
-<ul>
-<li>
-<p>说明：指定环境变量，在 Dockerfile 文件中的后续代码中使用，在容器运行时也可以使用</p>
-</li>
-<li>
-<p>格式如：<code>ENV &lt;key&gt; &lt;value&gt;</code></p>
-</li>
-<li>
-<p>示例：<code>ENV tomcat_home /web/tomcat/</code></p>
-<blockquote>
-<p>指令指定的环境变量在运行时可以被覆盖, 如</p>
-<p><code>docker run --env &lt;key&gt;=&lt;value&gt; IMAGE</code></p>
-</blockquote>
-</li>
-</ul>
-<h4 id="add"><strong>ADD</strong></h4>
-<ul>
-<li>说明：复制指定的 <code>&lt;src&gt;</code> 路径下的内容到容器中 <code>&lt;dest&gt;</code>路径下(复制文件夹?)</li>
-<li>格式如：<code>ADD &lt;src&gt; &lt;dest&gt;</code></li>
-<li>示例：<code>ADD web.jar /web.jar</code></li>
-<li>注意：复制指定的 <code>&lt;src&gt;</code>到容器中的 <code>&lt;dest&gt;</code>，<code>&lt;src&gt;</code>可以是 Dockerfile 所在目录的一个相对路径，也可以是一个 URL，也可以是一个 <code>tar</code>文件（<code>tar</code>文件将自动解压成文件目录）</li>
-</ul>
-<h4 id="copy"><strong>COPY</strong></h4>
-<ul>
-<li>说明：添加文件（夹）到容器</li>
-<li>格式如：<code>COPY &lt;src&gt; &lt;dest&gt;</code></li>
-<li>示例：<code>COPY web.jar /web.jar</code></li>
-<li>注意：与 <code>ADD</code>功能相似，只是不能指定 URL，使用本地文件（夹）为源文件时，推荐使用 <code>COPY</code></li>
-</ul>
-<h4 id="volume"><strong>VOLUME</strong></h4>
-<ul>
-<li>
-<p>说明：创建挂载点</p>
-</li>
-<li>
-<p>格式如：<code>VOLUME [path]</code></p>
-</li>
-<li>
-<p>示例：<code>VOLUME [&quot;/datas&quot;]</code></p>
-</li>
-<li>
-<p>注意：</p>
-<ul>
-<li>
-<p><code>VOLUME</code>在原理和概念上与 <code>EXPOSE</code>差不多，都是属于供容器与容器间使用</p>
-</li>
-<li>
-<p>通过 <code>VOLUME</code>挂载的卷可以供其他容器使用</p>
-</li>
-<li>
-<p>举例说明：</p>
-<ul>
-<li>
-<p>创建一个 Dockerfile 来构建一个镜像，内容如下：</p>
-<pre><code>  FROM centos
-  VOLUME [&quot;/web/images&quot;, &quot;/web/files&quot;]
-</code></pre>
-</li>
-<li>
-<p>构建镜像</p>
-<pre><code>  docker build -t &quot;zsl131/test01&quot; .
-</code></pre>
-</li>
-<li>
-<p>启动容器</p>
-<pre><code>  docker run -d --name test-root
-</code></pre>
-</li>
-<li>
-<p>可以使用命令：<code>docker inspect test-root</code>来查看容器详细信息，在 <code>Mounts</code>部份可以看到两个挂载点：<code>/web/images</code>和 <code>/web/files</code></p>
-</li>
-<li>
-<p>启动另一个容器来共用这两个挂载卷</p>
-<pre><code>  docker run -it --name test-1 --volumes-from test-root centos
-</code></pre>
-<p>**注意：**使用 <code>--volumes-from</code>来指定挂载点，这时容器 <code>test-root</code>和 <code>test-1</code>里面都分别有挂载卷 <code>/web/images</code>和 <code>/web/files</code>，可以启动任意多个容器使用 <code>--volumes-from</code>来共用这些挂载卷，这些容器可以来自不同的镜像。当任何一个容器中的挂载卷中的文件发生变化时其他容器挂载卷中的内容也随之改变。</p>
-<p>容器 <code>test-root</code>即使已经停止也可以在启动其他容器时使用 <code>--volumes-from test-root</code>来挂载这些卷，只要 <code>test-root</code>不被删除，不过如果 <code>test-root</code>真被删除还可以使用 <code>--volumes-from test-1</code>，因为容器 <code>test-1</code>中还存在我们所需要的挂载卷，换句话说这些挂载卷永远存在直到所有使用这些挂载卷的容器都被删除。</p>
-</li>
-<li>
-<p><code>VOLUME</code>与 <code>docker run</code>参数 <code>-v</code>是有区别的。<code>docker run -v /host/web/images:/web/images -v /host/web/files:/web/files:rw</code>是将容器内的 <code>/web/images</code>挂载到宿主机的 <code>/host/web/images</code>目录上；将容器内的 <code>/web/files</code>挂载到宿主机的 <code>/host/web/files</code>目录上，<code>rw</code>表示可读写。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="workdir"><strong>WORKDIR</strong></h4>
-<ul>
-<li>说明：设置工作目录</li>
-<li>格式如：<code>WORKDIR /path</code></li>
-<li>示例：<code>WORKDIR /web</code></li>
-<li>注意：可以使用绝对路径，也可以使用相对路径，设置之后的所有操作都将在这个目录下完成</li>
-</ul>
-<blockquote>
-<p><code>RUN</code>、<code>CMD</code>、<code>ENTRYPOINT</code>执行脚本的指令</p>
-<ul>
-<li>三个指令都是执行脚本</li>
-<li><code>RUN</code>是在创建镜像是执行，即使用 <code>docker build</code>命令时执行，在一个 Dockerfile 里面可以有多个 <code>RUN</code></li>
-<li><code>CMD</code>和 <code>ENTRYPOINT</code>是在运行容器时执行，即使用 <code>docker run</code>命令时执行，这两个指令在 Dockerfile 中都只有最行一条被执行</li>
-<li><code>CMD</code>在使用 <code>docker run</code>时可以加参数将 Dockerfile 中的 <code>CMD</code>覆盖</li>
-<li><code>ENTRYPOINT</code>在 Dockerfile 中出现后就一定会在 <code>docker run</code>时被执行，不必担心会被其他参数所覆盖。</li>
-</ul>
-<p><code>ADD</code>、<code>COPY</code>拷贝文件（夹）到容器</p>
-<ul>
-<li><code>ADD</code>拷贝文件（夹）时可以指定本地文件、远程 URL 地址，如果拷贝的是 <code>tar</code>文件时将会被自动解压成文件夹</li>
-<li><code>COPY</code>拷贝文件（夹）时不可以指定远程 URL 地址，拷贝 <code>tar</code>文件也不会被自动解压成文件夹，在拷贝本地文件时建议使用 <code>COPY</code></li>
-</ul>
-</blockquote>
-<h4 id="user">USER</h4>
-<ul>
-<li>说明 指定运行容器时的用户名或 UID, 后续的 <code>RUN</code> 等指令也会使用指定的用户身份</li>
-<li>格式 <code>USER daemon</code></li>
-</ul>
-<h4 id="arg">ARG</h4>
-<ul>
-<li>说明 指定一些镜像内使用的参数, 这些参数在执行 <code>docker build</code> 命令时以 <code>--build-arg&lt;varname&gt;=&lt;value&gt;</code>格式传入</li>
-<li>格式 <code>ARG &lt;name&gt;[=&lt;deafult value&gt;]</code></li>
-</ul>
-<h2 id="创建镜像-2">创建镜像</h2>
-<p>写完 Dockerfile 后, 使用 <code>docker build</code>创建镜像</p>
-<ul>
-<li><code>-f</code> 指定 Dockfile 路径</li>
-<li><code>-t</code> 指定生成镜像的标签信息</li>
-</ul>
-
-            </div>
-            <hr style="width: 80%;">
-            
-            
-            <div class="postfooter">
-                <ul class="post-copyright">
-                    <li><strong>文章作者：</strong>Afreto</li>
-            <li><strong>原文链接：</strong>https://afret0.github.io/docker-使用记录/</li>
-            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
-                许可协议。转载请注明出处！</li>
-            </ul>
-        </div>
-        <div id="otherpost">
-            
-            <div class="prev-post-pc">
-                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/学习写shell/';return false">
-                    <img src="" style="width: 100%;" class="opimg">
-                    <h4 class="optitle">学习写shell</h4>
-                </div>
-            </div>
-            <div class="prev-post">
-                上一篇 <a href="https://afret0.github.io/学习写shell/">学习写shell</a>
-            </div>
-            
-            
-            <div class="next-post-pc">
-                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/go-搭个脚手架/';return false">
-                    <img src="" style="width: 100%;" class="opimg">
-                    <h4 class="optitle">go 配置文件</h4>
-                </div>
-            </div>
-            <div class="next-post">
-                下一篇 <a href="https://afret0.github.io/go-搭个脚手架/">go 配置文件</a>
-            </div>
-            
-        </div>
-    </div>
-    </div>
-</body>
-<script>
-    //文章阅读热度
-    var pl = $("#pl").html();
-    var rootaddr = $("#rootaddr").html();
-    pl = pl.replace(rootaddr, "");
-    $("#hotnum").attr('id', pl);
-</script>
-            </div>
-            <div id="comment" style="background: white">
-                <div class="commentcontainer">
-                    
-                    <style>
-    @media screen and (min-width: 1300px) {
-        .veditor::placeholder {
-            color: #b3b3b3;
-            font-size: 18px;
-            text-align: center;
-            line-height: 3rem;
-            font-family: kaiti;
-        }
-    }
-</style>
-
-<body>
-    <div id="vcomments">
-    </div>
-    <script src='https://afret0.github.io/media/js/valine.min.js'></script>
-    <script src="https://afret0.github.io/media/js/jquery.min.js"></script>
-    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
-            appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
-            notify: true,
-            verify: false,
-            avatar: 'retro',
-            pageSize: 10,
-            placeholder: '既然来了，何不畅所欲言呢？',
-            visitor: true, // 阅读量统计
-        });
-    </script>
-    <script type="text/javascript">
-        // jinrishici.load(function (result) {
-        //     var jrsc_plac = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
-        //         .dynasty + " · " + result.data.origin.author;
-        //     if (jrsc_plac != undefined)
-        //         document.getElementById("veditor").setAttribute("placeholder", jrsc_plac);
-        // 
-        var jrsc = '既然来了，何不畅所欲言呢？';
-        jinrishici.load(function (result) {
-                // 自己的处理逻辑
-                jrsc = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
-                 .dynasty + " · " + result.data.origin.author;
-            });
-    </script> 
-</body>
-                    <div class="clear"></div>
-                    
-                </div>
-            </div>
-            
-                <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-</head>
-<body>
-    <div class="miniMode">
-        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default">
-        </meting-js>
-    </div>   
-</body>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-<script>
-    var aplayerid = "169914194";
-    var aplayerserver = "netease";
-    var aplayerorder = "random";
-    var aplayer = $("#myaplayer");
-    aplayer.attr("server",aplayerserver);
-    aplayer.attr("id",aplayerid);
-    aplayer.attr("order",aplayerorder);
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<!-- require MetingJS -->
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-            
-        </div>
-        
-        <div class="toc-container">
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://afret0.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://afret0.github.io/images/avatar.png?v=1597398771441" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Afreto&#39;s blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
 <li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
 <li><a href="#%E9%85%8D%E7%BD%AE">配置</a>
@@ -1052,147 +159,51 @@ docker.io/library/ubuntu:latest
 </li>
 </ul>
 
+          </div>
         </div>
+      
     </div>
-    </div>
-    <div class="toggleContainer">
-        <div class="toggle">
-            <i class="fas fa-angle-double-up"></i>
-        </div>
-    </div>
-    <div id="bg">
-    </div>
-    <div id="bgchoice" style="display: none">link</div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
     
-    <div id="bgurl" style="display:none">https://raw.githubusercontent.com/Afret1/image/master/img/test1.jpg</div>
+      
+        <a href="https://afret0.github.io" class="menu" style="animation-delay: 0s">
+          home
+        </a>
+      
     
-    </div>
-    <!-- 响应式布局，针对手机端内容显示 -->
-    <div class="nav-small">
-        <head>
-  <!-- 引入Bootstrap核心样式文件 -->
-  <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
-</head>
-
-<body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#barmenu" aria-expanded="false" id="barbutton">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="https://afret0.github.io">Afreto&#39;s blog&nbsp;&nbsp;|</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="barmenu">
-        <ul class="nav navbar-nav">
-          
-          
-          <li>
-            <a href="https://afret0.github.io">
-              home
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/archives">
-              archives
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/tags">
-              tags
-            </a>
-          </li>
-          
-          
-          
-          
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-
-  <!-- 引入jQuery核心js文件 -->
-  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script>
-  var btstate = false;
-  var bt = $("#barbutton");
-  var bm = $("#barmenu");
-  bt.click(function(){
-    dropdown();
-  })
-  function dropdown(){
-    console.log(btstate);
-    //下拉
-    if(btstate==false){
-      bt.removeClass("collapsed");
-      bt.attr("aria-expanded","true");
-      bm.attr("aria-expanded","true")
-      bm.fadeIn(700);
-      btstate = true;
-    }
-    else{
-      bt.addClass("collapsed");
-      bt.attr("aria-expanded","false");
-      bm.removeClass("in");
-      bm.hide();
-      bm.attr("aria-expanded","false");
-      btstate = false;
-    }
-  }
-  </script> 
-</body>
-        <div style="margin-top:30px"></div>
-        <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
-
-<body>
-    <div class="allcontent" id="postdetail">
-        <div class="postshow" style="padding-bottom: 0;">
-            
-            <div class="postdetailimg" style="width:100%;overflow: hidden;">
-                
-                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
-                
-            </div>
-            <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2019-08-28</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 22 min read</div>
-            <div class="posttag">
-                
-                <a href="https://afret0.github.io/qxT6chRJUW/" class="postlink">
-                    <i class="fa fa-tag"></i> docker
-                </a>
-                
-            </div>
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          archives
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          tags
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">歇于雁荡山大龙湫, 及三更梦中, 星火满天, 喜不成寐, 赤足跳入草莽中...</div>
+    <a class="rss" href="https://afret0.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">docker 使用记录</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-08-28 / 22 min read
         </div>
         
-        <div id="articlecontent">
-            <div id="texttitle" style="text-align: center">
-                <h2>docker 使用记录</h2>
-                <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://afret0.github.io/docker-使用记录/</div>
-                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
-                <span id="hotnum" class="leancloud_visitors" data-flag-title="docker 使用记录">
-                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
-                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
-                            class="leancloud-visitors-count">loading...</i></h4>
-                </span>
-            </div>
-            <div class="text ">
-                <p>docker 用的太水了  要学习一波怎么骚操作</p>
+        <div class="post-content yue">
+          <p>docker 用的太水了  要学习一波怎么骚操作</p>
 <!-- more -->
 <h1 id="安装">安装</h1>
 <p><code>wget -qO- https://get.docker.com/ | sh</code></p>
@@ -1681,276 +692,141 @@ docker.io/library/ubuntu:latest
 <li><code>-t</code> 指定生成镜像的标签信息</li>
 </ul>
 
-            </div>
-            <hr style="width: 80%;">
-            
-            
-            <div class="postfooter">
-                <ul class="post-copyright">
-                    <li><strong>文章作者：</strong>Afreto</li>
-            <li><strong>原文链接：</strong>https://afret0.github.io/docker-使用记录/</li>
-            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
-                许可协议。转载请注明出处！</li>
-            </ul>
         </div>
-        <div id="otherpost">
-            
-            <div class="prev-post-pc">
-                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/学习写shell/';return false">
-                    <img src="" style="width: 100%;" class="opimg">
-                    <h4 class="optitle">学习写shell</h4>
-                </div>
-            </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://afret0.github.io/qxT6chRJUW/">
+            <span class="flex-auto">docker</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
             <div class="prev-post">
-                上一篇 <a href="https://afret0.github.io/学习写shell/">学习写shell</a>
+              <a href="https://afret0.github.io/学习写shell/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  学习写shell
+                </h3>
+              </a>
             </div>
-            
-            
-            <div class="next-post-pc">
-                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/go-搭个脚手架/';return false">
-                    <img src="" style="width: 100%;" class="opimg">
-                    <h4 class="optitle">go 配置文件</h4>
-                </div>
-            </div>
+          
+
+          
             <div class="next-post">
-                下一篇 <a href="https://afret0.github.io/go-搭个脚手架/">go 配置文件</a>
+              <a href="https://afret0.github.io/go-搭个脚手架/">
+                <h3 class="post-title">
+                  go 配置文件
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
             </div>
-            
+          
         </div>
-    </div>
-    </div>
-</body>
-<script>
-    //文章阅读热度
-    var pl = $("#pl").html();
-    var rootaddr = $("#rootaddr").html();
-    pl = pl.replace(rootaddr, "");
-    $("#hotnum").attr('id', pl);
-</script>
-        <div name="comment" style="background: white;margin-top:100px">
-            <div class="commentcontainer">
-                
-                <body>
-    <div id="vcomments1"></div>
 
-<script src='https://afret0.github.io/media/js/valine.min.js'></script>
-<script src="https://afret0.github.io/media/js/jquery.min.js"></script>
-<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-<script>
-    new Valine({
-        el: '#vcomments1',
-        appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
-        appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
-        notify: true,
-        verify: false,
-        avatar: 'retro',
-        pageSize: 10,
-        placeholder: '既然来了，那就留个痕迹吧~',
-        visitor: true // 阅读量统计
-    })
-</script>
+        
 
-</body>
-
-                <div class="clear"></div>
-                
-            </div>
-        </div>
+      </div>
     </div>
-</body>
+
+    <script src="https://afret0.github.io/media/prism.js"></script>  
 <script>
-    var img = $("img");
-    for (var i = 0; i < img.length; i++) {
-        if (img.eq(i).attr("class") == undefined) {
-            img.eq(i).attr("class", "lazyload");
-            var imgsrc = img.eq(i).attr("src");
-            img.eq(i).attr("data-original", imgsrc);
-            img.eq(i).attr("src", "");
-            img.eq(i).hide();
-        }
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
     }
-</script>
-<script src="https://afret0.github.io/media/js/post.js"></script>
-<script>
-    //寻找所有code标签，加复制按钮鸭！(行内代码除外)
-    var codes = document.getElementsByTagName('code');
-    if (codes.length) {
-        for (var i = 0; i < codes.length; i++) {
-            //高度/行高=文本行数
-            // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
-            // console.log("当前有"+rowNum+"行");
-            var code_id = "code_id_" + i;
-            codes[i].setAttribute("id", code_id);
-            var ci = "#" + code_id;
-            var codedot = $(ci);
-            var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
-            if (rowNum <= 1) continue;
-            var btn = document.createElement("button");
-            btn.setAttribute("class", "copybt");
-            btn.setAttribute("data-clipboard-target", "#" + code_id);
-            btn.innerHTML = '复制代码';
-            codes[i].parentNode.insertBefore(btn, codes[i]);
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
         }
-    };
-    var cop = new ClipboardJS('.copybt');
-    var codeCopyText = $("#codeCopyText").html();
-    cop.on('success', function (e) {
-        alert(codeCopyText);
-        e.clearSelection();
-    });
-    cop.on('error', function (e) {
-        alert("矮油，复制失败了...手动复制吧勇士！");
-        e.clearSelection();
-    });
-</script>
-
-<script type="text/javascript">
-    var message_Path = '/live2d/'
-    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
-</script>
-<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/live2d.js"></script>
-<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/message.js"></script>
-<script type="text/javascript">
-    loadlive2d("live2d", "https://afret0.github.io/media/live2d/assets/tororo.model.json");
-</script>
-
-<script>
-    $(function () {
-        $('.toggleContainer').click(function () {
-            $('html,body').animate({
-                scrollTop: '0px'
-            }, 800);
-        });
-        $(window).scroll(function () {
-            var st = $(window).scrollTop();
-            if (st > 30) {
-                $(".toggleContainer").fadeIn(400);
-            } else {
-                $(".toggleContainer").fadeOut(100);
-            }
-        });
-    });
-</script>
-
-<script>
-    var bgchoice = $('#bgchoice').html();
-    var bg = $('#bg');
-    var bgurl = document.getElementById("bgurl").innerHTML;
-    if (bgchoice == 'default')
-        for (var i = 0; i < 3; i++)
-            bgurl = bgurl.replace("\\", "/");
-    bg.css("background", "url('" + bgurl + "')");
-</script>
-
-
-<script>
-    //文章阅读热度
-    var pl = $("#pl").html();
-    var rootaddr = $("#rootaddr").html();
-    pl = pl.replace(rootaddr, "");
-    $("#hotnum").attr('id', pl);
-</script>
-
-<!-- 动态更改上(下)一篇博客图片框长宽 -->
-<script>
-    npcontainer = document.querySelector('#npcontainer');
-    npstyle = window.getComputedStyle(npcontainer, null);
-    npwidth = npstyle.width;
-    npheight = 0.6 * Number(npwidth.replace("px", ""));
-    npheight = npheight.toString() + "px";
-    var op = $(".opimg");
-    op.css("height", npheight);
-</script>
-
-<script src="https://afret0.github.io/media/share/dist/Share.js"></script>
-
-<script>
-    var avatarSrc = $(".menutopavatar").attr("src");
-    var dp = document.getElementsByClassName("navbar-brand")[1].innerHTML;
-</script>
-
-
-<script>
-    var title = document.getElementById("texttitle").getElementsByTagName("h2");
-    
-    var share = new Share('.share', {
-        title: title[0].innerHTML,
-        initialized: true,
-        //默认获取网站描述
-        description: dp,
-        //网站图片默认获取的是设置的用户头像
-        image: avatarSrc,
-        //激活的分享网站
-        sites: ["weibo", "qq", "wechat", "douban", "qzone", "facebook", "twitter", "google"],
-        //微信分享PC端会生成二维码分享,移动端如果可以唤起微信最好
-        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
-        wechatQrcodeHelper: '<p>微信里扫一下二维码</p><p>便可将本文分享至朋友圈。</p>',
-        //关闭的网站分享
-        disabled: ['google', 'linkedin'],
-        wechatQrcodePosition: 'bottom'
-    });
-
-    //点击分享按钮展现出分享icons
-    var sharebtnTag = false;
-    $(".sharebtn").click(function () {
-        if(!sharebtnTag)
-        {
-            $(".share").show();
-            sharebtnTag = true;
-        }
-        else
-        {
-            $(".share").hide();
-            sharebtnTag = false;
-        }
-    })
-
-    var donatebtnTag = false;
-    $(".donateImg").click(function () {
-        if(!donatebtnTag)
-        {
-            $(".donate").show();
-            donatebtnTag = true;
-        }
-        else{
-            $(".donate").hide();
-            donatebtnTag = false;
-        }
-    })
-
-    window.onload=function(){
-        var sharepc = $(".share").eq(0).html();
-        $(".share").eq(1).html(sharepc);
-        setTimeout(function(){
-            var hn = $(".leancloud-visitors-count").eq(0).html();
-            hn = '<i class="fa fa-eye" aria-hidden="true"'+
-                            'style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i'+
-                            'class="leancloud-visitors-count">'+hn+'</i></h4>'
-            $(".readercount").eq(1).html(hn);
-        }, 1000);
-        document.getElementById("veditor").setAttribute("placeholder", jrsc);
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
     }
-</script>
+  });
+});
 
 
-<script>
-    jQuery(document).ready(function ($) {
-        function lazyload() {
-            var oLazyload = $("img.lazyload"),
-                fLazyload = function (hLazyload) {
-                    var nLazyload = $(window).height() + $(document).scrollTop();
-                    oLazyload.each(function () {
-                        $(this).offset().top < nLazyload && ($(this).trigger("appear"), oLazyload =
-                            oLazyload.not(this));
-                    }), 0 == oLazyload.length && $(window).unbind("scroll", fLazyload);
-                };
-            oLazyload.each(function () {
-                $(this).one("appear", function () {
-                    $(this).attr("src", $(this).attr("data-original"));
-                    $(this).fadeIn(500);
-                });
-            }), $(window).bind("scroll", fLazyload), fLazyload();
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
         }
-        lazyload();
+      });
     });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
 </script>
+  
+  </body>
+</html>
