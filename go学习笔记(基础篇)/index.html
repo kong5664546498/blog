@@ -1,212 +1,317 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Afreto&#39;s blog</title>
-<meta name="description" content="江湖沒什麼好的，也就酒還行～
-
-" />
-<link rel="shortcut icon" href="https://afret0.github.io/favicon.ico?v=1597398771441">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
-<link rel="stylesheet" href="https://afret0.github.io/styles/main.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="
+我们一起学猫叫 一起喵喵喵喵喵~
 
 
+[[TOC]]
+常量
+常量的定义格式：const identifier [type] = value
 
-  </head>
-  <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://afret0.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://afret0.github.io/images/avatar.png?v=1597398771441" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Afreto&#39;s blog</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            文章目录
-          </p>
-          <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li><a href="#%E5%B8%B8%E9%87%8F">常量</a></li>
-<li><a href="#%E5%8F%98%E9%87%8F">变量</a>
-<ul>
-<li><a href="#%E6%95%B4%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B">整数的类型</a></li>
-<li><a href="#%E6%B5%AE%E7%82%B9%E5%9E%8B">浮点型</a></li>
-<li><a href="#%E5%AD%97%E7%AC%A6">字符</a></li>
-<li><a href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E9%BB%98%E8%AE%A4%E5%80%BC">基本数据类型默认值</a></li>
-</ul>
-</li>
-<li><a href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2">基本数据类型的转换</a></li>
-<li><a href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83">命名规范</a></li>
-<li><a href="#%E6%8C%87%E9%92%88">指针</a></li>
-<li><a href="#%E6%BA%90%E7%A0%81-%E5%8F%8D%E7%A0%81-%E8%A1%A5%E7%A0%81">源码, 反码, 补码</a></li>
-<li><a href="#%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84">控制结构</a>
-<ul>
-<li><a href="#if-else">if-else</a>
-<ul>
-<li><a href="#%E5%B8%B8%E7%94%A8%E4%BE%8B%E5%AD%90">常用例子</a></li>
-</ul>
-</li>
-<li><a href="#%E6%B5%8B%E8%AF%95%E5%A4%9A%E8%BF%94%E5%9B%9E%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E9%94%99%E8%AF%AF">测试多返回值函数的错误</a></li>
-<li><a href="#swich">swich</a></li>
-<li><a href="#for%E7%BB%93%E6%9E%84">for结构</a></li>
-<li><a href="#break-%E4%B8%8E-continue">Break 与 continue</a></li>
-<li><a href="#%E6%A0%87%E7%AD%BE%E4%B8%8E-goto">标签与 goto</a></li>
-</ul>
-</li>
-<li><a href="#%E5%87%BD%E6%95%B0">函数</a>
-<ul>
-<li><a href="#%E4%BC%A0%E9%80%92%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0">传递变长参数</a></li>
-<li><a href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0">函数作为参数</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E8%B0%83%E8%AF%95">使用闭包调试</a></li>
-<li><a href="#%E9%80%9A%E8%BF%87%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD">通过内存缓存提升性能</a></li>
-</ul>
-</li>
-<li><a href="#%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87">数组和切片</a>
-<ul>
-<li><a href="#%E5%A3%B0%E6%98%8E">声明</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8-make-%E5%88%9B%E5%BB%BA%E5%8E%BB%E5%88%87%E7%89%87">使用 <code>make()</code> 创建去切片</a></li>
-<li><a href="#new-%E5%92%8C-make-%E7%9A%84%E5%8C%BA%E5%88%AB"><code>new()</code> 和 <code>make()</code> 的区别</a></li>
-<li><a href="#bytes-%E5%8C%85"><code>bytes</code> 包</a></li>
-<li><a href="#for-range-%E7%BB%93%E6%9E%84"><code>For-range</code> 结构</a></li>
-<li><a href="#%E5%88%87%E7%89%87%E9%87%8D%E7%BB%84reslice">切片重组(<code>reslice</code>)</a></li>
-</ul>
-</li>
-<li><a href="#map">Map</a>
-<ul>
-<li><a href="#%E5%A3%B0%E6%98%8E-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C-make">声明、初始化和 make</a></li>
-<li><a href="#%E6%B5%8B%E8%AF%95%E9%94%AE%E5%80%BC%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%8F%8A%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0">测试键值是否存在及删除元素</a>
-<ul>
-<li><a href="#%E5%88%A4%E6%96%AD-key-%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8">判断 key 是否存在</a>
-<ul>
-<li><a href="#%E5%88%A0%E9%99%A4-key">删除 key</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#for-range">For-range</a></li>
-<li><a href="#map-%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%87%E7%89%87">map 类型的切片</a></li>
-<li><a href="#%E6%8E%92%E5%BA%8F">排序</a></li>
-<li><a href="#%E9%94%AE%E5%80%BC%E5%AF%B9%E8%B0%83">键值对调</a></li>
-</ul>
-</li>
-<li><a href="#%E5%8C%85">包</a></li>
-<li><a href="#init-%E5%87%BD%E6%95%B0">init 函数</a></li>
-<li><a href="#%E7%BB%93%E6%9E%84%E5%92%8C%E6%96%B9%E6%B3%95">结构和方法</a>
-<ul>
-<li><a href="#%E5%AE%9A%E4%B9%89">定义</a>
-<ul>
-<li><a href="#new">new()</a></li>
-</ul>
-</li>
-<li><a href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E5%88%9B%E5%BB%BA%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9E%E4%BE%8B">工厂方法创建结构体实例</a>
-<ul>
-<li><a href="#%E5%BC%BA%E5%88%B6%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95">强制使用工厂方法</a></li>
-</ul>
-</li>
-<li><a href="#%E5%B8%A6%E6%A0%87%E7%AD%BE%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93">带标签的结构体</a></li>
-<li><a href="#%E5%8C%BF%E5%90%8D%E5%AD%97%E6%AE%B5%E5%92%8C%E5%86%85%E5%B5%8C%E7%BB%93%E6%9E%84%E4%BD%93">匿名字段和内嵌结构体</a></li>
-<li><a href="#%E6%96%B9%E6%B3%95">方法</a>
-<ul>
-<li><a href="#%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB">函数和方法的区别</a></li>
-<li><a href="#%E6%8C%87%E9%92%88%E6%88%96%E5%80%BC%E4%BD%9C%E4%B8%BA%E6%8E%A5%E6%94%B6%E8%80%85">指针或值作为接收者</a></li>
-<li><a href="#%E6%96%B9%E6%B3%95%E5%92%8C%E6%9C%AA%E5%AF%BC%E5%87%BA%E5%AD%97%E6%AE%B5">方法和未导出字段</a></li>
-</ul>
-</li>
-<li><a href="#%E7%B1%BB%E5%9E%8B%E7%9A%84-string-%E6%96%B9%E6%B3%95%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%8F%8F%E8%BF%B0%E7%AC%A6">类型的 String() 方法和格式化描述符</a></li>
-</ul>
-</li>
-<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a>
-<ul>
-<li><a href="#demo">demo</a>
-<ul>
-<li><a href="#demo1">demo1</a></li>
-<li><a href="#demo2">demo2</a></li>
-</ul>
-</li>
-<li><a href="#%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80">类型断言</a></li>
-<li><a href="#%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%ADtype-switch">类型判断：type-switch</a></li>
-<li><a href="#%E6%B5%8B%E8%AF%95%E5%80%BC%E6%98%AF%E5%90%A6%E5%AE%9E%E7%8E%B0%E4%BA%86%E6%9F%90%E4%B8%AA%E6%8E%A5%E5%8F%A3">测试值是否实现了某个接口</a></li>
-<li><a href="#%E7%A9%BA%E6%8E%A5%E5%8F%A3">空接口</a></li>
-<li><a href="#%E5%8F%8D%E5%B0%84%E5%8C%85">反射包</a></li>
-</ul>
-</li>
-<li><a href="#gorouttine">gorouttine</a>
-<ul>
-<li><a href="#demo-2">demo</a></li>
-</ul>
-</li>
-<li><a href="#channel">channel</a>
-<ul>
-<li><a href="#%E5%A3%B0%E6%98%8E-2">声明</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8-channel-%E8%BF%9B%E8%A1%8C-goroutine-%E9%80%9A%E4%BF%A1demo">使用 channel 进行 goroutine 通信demo</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8-select-%E8%AF%BB%E5%8F%96%E7%AE%A1%E9%81%93%E6%95%B0%E6%8D%AE">使用 select 读取管道数据</a></li>
-<li><a href="#goroutine-%E4%B8%AD%E6%8D%95%E8%8E%B7%E9%94%99%E8%AF%AF">goroutine 中捕获错误</a></li>
-</ul>
-</li>
-<li><a href="#%E5%8F%8D%E5%B0%84">反射</a>
-<ul>
-<li><a href="#demo1-2">demo1</a></li>
-<li><a href="#demo2-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E4%BF%AE%E6%94%B9%E5%80%BC">demo2 通过反射修改值</a></li>
-<li><a href="#demo3-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E9%81%8D%E5%8E%86%E7%BB%93%E6%9E%84%E4%BD%93-%E8%8E%B7%E5%8F%96%E6%96%B9%E6%B3%95%E5%92%8C%E6%A0%87%E7%AD%BE%E5%80%BC">demo3 通过反射遍历结构体, 获取方法和标签值</a></li>
-</ul>
-</li>
-</ul>
+显式类型定义： const b string = &quot;abc&quot;
+隐式类型定义：..." />
+    <meta name="keywords" content="go" />
+    <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://afret0.github.io/styles/main.css">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/rainbow.min.css">
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script src="https://afret0.github.io/media/js/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://afret0.github.io/media/css/live2d.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
+    <title>Afreto's blog</title>
+    
+    <style>
+        .markdownIt-TOC {
+            padding-left: 2px;
+            width: 100%;
+        }
 
-          </div>
-        </div>
-      
+        .markdownIt-TOC li {
+            padding-left: 2%;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
     </div>
-  </div>
-</div>
+    <div id="codeCopyText" style="display: none">代码复制成功了哦</div>
+    <div id="domainname" style="display:none">https://afret0.github.io</div>
+    <!-- 响应式布局，针对PC端内容显示 -->
+    <div id="content">
+        <div class="nav-large">
+            <div class="row">
+                <div class="side"><body>
+    
 
-<div class="menu-container">
-  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
+
+
     
-      
-        <a href="https://afret0.github.io" class="menu" style="animation-delay: 0s">
-          home
-        </a>
-      
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://afret0.github.io"
+                    style="font-size:21px">Afreto&#39;s blog&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+                <a class="navbar-brand" href=""
+                    style="font-size:15px;font-family:kaiti">江湖沒什麼好的，也就酒還行～
+
+</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                
+                <div class="search nav navbar-nav" style="margin-top:8px">
+                    <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
+                    <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
+                    <div class="search-results"></div>
+                </div>
+                
+                <div class="search nav navbar-nav">
+                <a title="text" onclick="document.getElementById('socialMenu').style.display='block'"><i><img class="social"
+                    src="https://afret0.github.io/media/images/social.png" alt=""></i></a>
+            </div>
+            <ul class="nav navbar-nav" style="float: right;margin-right:5%">
+                
+                
+                <li>
+                    <a href="https://afret0.github.io" style="color:white">
+                        home
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/archives" style="color:white">
+                        archives
+                    </a>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="/tags" style="color:white">
+                        tags
+                    </a>
+                </li>
+                
+                
+                
+                  
+                  <li><img src="https://afret0.github.io/images/avatar.png?v=1597399023256" alt=""
+                class="menutopavatar"></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="socialMenu">
+        <div class="animate">
+            <div class="socialContainer">
+                
+                
+                
+                
+                
+                
+            </div>
+            <div id="qq" style="display:none"></div>
+        </div>
+    </div>
+    <!-- 引入jQuery核心js文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script>
+        var social = document.getElementById('socialMenu');
+        // 鼠标点击模型外区域关闭登录框
+        window.onclick = function (event) {
+            if (event.target == social) {
+                social.style.display = "none";
+            }
+        }
+    </script>
     
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          archives
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          tags
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">歇于雁荡山大龙湫, 及三更梦中, 星火满天, 喜不成寐, 赤足跳入草莽中...</div>
-    <a class="rss" href="https://afret0.github.io/atom.xml" target="_blank">RSS</a>
-  </div>
+</body>
+<script>
+    //-------------------------------------------------搜索
+    // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
+    var searchInput = document.querySelector('.search-input');
+    var searchResults = document.querySelector('.search-results');
+
+    // 申明保存文章的标题、链接、内容的数组变量
+    var searchValue = '',
+        arrItems = [],
+        arrLinks = [],
+        arrTitles = [],
+        arrResults = [],
+        indexItem = [],
+        itemLength = 0;
+    var tmpDiv = document.createElement('div');
+    tmpDiv.className = 'result-item';
+
+    // ajax 的兼容写法
+    var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            xml = xhr.responseXML;
+            arrItems = xml.getElementsByTagName('entry');
+            itemLength = arrItems.length;
+            // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
+            // 同时过滤掉 HTML 标签
+            for (i = 0; i < itemLength; i++) {
+                var link = arrItems[i].getElementsByTagName('link')[0];
+                arrLinks[i] = link.getAttribute("href");
+                arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
+                childNodes[0].nodeValue.replace(/<.*?>/g, '');
+            }
+        }
+    }
+
+    // 开始获取根目录下 feed.xml 文件内的数据
+    xhr.open('get', '/atom.xml', true);
+    xhr.send();
+
+
+
+    // 输入框内容变化后就开始匹配，可以不用点按钮
+    // 经测试，onkeydown, onchange 等方法效果不太理想，
+    // 存在输入延迟等问题，最后发现触发 input 事件最理想，
+    // 并且可以处理中文输入法拼写的变化
+    searchInput.oninput = function () {
+        setTimeout(searchConfirm, 0);
+    }
+    searchInput.onfocus = function () {
+        searchResults.style.display = 'block';
+    }
+
+    function searchConfirm() {
+        if (searchInput.value == '') {
+            searchResults.style.display = 'none';
+        } else if (searchInput.value.search(/^\s+$/) >= 0) {
+            // 检测输入值全是空白的情况
+            searchInit();
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '请输入有效内容...';
+            searchResults.appendChild(itemDiv);
+        } else {
+            // 合法输入值的情况
+            searchInit();
+            searchValue = searchInput.value;
+            // 在标题、内容中查找
+            searchMatching(arrTitles, searchValue);
+        }
+    }
+
+    // 每次搜索完成后的初始化
+    function searchInit() {
+        arrResults = [];
+        indexItem = [];
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'block';
+    }
+
+    function searchMatching(arr1, input) {
+        // 忽略输入大小写
+        input = new RegExp(input, 'i');
+        // 在所有文章标题、内容中匹配查询值
+        for (i = 0; i < itemLength; i++) {
+            if (arr1[i].search(input) !== -1) {
+                var arr = arr1;
+                indexItem.push(i); // 保存匹配值的索引
+                var indexContent = arr[i].search(input);
+                // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
+                var l = input.toString().length - 3;
+                var step = 10;
+
+                // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
+                arrResults.push(arr[i].slice(indexContent - step, indexContent));
+            }
+        }
+
+        // 输出总共匹配到的数目
+        var totalDiv = tmpDiv.cloneNode(true);
+        totalDiv.innerHTML = '<b>总匹配：' + indexItem.length + ' 项<hr></b>';
+        searchResults.appendChild(totalDiv);
+
+        // 未匹配到内容的情况
+        if (indexItem.length == 0) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerText = '未匹配到内容...';
+            searchResults.appendChild(itemDiv);
+        }
+
+        // 将所有匹配内容进行组合
+        for (i = 0; i < arrResults.length; i++) {
+            var itemDiv = tmpDiv.cloneNode(true);
+            itemDiv.innerHTML = '<b>[' + arrTitles[indexItem[i]] +
+                ']</b><p>' + arrResults[i] + "</p><hr />";
+            itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
+            searchResults.appendChild(itemDiv);
+        }
+    }
+
+    function changeHref(href) {
+        location.href = href;
+    }
+
+    function showqq() {
+        var qq = document.getElementById("qq").innerHTML;
+        if (qq != '')
+            window.location.href = "tencent://message/?uin=" + qq + "&Site=&Menu=yes";
+        else
+            alert("博主暂未设置QQ联系方式");
+    }
+</script>
 </div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">go学习笔记(基础篇)</h1>
-        <div class="text-sm text-gray-700 lg:my-8">
-          2019-01-04 / 20 min read
+                
+            <div id="main" class="col-xs-12 col-sm-7" style="width:50%;margin-top:50px;left:27%">
+                <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;">
+                
+                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2019-01-04</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 20 min read</div>
+            <div class="posttag">
+                
+                <a href="https://afret0.github.io/9ISvSqlhRh/" class="postlink">
+                    <i class="fa fa-tag"></i> go
+                </a>
+                
+            </div>
         </div>
         
-        <div class="post-content yue">
-          <blockquote>
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2>go学习笔记(基础篇)</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://afret0.github.io/go学习笔记(基础篇)/</div>
+                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
+                <span id="hotnum" class="leancloud_visitors" data-flag-title="go学习笔记(基础篇)">
+                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
+                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="leancloud-visitors-count">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <blockquote>
 <p>我们一起学猫叫 一起喵喵喵喵喵~</p>
 </blockquote>
 <!--more-->
@@ -1038,141 +1143,1505 @@ func main() {
 
 </code></pre>
 
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Afreto</li>
+            <li><strong>原文链接：</strong>https://afret0.github.io/go学习笔记(基础篇)/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
         </div>
-
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://afret0.github.io/9ISvSqlhRh/">
-            <span class="flex-auto">go</span>
-          </a>
-        
-
-
-        <div class="flex justify-between py-8">
-          
+        <div id="otherpost">
+            
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/取梦/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">取梦</h4>
+                </div>
+            </div>
             <div class="prev-post">
-              <a href="https://afret0.github.io/取梦/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  取梦
-                </h3>
-              </a>
+                上一篇 <a href="https://afret0.github.io/取梦/">取梦</a>
             </div>
-          
-
-          
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/vue-的几个方法/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">vue 的几个方法</h4>
+                </div>
+            </div>
             <div class="next-post">
-              <a href="https://afret0.github.io/vue-的几个方法/">
-                <h3 class="post-title">
-                  vue 的几个方法
-                  <i class="ri-arrow-right-line"></i>
-                </h3>
-              </a>
+                下一篇 <a href="https://afret0.github.io/vue-的几个方法/">vue 的几个方法</a>
             </div>
-          
+            
         </div>
-
-        
-
-      </div>
     </div>
-
-    <script src="https://afret0.github.io/media/prism.js"></script>  
+    </div>
+</body>
 <script>
-
-Prism.highlightAll()
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
-
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+            </div>
+            <div id="comment" style="background: white">
+                <div class="commentcontainer">
+                    
+                    <style>
+    @media screen and (min-width: 1300px) {
+        .veditor::placeholder {
+            color: #b3b3b3;
+            font-size: 18px;
+            text-align: center;
+            line-height: 3rem;
+            font-family: kaiti;
         }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
     }
-  });
-});
+</style>
+
+<body>
+    <div id="vcomments">
+    </div>
+    <script src='https://afret0.github.io/media/js/valine.min.js'></script>
+    <script src="https://afret0.github.io/media/js/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
+            appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
+            notify: true,
+            verify: false,
+            avatar: 'retro',
+            pageSize: 10,
+            placeholder: '既然来了，何不畅所欲言呢？',
+            visitor: true, // 阅读量统计
+        });
+    </script>
+    <script type="text/javascript">
+        // jinrishici.load(function (result) {
+        //     var jrsc_plac = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+        //         .dynasty + " · " + result.data.origin.author;
+        //     if (jrsc_plac != undefined)
+        //         document.getElementById("veditor").setAttribute("placeholder", jrsc_plac);
+        // 
+        var jrsc = '既然来了，何不畅所欲言呢？';
+        jinrishici.load(function (result) {
+                // 自己的处理逻辑
+                jrsc = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+                 .dynasty + " · " + result.data.origin.author;
+            });
+    </script> 
+</body>
+                    <div class="clear"></div>
+                    
+                </div>
+            </div>
+            
+                <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</head>
+<body>
+    <div class="miniMode">
+        <meting-js id="myaplayer" server="netease" type="playlist" fixed="true" order="default">
+        </meting-js>
+    </div>   
+</body>
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script>
+    var aplayerid = "169914194";
+    var aplayerserver = "netease";
+    var aplayerorder = "random";
+    var aplayer = $("#myaplayer");
+    aplayer.attr("server",aplayerserver);
+    aplayer.attr("id",aplayerid);
+    aplayer.attr("order",aplayerorder);
+</script>
 
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+            
+        </div>
+        
+        <div class="toc-container">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E5%B8%B8%E9%87%8F">常量</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F">变量</a>
+<ul>
+<li><a href="#%E6%95%B4%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B">整数的类型</a></li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E5%9E%8B">浮点型</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6">字符</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E9%BB%98%E8%AE%A4%E5%80%BC">基本数据类型默认值</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2">基本数据类型的转换</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83">命名规范</a></li>
+<li><a href="#%E6%8C%87%E9%92%88">指针</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-%E5%8F%8D%E7%A0%81-%E8%A1%A5%E7%A0%81">源码, 反码, 补码</a></li>
+<li><a href="#%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84">控制结构</a>
+<ul>
+<li><a href="#if-else">if-else</a>
+<ul>
+<li><a href="#%E5%B8%B8%E7%94%A8%E4%BE%8B%E5%AD%90">常用例子</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E5%A4%9A%E8%BF%94%E5%9B%9E%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E9%94%99%E8%AF%AF">测试多返回值函数的错误</a></li>
+<li><a href="#swich">swich</a></li>
+<li><a href="#for%E7%BB%93%E6%9E%84">for结构</a></li>
+<li><a href="#break-%E4%B8%8E-continue">Break 与 continue</a></li>
+<li><a href="#%E6%A0%87%E7%AD%BE%E4%B8%8E-goto">标签与 goto</a></li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0">函数</a>
+<ul>
+<li><a href="#%E4%BC%A0%E9%80%92%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0">传递变长参数</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0">函数作为参数</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E8%B0%83%E8%AF%95">使用闭包调试</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87%E5%86%85%E5%AD%98%E7%BC%93%E5%AD%98%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD">通过内存缓存提升性能</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87">数组和切片</a>
+<ul>
+<li><a href="#%E5%A3%B0%E6%98%8E">声明</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-make-%E5%88%9B%E5%BB%BA%E5%8E%BB%E5%88%87%E7%89%87">使用 <code>make()</code> 创建去切片</a></li>
+<li><a href="#new-%E5%92%8C-make-%E7%9A%84%E5%8C%BA%E5%88%AB"><code>new()</code> 和 <code>make()</code> 的区别</a></li>
+<li><a href="#bytes-%E5%8C%85"><code>bytes</code> 包</a></li>
+<li><a href="#for-range-%E7%BB%93%E6%9E%84"><code>For-range</code> 结构</a></li>
+<li><a href="#%E5%88%87%E7%89%87%E9%87%8D%E7%BB%84reslice">切片重组(<code>reslice</code>)</a></li>
+</ul>
+</li>
+<li><a href="#map">Map</a>
+<ul>
+<li><a href="#%E5%A3%B0%E6%98%8E-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C-make">声明、初始化和 make</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E9%94%AE%E5%80%BC%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%8F%8A%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0">测试键值是否存在及删除元素</a>
+<ul>
+<li><a href="#%E5%88%A4%E6%96%AD-key-%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8">判断 key 是否存在</a>
+<ul>
+<li><a href="#%E5%88%A0%E9%99%A4-key">删除 key</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#for-range">For-range</a></li>
+<li><a href="#map-%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%87%E7%89%87">map 类型的切片</a></li>
+<li><a href="#%E6%8E%92%E5%BA%8F">排序</a></li>
+<li><a href="#%E9%94%AE%E5%80%BC%E5%AF%B9%E8%B0%83">键值对调</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8C%85">包</a></li>
+<li><a href="#init-%E5%87%BD%E6%95%B0">init 函数</a></li>
+<li><a href="#%E7%BB%93%E6%9E%84%E5%92%8C%E6%96%B9%E6%B3%95">结构和方法</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义</a>
+<ul>
+<li><a href="#new">new()</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E5%88%9B%E5%BB%BA%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9E%E4%BE%8B">工厂方法创建结构体实例</a>
+<ul>
+<li><a href="#%E5%BC%BA%E5%88%B6%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95">强制使用工厂方法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B8%A6%E6%A0%87%E7%AD%BE%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93">带标签的结构体</a></li>
+<li><a href="#%E5%8C%BF%E5%90%8D%E5%AD%97%E6%AE%B5%E5%92%8C%E5%86%85%E5%B5%8C%E7%BB%93%E6%9E%84%E4%BD%93">匿名字段和内嵌结构体</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95">方法</a>
+<ul>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB">函数和方法的区别</a></li>
+<li><a href="#%E6%8C%87%E9%92%88%E6%88%96%E5%80%BC%E4%BD%9C%E4%B8%BA%E6%8E%A5%E6%94%B6%E8%80%85">指针或值作为接收者</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E5%92%8C%E6%9C%AA%E5%AF%BC%E5%87%BA%E5%AD%97%E6%AE%B5">方法和未导出字段</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E7%9A%84-string-%E6%96%B9%E6%B3%95%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%8F%8F%E8%BF%B0%E7%AC%A6">类型的 String() 方法和格式化描述符</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a>
+<ul>
+<li><a href="#demo">demo</a>
+<ul>
+<li><a href="#demo1">demo1</a></li>
+<li><a href="#demo2">demo2</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80">类型断言</a></li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%ADtype-switch">类型判断：type-switch</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E5%80%BC%E6%98%AF%E5%90%A6%E5%AE%9E%E7%8E%B0%E4%BA%86%E6%9F%90%E4%B8%AA%E6%8E%A5%E5%8F%A3">测试值是否实现了某个接口</a></li>
+<li><a href="#%E7%A9%BA%E6%8E%A5%E5%8F%A3">空接口</a></li>
+<li><a href="#%E5%8F%8D%E5%B0%84%E5%8C%85">反射包</a></li>
+</ul>
+</li>
+<li><a href="#gorouttine">gorouttine</a>
+<ul>
+<li><a href="#demo-2">demo</a></li>
+</ul>
+</li>
+<li><a href="#channel">channel</a>
+<ul>
+<li><a href="#%E5%A3%B0%E6%98%8E-2">声明</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-channel-%E8%BF%9B%E8%A1%8C-goroutine-%E9%80%9A%E4%BF%A1demo">使用 channel 进行 goroutine 通信demo</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-select-%E8%AF%BB%E5%8F%96%E7%AE%A1%E9%81%93%E6%95%B0%E6%8D%AE">使用 select 读取管道数据</a></li>
+<li><a href="#goroutine-%E4%B8%AD%E6%8D%95%E8%8E%B7%E9%94%99%E8%AF%AF">goroutine 中捕获错误</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%8D%E5%B0%84">反射</a>
+<ul>
+<li><a href="#demo1-2">demo1</a></li>
+<li><a href="#demo2-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E4%BF%AE%E6%94%B9%E5%80%BC">demo2 通过反射修改值</a></li>
+<li><a href="#demo3-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E9%81%8D%E5%8E%86%E7%BB%93%E6%9E%84%E4%BD%93-%E8%8E%B7%E5%8F%96%E6%96%B9%E6%B3%95%E5%92%8C%E6%A0%87%E7%AD%BE%E5%80%BC">demo3 通过反射遍历结构体, 获取方法和标签值</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    </div>
+    </div>
+    <div class="toggleContainer">
+        <div class="toggle">
+            <i class="fas fa-angle-double-up"></i>
+        </div>
+    </div>
+    <div id="bg">
+    </div>
+    <div id="bgchoice" style="display: none">link</div>
+    
+    <div id="bgurl" style="display:none">https://raw.githubusercontent.com/Afret1/image/master/img/test1.jpg</div>
+    
+    </div>
+    <!-- 响应式布局，针对手机端内容显示 -->
+    <div class="nav-small">
+        <head>
+  <!-- 引入Bootstrap核心样式文件 -->
+  <link rel="stylesheet" href="https://afret0.github.io/media/css/bootstrap.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#barmenu" aria-expanded="false" id="barbutton">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://afret0.github.io">Afreto&#39;s blog&nbsp;&nbsp;|</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="barmenu">
+        <ul class="nav navbar-nav">
+          
+          
+          <li>
+            <a href="https://afret0.github.io">
+              home
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/archives">
+              archives
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/tags">
+              tags
+            </a>
+          </li>
+          
+          
+          
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+  var btstate = false;
+  var bt = $("#barbutton");
+  var bm = $("#barmenu");
+  bt.click(function(){
+    dropdown();
+  })
+  function dropdown(){
+    console.log(btstate);
+    //下拉
+    if(btstate==false){
+      bt.removeClass("collapsed");
+      bt.attr("aria-expanded","true");
+      bm.attr("aria-expanded","true")
+      bm.fadeIn(700);
+      btstate = true;
+    }
+    else{
+      bt.addClass("collapsed");
+      bt.attr("aria-expanded","false");
+      bm.removeClass("in");
+      bm.hide();
+      bm.attr("aria-expanded","false");
+      btstate = false;
+    }
+  }
+  </script> 
+</body>
+        <div style="margin-top:30px"></div>
+        <link rel="stylesheet" href="https://afret0.github.io/media/css/font-awesome.css">
+
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg" style="width:100%;overflow: hidden;">
+                
+                <img src="https://raw.githubusercontent.com/Afret1/image/master//头像1.jpg" class="postimage">
+                
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2019-01-04</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 20 min read</div>
+            <div class="posttag">
+                
+                <a href="https://afret0.github.io/9ISvSqlhRh/" class="postlink">
+                    <i class="fa fa-tag"></i> go
+                </a>
+                
+            </div>
+        </div>
+        
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2>go学习笔记(基础篇)</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://afret0.github.io/go学习笔记(基础篇)/</div>
+                <div id="rootaddr" style="display:none">https://afret0.github.io</div>
+                <span id="hotnum" class="leancloud_visitors" data-flag-title="go学习笔记(基础篇)">
+                    <h4 class="readercount"><i class="fa fa-eye" aria-hidden="true"
+                            style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="leancloud-visitors-count">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <blockquote>
+<p>我们一起学猫叫 一起喵喵喵喵喵~</p>
+</blockquote>
+<!--more-->
+<p>[[TOC]]</p>
+<h1 id="常量">常量</h1>
+<p>常量的定义格式：<code>const identifier [type] = value</code></p>
+<ul>
+<li>显式类型定义： <code>const b string = &quot;abc&quot;</code></li>
+<li>隐式类型定义： <code>const b = &quot;abc&quot;</code></li>
+</ul>
+<h1 id="变量">变量</h1>
+<p>使用 <code>var</code> 关键字：<code>var identifier type</code></p>
+<h2 id="整数的类型">整数的类型</h2>
+<p><img src="https://i.loli.net/2019/03/28/5c9ceaa99347d.png" alt="屏幕快照 2019-03-28 23.39.02.png" loading="lazy"><br>
+<img src="https://i.loli.net/2019/03/28/5c9ceb13eed47.png" alt="屏幕快照 2019-03-28 23.40.52.png" loading="lazy"></p>
+<h2 id="浮点型">浮点型</h2>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/03/28/5c9cebd84d9c1.png" alt="屏幕快照 2019-03-28 23.44.11.png" loading="lazy"></figure>
+<blockquote>
+<p>通常情况下应该使用 float64, 因为它比 float32 更精确</p>
+</blockquote>
+<h2 id="字符">字符</h2>
+<blockquote>
+<p><strong>golang 中字符串是不可变的</strong></p>
+</blockquote>
+<pre><code class="language-go">s1 := &quot;hello killy&quot;
+s1[0] = &quot;y&quot; //报错
+</code></pre>
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<p>字符串的表示</p>
+<ul>
+<li>双引号</li>
+<li>反引号: 以字符串的形式原生输出(python 中的 <code>r'hello kitty'</code>)</li>
+</ul>
+<h2 id="基本数据类型默认值">基本数据类型默认值</h2>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/03/29/5c9cef8acf38b.png" alt="屏幕快照 2019-03-29 00.00.00.png" loading="lazy"></figure>
+<h1 id="基本数据类型的转换">基本数据类型的转换</h1>
+<p>Go 在不同的类型之间赋值时需要显示的转换. 即 Golang 中数据类型不能自动转换.</p>
+<pre><code class="language-go">var i int32 = 100
+var n1 float32 = float32(i)
+</code></pre>
+<p>数据转换中若结果溢出, 编译时不会报错, 只是转换的结果会按照溢出处理.</p>
+<pre><code class="language-go">var num1 int64 = 9999999
+var num2 int8 = int8(num1)
+// num2 = 63 
+</code></pre>
+<h1 id="命名规范">命名规范</h1>
+<ul>
+<li>保持 package 名字和目录一致.</li>
+<li>变量名, 函数名, 常量名采用驼峰法命名</li>
+<li>若首字母大写, 贼可以被其它的包访问, 若小写则只能在本包中使用.</li>
+</ul>
+<h1 id="指针">指针</h1>
+<pre><code class="language-go">var intP *int
+var i int = 10
+var ptr *int = &amp;i
+// ptr 是一个指针变量
+// ptr 的类型是 *int
+// ptr 本身的值是 &amp;i
+</code></pre>
+<h1 id="源码-反码-补码">源码, 反码, 补码</h1>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/03/29/5c9cf68b10f95.png" alt="屏幕快照 2019-03-29 00.29.53.png" loading="lazy"></figure>
+<h1 id="控制结构">控制结构</h1>
+<h2 id="if-else">if-else</h2>
+<pre><code class="language-go">if condition1 {
+    // do something    
+} else if condition2 {
+    // do something else    
+} else {
+    // catch-all or default
+}
+</code></pre>
+<h3 id="常用例子">常用例子</h3>
+<p>判断一个字符串是否为空：</p>
+<ul>
+<li><code>if str == &quot;&quot; { ... }</code></li>
+<li><code>if len(str) == 0 {...}</code></li>
+</ul>
+<p>函数 <code>Abs()</code> 用于返回一个整型数字的绝对值:</p>
+<pre><code class="language-go"> func Abs(x int) int {
+     if x &lt; 0 {
+         return -x
+     }
+     return x    
+ }
+</code></pre>
+<h2 id="测试多返回值函数的错误">测试多返回值函数的错误</h2>
+<p><a href="https://go.fdos.me/05.2.html">参考教程</a></p>
+<h2 id="swich">swich</h2>
+<pre><code class="language-go">switch var1 {
+    case val1:
+        ...
+    case val2:
+        ...
+    default:
+        ...
+}
+</code></pre>
+<h2 id="for结构">for结构</h2>
+<pre><code class="language-go">for 初始化语句; 条件语句; 修饰语句 {}
+</code></pre>
+<h2 id="break-与-continue">Break 与 continue</h2>
+<p><a href="https://go.fdos.me/05.5.html">Break 与 continue</a></p>
+<h2 id="标签与-goto">标签与 goto</h2>
+<p><a href="https://go.fdos.me/05.6.html">标签与 goto</a></p>
+<h1 id="函数">函数</h1>
+<h2 id="传递变长参数">传递变长参数</h2>
+<pre><code class="language-go">func myFunc(a, b, arg ...int) {}
+</code></pre>
+<p>示例函数和调用：</p>
+<pre><code class="language-go">func Greeting(prefix string, who ...string)
+Greeting(&quot;hello:&quot;, &quot;Joe&quot;, &quot;Anna&quot;, &quot;Eileen&quot;)
+</code></pre>
+<p>在 Greeting 函数中，变量 <code>who</code> 的值为 <code>[]string{&quot;Joe&quot;, &quot;Anna&quot;, &quot;Eileen&quot;}</code></p>
+<h2 id="函数作为参数">函数作为参数</h2>
+<pre><code class="language-go">func main() {
+    callback(1, Add)
+}
+
+func Add(a, b int) {
+    fmt.Printf(&quot;The sum of %d and %d is: %d\n&quot;, a, b, a+b)
+}
+
+func callback(y int, f func(int, int)) {
+    f(y, 2) // this becomes Add(1, 2)
+}
+</code></pre>
+<h2 id="使用闭包调试">使用闭包调试</h2>
+<pre><code class="language-go">where := func() {
+    _, file, line, _ := runtime.Caller(1)
+    log.Printf(&quot;%s:%d&quot;, file, line)
+}
+where()
+// some code
+where()
+</code></pre>
+<h2 id="通过内存缓存提升性能">通过内存缓存提升性能</h2>
+<p>牺牲空间换时间, 示例 <code>fibonacci_memoization.go</code></p>
+<h1 id="数组和切片">数组和切片</h1>
+<h2 id="声明">声明</h2>
+<p>一个切片在未初始化之前默认为 nil，长度为 0。</p>
+<p>切片的初始化格式是：<code>var slice1 []type = arr1[start:end]</code>。</p>
+<h2 id="使用-make-创建去切片">使用 <code>make()</code> 创建去切片</h2>
+<p><code>func make([]T, len, cap)</code>，其中 cap 是可选参数。</p>
+<p>所以下面两种方法可以生成相同的切片:</p>
+<pre><code class="language-go">make([]int, 50, 100)
+new([100]int)[0:50]
+</code></pre>
+<h2 id="new-和-make-的区别"><code>new()</code> 和 <code>make()</code> 的区别</h2>
+<ul>
+<li>new(T) 为每个新的类型 T 分配一片内存，初始化为 0 并且返回类型为 * T 的内存地址：这种方法 <strong>返回一个指向类型为 T，值为 0 的地址的指针</strong>，它适用于值类型如数组和结构体（参见第 10 章）；它相当于 <code>&amp;T{}</code>。</li>
+<li>make(T) <strong>返回一个类型为 T 的初始值</strong>，它只适用于 3 种内建的引用类型：切片、map 和 channel（参见第 8 章，第 13 章）。</li>
+</ul>
+<h2 id="bytes-包"><code>bytes</code> 包</h2>
+<h2 id="for-range-结构"><code>For-range</code> 结构</h2>
+<p>这种构建方法可以应用于数组和切片</p>
+<pre><code class="language-go">for ix, value := range slice1 {
+    ...
+}
+</code></pre>
+<h2 id="切片重组reslice">切片重组(<code>reslice</code>)</h2>
+<p>改变切片长度的过程称之为切片重组<code>reslicing</code>，做法如下：<code>slice1 = slice1[0:end]</code>，其中 end 是新的末尾索引（即长度)</p>
+<p><a href="https://go.fdos.me/07.5.html">参考示例</a></p>
+<h1 id="map">Map</h1>
+<h2 id="声明-初始化和-make">声明、初始化和 make</h2>
+<p>map 是引用类型</p>
+<pre><code class="language-go">var map1 map[keytype]valuetype
+
+var map1 map[string]int
+</code></pre>
+<p>未初始化的 map 的值是 nil</p>
+<p><code>var map1 = make(map[keytype]valuetype)</code></p>
+<p>不要用 <code>new</code> 构造 Map</p>
+<h2 id="测试键值是否存在及删除元素">测试键值是否存在及删除元素</h2>
+<h3 id="判断-key-是否存在">判断 key 是否存在</h3>
+<pre><code class="language-go">_, ok := map1[key1] // 如果key1存在则ok == true，否则ok为false
+</code></pre>
+<p>或者和 if 混合使用：</p>
+<pre><code class="language-go">if _, ok := map1[key1]; ok {
+    // ...
+}
+</code></pre>
+<h4 id="删除-key">删除 key</h4>
+<p><code>delete(map1, key1)</code></p>
+<p>key 不存在, 不会产生错误.</p>
+<h2 id="for-range">For-range</h2>
+<pre><code class="language-go">for key, value := range map1 {
+    ...
+}
+</code></pre>
+<h2 id="map-类型的切片">map 类型的切片</h2>
+<p>想获取一个 map 类型的切片,  必须使用两次 <code>make()</code>, 第一次分配切片, 第二次分配切片中每个 map 元素, <a href="https://go.fdos.me/08.4.html">示例</a></p>
+<h2 id="排序">排序</h2>
+<p><a href="https://go.fdos.me/08.5.html">代码示例</a></p>
+<h2 id="键值对调">键值对调</h2>
+<p><a href="https://go.fdos.me/08.6.html">代码示例</a></p>
+<h1 id="包">包</h1>
+<blockquote>
+<p>GFW 牛逼 ...</p>
+<p>有些方法得研究研究</p>
+</blockquote>
+<h1 id="init-函数">init 函数</h1>
+<p>init 是一类非常特殊的函数, 不能够被人为调用, 会在包初始化后自动执行, 优先级高于 main.</p>
+<h1 id="结构和方法">结构和方法</h1>
+<h2 id="定义">定义</h2>
+<pre><code class="language-go">type identifier struct {
+    field1 type1
+    field2 type2
+    ...
+}
+</code></pre>
+<h3 id="new">new()</h3>
+<p><code>t := new(T)</code>，变量 <code>t</code> 是一个指向 <code>T</code>的指针，此时结构体字段的值是它们所属类型的零值</p>
+<h2 id="工厂方法创建结构体实例">工厂方法创建结构体实例</h2>
+<p>按惯例，工厂的名字以 new 或 New 开头.</p>
+<pre><code class="language-go">type File struct {
+    fd      int     // 文件描述符
+    name    string  // 文件名
+}
+</code></pre>
+<p>这个结构体类型对应的工厂方法，它返回一个指向结构体实例的指针：</p>
+<pre><code class="language-go">func NewFile(fd int, name string) *File {
+    if fd &lt; 0 {
+        return nil
+    }
+
+    return &amp;File{fd, name}
+}
+</code></pre>
+<p>然后这样调用它：</p>
+<pre><code class="language-go">f := NewFile(10, &quot;./test.txt&quot;)
+</code></pre>
+<h3 id="强制使用工厂方法">强制使用工厂方法</h3>
+<pre><code class="language-go">type matrix truct {
+    ...
+}
+
+func NewMatrix(params) *matrix {
+    m := new(matrix) // 初始化 m
+    return m
+}
+</code></pre>
+<p>在其他包里使用工厂方法：</p>
+<pre><code class="language-go">package main
+import &quot;matrix&quot;
+...
+wrong := new(matrix.matrix)     // 编译失败（matrix 是私有的）
+right := matrix.NewMatrix(...)  // 实例化 matrix 的唯一方式
+</code></pre>
+<h2 id="带标签的结构体">带标签的结构体</h2>
+<blockquote>
+<p>略</p>
+</blockquote>
+<h2 id="匿名字段和内嵌结构体">匿名字段和内嵌结构体</h2>
+<p>结构体可以包含一个或多个 <strong>匿名（或内嵌）字段</strong>，即这些字段没有显式的名字，只有字段的类型是必须的，此时类型就是字段的名字。匿名字段本身可以是一个结构体类型，即 <strong>结构体可以包含内嵌结构体</strong></p>
+<h2 id="方法">方法</h2>
+<p>定义方法的一般格式如下：</p>
+<pre><code class="language-go">func (recv receiver_type) methodName(parameter_list) (return_value_list) { ... }
+</code></pre>
+<p>类型和作用在它上面定义的方法必须在同一个包里定义，这就是为什么不能在 int、float 或类似这些的类型上定义方法</p>
+<h3 id="函数和方法的区别">函数和方法的区别</h3>
+<p>函数将变量作为参数：<strong>Function1(recv)</strong></p>
+<p>方法在变量上被调用：<strong>recv.Method1()</strong></p>
+<h3 id="指针或值作为接收者">指针或值作为接收者</h3>
+<p><code>pointer_value</code></p>
+<h3 id="方法和未导出字段">方法和未导出字段</h3>
+<p>提供 getter 和 setter 方法</p>
+<p><code>person2.go</code></p>
+<p>略</p>
+<h2 id="类型的-string-方法和格式化描述符">类型的 String() 方法和格式化描述符</h2>
+<p>如果类型定义了 <code>String()</code> 方法，它会被用在 <code>fmt.Printf()</code> 中生成默认的输出：等同于使用格式化描述符 <code>%v</code> 产生的输出。还有 <code>fmt.Print()</code> 和 <code>fmt.Println()</code> 也会自动使用 <code>String()</code> 方法。</p>
+<h1 id="接口">接口</h1>
+<p>通过如下格式定义接口：</p>
+<pre><code class="language-go">type Namer interface {
+    Method1(param_list) return_type
+    Method2(param_list) return_type
+    ...
+}
+</code></pre>
+<p>上面的 <code>Namer</code> 是一个 <strong>接口类型</strong>。</p>
+<p>（按照约定，只包含一个方法的）接口的名字由方法名加 <code>[e]r</code> 后缀组成，例如 <code>Printer</code>、<code>Reader</code>、<code>Writer</code>、<code>Logger</code>、<code>Converter</code> 等等。还有一些不常用的方式（当后缀 <code>er</code> 不合适时），比如 <code>Recoverable</code>，此时接口名以 <code>able</code> 结尾，或者以 <code>I</code> 开头（像 <code>.NET</code> 或 <code>Java</code> 中那样）</p>
+<p>Go 语言中的接口都很简短，通常它们会包含 0 个、最多 3 个方法。</p>
+<h2 id="demo">demo</h2>
+<h3 id="demo1">demo1</h3>
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+//声明一个接口
+type Usb interface {
+   //声明两个没有实现的方法
+   Start()
+   Stop()
+}
+
+type Phone struct {
+}
+
+//让 Phone 实现 Usb 接口的方法
+func (p Phone) Start() {
+   fmt.Println(&quot;手机开始工作&quot;)
+}
+
+func (p Phone) Stop() {
+   fmt.Println(&quot;手机停止工作&quot;)
+}
+
+//让 camera 实现 Usb 接口的方法
+type Camera struct {
+}
+
+func (c Camera) Start() {
+   fmt.Println(&quot;Camera 开始工作&quot;)
+}
+
+func (c Camera) Stop() {
+   fmt.Println(&quot;Camera 停止工作&quot;)
+}
+//计算机
+type Cumputer struct {
+
+}
+// 编写一个方法 Working 接收一个 usb 接口类型变量
+//只要实现了 Usb 接口 (所谓实现Usb 接口,就是指实现了Usb接口声明所有方法)
+func (c Cumputer)Working(usb Usb)  {
+   //通过 Usb接口变量来调用 Start 和 Stop 方法
+   usb.Start()
+   usb.Stop()
+}
+func main() {
+   //测试
+   //先声明相关的结构体变量
+   computer := new(Cumputer)
+   phone := new(Phone)
+   camera := new(Camera)
+   //关键点
+   computer.Working(phone)
+   computer.Working(camera)
+}
+</code></pre>
+<pre><code class="language-go">手机开始工作
+手机停止工作
+Camera 开始工作
+Camera 停止工作
+</code></pre>
+<h3 id="demo2">demo2</h3>
+<p>使用接口对结构体排序</p>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;math/rand&quot;
+	&quot;sort&quot;
+)
+
+//声明 Hero 结构体
+type Hero struct {
+	Name string
+	Age  int
+}
+
+//声明一个 Hero 结构体的切片类型
+type HeroSlice []Hero
+
+//实现 interface (排序用) 接口
+func (hs HeroSlice) Len() int {
+	return len(hs)
+}
+
+//less 方法判断使用什么标准进行排序
+//1. 按照年龄从小到达排序
+func (hs HeroSlice) Less(i, j int) bool {
+	return hs[i].Age &lt; hs[j].Age
+}
+func (hs HeroSlice) Swap(i, j int) {
+	hs[i], hs[j] = hs[j], hs[j]
+	//temp := hs[i]
+	//hs[i] = hs[j]
+	//hs[j] = temp
+}
+func main() {
+	//	先定义一个数组 or 切片
+	intSlice := []int{0, -1, 10, 7, 90}
+	//对 intSlice 进行冒泡排序
+	//使用系统提供的方法
+	sort.Ints(intSlice)
+	fmt.Println(intSlice)
+	//对结构体切片进行排序
+	var heroes HeroSlice
+	for i := 0; i &lt; 10; i++ {
+		hero := Hero{
+			Name: fmt.Sprintf(&quot;英雄_%d&quot;, rand.Intn(100)),
+			Age:  rand.Intn(100),
+		}
+		//将 hreo append 到 heros 切片中
+		heroes = append(heroes, hero)
+	}
+	//查看排序前的顺序
+	for _, v := range heroes {
+		fmt.Println(v)
+	}
+	fmt.Println(&quot;------ 正在排序 ---------&quot;)
+	//调用 sort.sort 进行排序
+	sort.Sort(heroes)
+	//排序后的顺序
+	for _, v := range heroes {
+		fmt.Println(v)
+	}
+}
+</code></pre>
+<p>output</p>
+<pre><code>[-1 0 7 10 90]
+{英雄_81 87}
+{英雄_47 59}
+{英雄_81 18}
+{英雄_25 40}
+{英雄_56 0}
+{英雄_94 11}
+{英雄_62 89}
+{英雄_28 74}
+{英雄_11 45}
+{英雄_37 6}
+------ 正在排序 ---------
+{英雄_81 87}
+{英雄_81 87}
+{英雄_81 87}
+{英雄_81 87}
+{英雄_81 87}
+{英雄_81 87}
+{英雄_62 89}
+{英雄_62 89}
+{英雄_62 89}
+{英雄_62 89}
+</code></pre>
+<h2 id="类型断言">类型断言</h2>
+<p>使用以下形式来进行类型断言:</p>
+<pre><code class="language-go">if v, ok := varI.(T); ok {  // checked type assertion
+    Process(v)
+    return
+}
+// varI is not of type T
+</code></pre>
+<p>如果转换合法，<code>v</code> 是 <code>varI</code> 转换到类型 <code>T</code> 的值，<code>ok</code> 会是 <code>true</code>；否则 <code>v</code> 是类型 <code>T</code> 的零值，<code>ok</code> 是 <code>false</code>，也没有运行时错误发生。</p>
+<p>由于接口是一般类型, 不知道具体类型. 如果要转换成具体类型, 就需要使用类型断言.</p>
+<pre><code class="language-go">func main () {
+	var x interface{}
+	b := 1.1
+	//var b float32 = 1.1
+	x = b // 空接口  可以接收任意类型
+	b_type := reflect.TypeOf(b)
+	fmt.Println(b_type)
+	y := x.(float64)
+    fmt.Printf(&quot;y 的类型是 %T, 值是%v&quot;, y, y)
+}
+</code></pre>
+<p>输出:</p>
+<pre><code>map[1:1]
+[{} {} {}]
+float64
+y 的类型是 float64, 值是1.1
+</code></pre>
+<h2 id="类型判断type-switch">类型判断：type-switch</h2>
+<pre><code class="language-go">switch t := areaIntf.(type) {
+case *Square:
+    fmt.Printf(&quot;Type Square %T with value %v\n&quot;, t, t)
+case *Circle:
+    fmt.Printf(&quot;Type Circle %T with value %v\n&quot;, t, t)
+case nil:
+    fmt.Printf(&quot;nil value: nothing to check?\n&quot;)
+default:
+    fmt.Printf(&quot;Unexpected type %T\n&quot;, t)
+}
+</code></pre>
+<h2 id="测试值是否实现了某个接口">测试值是否实现了某个接口</h2>
+<pre><code class="language-go">type Stringer interface {
+    String() string
+}
+
+if sv, ok := v.(Stringer); ok {
+    fmt.Printf(&quot;v implements String(): %s\n&quot;, sv.String()) // note: sv, not v
+}
+</code></pre>
+<h2 id="空接口">空接口</h2>
+<p><strong>空接口或者最小接口</strong> 不包含任何方法，它对实现不做任何要求：</p>
+<pre><code class="language-go">type Any interface {}
+</code></pre>
+<p>任何其他类型都实现了空接口（它不仅仅像 <code>Java/C#</code> 中 <code>Object</code> 引用类型），<code>any</code> 或 <code>Any</code> 是空接口一个很好的别名或缩写。</p>
+<h2 id="反射包">反射包</h2>
+<h1 id="gorouttine">gorouttine</h1>
+<p>Go 协程的特点:</p>
+<pre><code>- 有独立的栈空间
+- 共享程序堆空间
+- 调度由用户控制
+</code></pre>
+<h2 id="demo-2">demo</h2>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;strconv&quot;
+	&quot;time&quot;
+)
+
+//在主线程中开启一个 goroutine, 隔一秒输出
+//主线程每隔一秒输出, 输出十次后, 退出程序
+//主线程和协程同时执行
+
+func loop_print(c string) {
+	for i := 1; i &lt;= 10; i++ {
+		fmt.Println(c + strconv.Itoa(i))
+		time.Sleep(time.Second)
+	}
+}
+
+func hello_world() {
+	loop_print(&quot;hello world&quot;)
+}
+func main() {
+	go hello_world()
+	loop_print(&quot;hello golang&quot;)
+}
+</code></pre>
+<h1 id="channel">channel</h1>
+<p>channel 本质是一个队列</p>
+<p>线程安全, 多 goroutine 访问时, 不需要加锁.</p>
+<p>channel 是有类型的.</p>
+<h2 id="声明-2">声明</h2>
+<p><code>var &lt;变量名&gt; chan &lt;数据类型&gt;</code></p>
+<p><code>ch := make(chan int)</code></p>
+<p>channel 是引用类型, 必须初始化, 即 make 后才能使用.</p>
+<p>在没有使用协程的情况下, 如果管道的数据被全部取出, 继续读取数据会死锁, 报 deadlock 错误</p>
+<p>创建空接口类型的 channel, 可以存放任意类型.</p>
+<pre><code class="language-go">allChan := make(chan interface{}, 10)
+</code></pre>
+<h2 id="使用-channel-进行-goroutine-通信demo">使用 channel 进行 goroutine 通信demo</h2>
+<blockquote>
+<p>使用通信共享内存, 而不是共享内存来通信</p>
+</blockquote>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+)
+
+func writeData(intchan chan int) {
+	for i := 0; i &lt; 50; i++ {
+		intchan &lt;- i
+		fmt.Printf(&quot;writeDate =%v\n&quot;, i)
+	}
+	close(intchan)
+}
+
+func readData(intchan chan int, exitchan chan bool) {
+	for {
+		v, ok := &lt;-intchan
+		if ok {
+			fmt.Printf(&quot;readDate =%v\n&quot;, v)
+		} else {
+			break
+		}
+	}
+	//读取完数据后, 即任务完成
+	exitchan &lt;- true
+	close(exitchan)
+}
+
+func main() {
+	//创建两个 channel
+	intchan := make(chan int, 50)
+	exitchan := make(chan bool, 1)
+
+	go writeData(intchan)
+  // 如果只向管道写数据, 会出现 dead lock 错误.
+	go readData(intchan, exitchan)
+	//time.Sleep(time.Second * 10)
+	for true {
+		_, ok := &lt;-exitchan
+		if !ok {
+			break
+		}
+	}
+}
+
+
+</code></pre>
+<h2 id="使用-select-读取管道数据">使用 select 读取管道数据</h2>
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+	//使用 select 解决 channel 阻塞问题
+	intChan := make(chan int, 10)
+	for i := 1; i &lt;= 10; i++ {
+		intChan &lt;- i
+	}
+	strChan := make(chan string, 5)
+	for i := 0; i &lt; 5; i++ {
+		strChan &lt;- &quot;hello&quot; + fmt.Sprintf(&quot;%d&quot;, i)
+	}
+	//传统的方法在遍历管道时, 如果不关闭会阻塞导致死锁 deadlock
+	//开发时, 不好确定怎么关闭管道时, 可以使用 select
+
+	for {
+		select {
+		case v := &lt;-intChan: // 如果管道未关闭也不会一直阻塞, 会匹配下一个 case
+			fmt.Printf(&quot; read data from intChan, %d\n&quot;, v)
+		case v := &lt;-strChan:
+			fmt.Printf(&quot;read data from strChan, %s\n&quot;, v)
+		default:
+			fmt.Printf(&quot;read data failed, alsdkjfl;kasjdlkfjklajskldfj\n&quot;)
+			return
+		}
+	}
+}
+</code></pre>
+<h2 id="goroutine-中捕获错误">goroutine 中捕获错误</h2>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;time&quot;
+)
+
+func sayHello() {
+	for i := 0; i &lt; 10; i++ {
+		time.Sleep(time.Second)
+		fmt.Println(&quot;hello world&quot;)
+	}
+}
+
+func test() {
+
+	//=======================================
+	//捕获 panic
+	defer func() {
+		err:=recover()
+		if err !=nil {
+			fmt.Println(&quot;test() panic, err:&quot;, err)
+		}
+		//if err := recover(); err != nil {
+		//	fmt.Println(&quot;test() panic, err:&quot;, err)
+		//}
+	}()
+	//=======================================
+
+
+	//=======================================
+	//错误使用 map 导致 panic
+	//panic: assignment to entry in nil map
+	var mymap map[int]string
+	mymap[0] = &quot;golang&quot;
+	//=======================================
+
+
+}
+
+func main() {
+	go sayHello()
+	go test()
+	for i, _ := range &quot;1234567890&quot; {
+		fmt.Println(&quot;main  ok=&quot;, i)
+		time.Sleep(time.Second)
+	}
+}
+</code></pre>
+<h1 id="反射">反射</h1>
+<ul>
+<li>反射可以在运行时动态的获取变量的各种信息</li>
+<li>如果是结构体变量, 还可以获取到结构体本身的信息.</li>
+<li>通过反射, 可以修改变量的值, 可以调用相关的方法</li>
+<li>使用反射, 需要 import (&quot;reflect&quot;)</li>
+<li>变量 interface() 和 reflect.Value 是可以相互转换的, <img src="https://i.loli.net/2019/04/25/5cc1782cb88f9.png" alt="示意" loading="lazy"></li>
+</ul>
+<h2 id="demo1-2">demo1</h2>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+func reflectTest1(b interface{}) {
+	//获取 reflect.Type()
+	rType := reflect.TypeOf(b)
+	fmt.Println(&quot;rType: &quot;, rType)
+	//获取 reflect.Value{}
+	rValue := reflect.ValueOf(b)
+	fmt.Printf(&quot;rValue: %v,\nrValueType: %T\n&quot;, rValue, rValue)
+	//转换为 int
+	rValue1 := reflect.ValueOf(b).Int()
+	fmt.Printf(&quot;rValue: %v,\nrValueType: %T\n&quot;, rValue1, rValue1)
+
+	//将 rValue 转换成 interface()
+	iV := rValue.Interface()
+	num2 := iV.(int)
+	fmt.Println(&quot;num2: &quot;, num2)
+}
+
+func reflectTest2(b interface{}) {
+	//获取 reflect.Type()
+	rType := reflect.TypeOf(b)
+	fmt.Println(&quot;rType: &quot;, rType)
+	//获取 reflect.Value{}
+	rValue := reflect.ValueOf(b)
+	fmt.Printf(&quot;rValue: %v,\nrValueType: %T\n&quot;, rValue, rValue)
+	//将 rValue 转换成 interface()
+	iV := rValue.Interface()
+	fmt.Printf(&quot;iv: %v, type: %T\n&quot;, iV, iV)
+	//通过类型断言转换成需要的类型
+	stu, ok:=iV.(*Student) // 这里不用指针, 会不 ok, 没弄懂, 是因为我传递的参数是指针me
+	if ok {
+		fmt.Printf(&quot;stu.Name=%v \n&quot;, stu.Name)
+	}
+}
+
+type Student struct {
+	Name string
+	Age  int
+}
+
+//反射的基本操作
+func main() {
+	num := 10
+	reflectTest1(num)
+	fmt.Println(&quot;\n&quot;)
+	stu := new(Student)
+	stu.Name = &quot;tom&quot;
+	stu.Age = 10
+	reflectTest2(stu)
+}
+
+</code></pre>
+<h2 id="demo2-通过反射修改值">demo2 通过反射修改值</h2>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+func reflectTest(b interface{}) {
+	rVal:=reflect.ValueOf(b)
+	//修改 b 的值
+	rVal.Elem().SetInt(2)
+}
+
+func main() {
+	num:=2
+	reflectTest(&amp;num)
+	fmt.Println(&quot;num: &quot;,num)	
+}
+</code></pre>
+<h2 id="demo3-通过反射遍历结构体-获取方法和标签值">demo3 通过反射遍历结构体, 获取方法和标签值</h2>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;github.com/bradfitz/iter&quot;
+	&quot;reflect&quot;
+)
+
+type Monster struct {
+	Name  string `json:&quot;name&quot;`
+	Age   int    `json:&quot;monster_age&quot;`
+	Score float64
+	Sex   string
+}
+
+//显示 monster 的值
+func (s Monster) Print() {
+	fmt.Println(&quot;===== start =====&quot;)
+	fmt.Println(s)
+	fmt.Println(&quot;===== end =====&quot;)
+}
+func (s Monster) GetSum(n1, n2 int) int {
+	return n1 + n2
+}
+
+func (s Monster) Set(name string, age int, score float64, sex string) {
+	s.Name = name
+	s.Age = age
+	s.Score = score
+	s.Sex = sex
+}
+
+func TestStruct(a interface{}) {
+	typ := reflect.TypeOf(a)
+	val := reflect.ValueOf(a)
+	kd := val.Kind()
+	if kd != reflect.Struct {
+		fmt.Println(&quot;except struct&quot;)
+		return
+	}
+	//获取结构体字段数量
+	num := val.NumField()
+	fmt.Printf(&quot;struct has %d fields \n&quot;, num)
+	for i, _ := range iter.N(num) {
+		fmt.Printf(&quot;field %d: 值: %v\n &quot;, i, val.Field(i))
+		//通过 reflect.Type 获取 struct 标签,
+		tagVal := typ.Field(i).Tag.Get(&quot;json&quot;)
+		if tagVal != &quot;&quot; {
+			fmt.Printf(&quot;field %d: tag: %v\n&quot;, i, tagVal)
+		}
+	}
+	numOfMethod := val.NumMethod()
+	fmt.Printf(&quot;struct has %d methods\n&quot;, numOfMethod)
+	//方法的排序按照函数名进行排序
+	//调用结构体的第一个方法 method(0)
+	val.Method(1).Call(nil)
+	
+	// todo 使用 make 方法创建 slice
+	var params []reflect.Value
+	params = append(params, reflect.ValueOf(10))
+	params = append(params, reflect.ValueOf(40))
+	//传入的参数是 []reflect.Value
+	res := val.Method(0).Call(params)
+	//返回的结果是 []reflect.Value
+	fmt.Println(&quot;red: &quot;, res[0].Int())
+}
+
+func main() {
+	m := new(Monster)
+	m.Name = &quot;test&quot;
+	m.Age = 100
+	m.Score = 40.0
+	m.Sex = &quot;nan&quot;
+	TestStruct(*m)
+}
+
+</code></pre>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Afreto</li>
+            <li><strong>原文链接：</strong>https://afret0.github.io/go学习笔记(基础篇)/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        <div id="otherpost">
+            
+            <div class="prev-post-pc">
+                <div id="ppcontainer" onclick="window.location.href= 'https://afret0.github.io/取梦/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">取梦</h4>
+                </div>
+            </div>
+            <div class="prev-post">
+                上一篇 <a href="https://afret0.github.io/取梦/">取梦</a>
+            </div>
+            
+            
+            <div class="next-post-pc">
+                <div id="npcontainer" onclick="window.location.href= 'https://afret0.github.io/vue-的几个方法/';return false">
+                    <img src="" style="width: 100%;" class="opimg">
+                    <h4 class="optitle">vue 的几个方法</h4>
+                </div>
+            </div>
+            <div class="next-post">
+                下一篇 <a href="https://afret0.github.io/vue-的几个方法/">vue 的几个方法</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+        <div name="comment" style="background: white;margin-top:100px">
+            <div class="commentcontainer">
+                
+                <body>
+    <div id="vcomments1"></div>
+
+<script src='https://afret0.github.io/media/js/valine.min.js'></script>
+<script src="https://afret0.github.io/media/js/jquery.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+    new Valine({
+        el: '#vcomments1',
+        appId: 'k74jodqUcMiQGH4dF9Gbd3Ws-gzGzoHsz',
+        appKey: 'ChKjDP5nQNj6MFVy2eb2ESYI',
+        notify: true,
+        verify: false,
+        avatar: 'retro',
+        pageSize: 10,
+        placeholder: '既然来了，那就留个痕迹吧~',
+        visitor: true // 阅读量统计
+    })
+</script>
+
+</body>
+
+                <div class="clear"></div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var img = $("img");
+    for (var i = 0; i < img.length; i++) {
+        if (img.eq(i).attr("class") == undefined) {
+            img.eq(i).attr("class", "lazyload");
+            var imgsrc = img.eq(i).attr("src");
+            img.eq(i).attr("data-original", imgsrc);
+            img.eq(i).attr("src", "");
+            img.eq(i).hide();
         }
-      });
+    }
+</script>
+<script src="https://afret0.github.io/media/js/post.js"></script>
+<script>
+    //寻找所有code标签，加复制按钮鸭！(行内代码除外)
+    var codes = document.getElementsByTagName('code');
+    if (codes.length) {
+        for (var i = 0; i < codes.length; i++) {
+            //高度/行高=文本行数
+            // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
+            // console.log("当前有"+rowNum+"行");
+            var code_id = "code_id_" + i;
+            codes[i].setAttribute("id", code_id);
+            var ci = "#" + code_id;
+            var codedot = $(ci);
+            var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
+            if (rowNum <= 1) continue;
+            var btn = document.createElement("button");
+            btn.setAttribute("class", "copybt");
+            btn.setAttribute("data-clipboard-target", "#" + code_id);
+            btn.innerHTML = '复制代码';
+            codes[i].parentNode.insertBefore(btn, codes[i]);
+        }
+    };
+    var cop = new ClipboardJS('.copybt');
+    var codeCopyText = $("#codeCopyText").html();
+    cop.on('success', function (e) {
+        alert(codeCopyText);
+        e.clearSelection();
+    });
+    cop.on('error', function (e) {
+        alert("矮油，复制失败了...手动复制吧勇士！");
+        e.clearSelection();
+    });
+</script>
+
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="https://afret0.github.io/media/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "https://afret0.github.io/media/live2d/assets/tororo.model.json");
+</script>
+
+<script>
+    $(function () {
+        $('.toggleContainer').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st > 30) {
+                $(".toggleContainer").fadeIn(400);
+            } else {
+                $(".toggleContainer").fadeOut(100);
+            }
+        });
+    });
+</script>
+
+<script>
+    var bgchoice = $('#bgchoice').html();
+    var bg = $('#bg');
+    var bgurl = document.getElementById("bgurl").innerHTML;
+    if (bgchoice == 'default')
+        for (var i = 0; i < 3; i++)
+            bgurl = bgurl.replace("\\", "/");
+    bg.css("background", "url('" + bgurl + "')");
+</script>
+
+
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+
+<!-- 动态更改上(下)一篇博客图片框长宽 -->
+<script>
+    npcontainer = document.querySelector('#npcontainer');
+    npstyle = window.getComputedStyle(npcontainer, null);
+    npwidth = npstyle.width;
+    npheight = 0.6 * Number(npwidth.replace("px", ""));
+    npheight = npheight.toString() + "px";
+    var op = $(".opimg");
+    op.css("height", npheight);
+</script>
+
+<script src="https://afret0.github.io/media/share/dist/Share.js"></script>
+
+<script>
+    var avatarSrc = $(".menutopavatar").attr("src");
+    var dp = document.getElementsByClassName("navbar-brand")[1].innerHTML;
+</script>
+
+
+<script>
+    var title = document.getElementById("texttitle").getElementsByTagName("h2");
+    
+    var share = new Share('.share', {
+        title: title[0].innerHTML,
+        initialized: true,
+        //默认获取网站描述
+        description: dp,
+        //网站图片默认获取的是设置的用户头像
+        image: avatarSrc,
+        //激活的分享网站
+        sites: ["weibo", "qq", "wechat", "douban", "qzone", "facebook", "twitter", "google"],
+        //微信分享PC端会生成二维码分享,移动端如果可以唤起微信最好
+        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+        wechatQrcodeHelper: '<p>微信里扫一下二维码</p><p>便可将本文分享至朋友圈。</p>',
+        //关闭的网站分享
+        disabled: ['google', 'linkedin'],
+        wechatQrcodePosition: 'bottom'
     });
 
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
+    //点击分享按钮展现出分享icons
+    var sharebtnTag = false;
+    $(".sharebtn").click(function () {
+        if(!sharebtnTag)
+        {
+            $(".share").show();
+            sharebtnTag = true;
+        }
+        else
+        {
+            $(".share").hide();
+            sharebtnTag = false;
+        }
     })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
 
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
+    var donatebtnTag = false;
+    $(".donateImg").click(function () {
+        if(!donatebtnTag)
+        {
+            $(".donate").show();
+            donatebtnTag = true;
+        }
+        else{
+            $(".donate").hide();
+            donatebtnTag = false;
+        }
+    })
 
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
+    window.onload=function(){
+        var sharepc = $(".share").eq(0).html();
+        $(".share").eq(1).html(sharepc);
+        setTimeout(function(){
+            var hn = $(".leancloud-visitors-count").eq(0).html();
+            hn = '<i class="fa fa-eye" aria-hidden="true"'+
+                            'style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i'+
+                            'class="leancloud-visitors-count">'+hn+'</i></h4>'
+            $(".readercount").eq(1).html(hn);
+        }, 1000);
+        document.getElementById("veditor").setAttribute("placeholder", jrsc);
+    }
 </script>
-  
-  </body>
-</html>
+
+
+<script>
+    jQuery(document).ready(function ($) {
+        function lazyload() {
+            var oLazyload = $("img.lazyload"),
+                fLazyload = function (hLazyload) {
+                    var nLazyload = $(window).height() + $(document).scrollTop();
+                    oLazyload.each(function () {
+                        $(this).offset().top < nLazyload && ($(this).trigger("appear"), oLazyload =
+                            oLazyload.not(this));
+                    }), 0 == oLazyload.length && $(window).unbind("scroll", fLazyload);
+                };
+            oLazyload.each(function () {
+                $(this).one("appear", function () {
+                    $(this).attr("src", $(this).attr("data-original"));
+                    $(this).fadeIn(500);
+                });
+            }), $(window).bind("scroll", fLazyload), fLazyload();
+        }
+        lazyload();
+    });
+</script>
