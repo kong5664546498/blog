@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://afret0.github.io</id>
     <title>Afreto&apos;s blog</title>
-    <updated>2020-11-24T16:08:09.686Z</updated>
+    <updated>2020-11-24T16:09:49.642Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://afret0.github.io"/>
     <link rel="self" href="https://afret0.github.io/atom.xml"/>
@@ -93,11 +93,9 @@
         <link href="https://afret0.github.io/阴三儿-北京晚报/">
         </link>
         <updated>2020-02-28T03:44:57.000Z</updated>
-        <summary type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/03/19/Lls9WxKfc5yeNZh.png" alt="WechatIMG408.png" loading="lazy"></figure>
-<p><a href="https://www.youtube.com/watch?v=zxCVcVSW-nE">传送门</a></p>
+        <summary type="html"><![CDATA[<p><a href="https://www.youtube.com/watch?v=zxCVcVSW-nE">传送门</a></p>
 ]]></summary>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/03/19/Lls9WxKfc5yeNZh.png" alt="WechatIMG408.png" loading="lazy"></figure>
-<p><a href="https://www.youtube.com/watch?v=zxCVcVSW-nE">传送门</a></p>
+        <content type="html"><![CDATA[<p><a href="https://www.youtube.com/watch?v=zxCVcVSW-nE">传送门</a></p>
 ]]></content>
     </entry>
     <entry>
@@ -106,14 +104,12 @@
         <link href="https://afret0.github.io/阴三儿-老师你好/">
         </link>
         <updated>2020-02-28T03:43:23.000Z</updated>
-        <summary type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/03/20/eERbkpAsKdxijrQ.jpg" alt="5bafa40f4bfbfbed29536c5b7af0f736afc31f8f.jpeg" loading="lazy"></figure>
-<blockquote>
+        <summary type="html"><![CDATA[<blockquote>
 <p>我就上课听歌我乐意！</p>
 </blockquote>
 <p><a href="https://www.youtube.com/watch?v=gKdzRIGhbbA">传送门</a></p>
 ]]></summary>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/03/20/eERbkpAsKdxijrQ.jpg" alt="5bafa40f4bfbfbed29536c5b7af0f736afc31f8f.jpeg" loading="lazy"></figure>
-<blockquote>
+        <content type="html"><![CDATA[<blockquote>
 <p>我就上课听歌我乐意！</p>
 </blockquote>
 <p><a href="https://www.youtube.com/watch?v=gKdzRIGhbbA">传送门</a></p>
