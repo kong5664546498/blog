@@ -35,28 +35,7 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li><a href="#%E7%AE%97%E6%B3%95%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6">算法的复杂度</a></li>
-<li><a href="#%E7%BA%BF%E6%80%A7%E8%A1%A8">线性表</a>
-<ul>
-<li><a href="#%E6%95%B0%E7%BB%84">数组</a>
-<ul>
-<li><a href="#%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C">插入操作</a></li>
-<li><a href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C">删除操作</a></li>
-</ul>
-</li>
-<li><a href="#%E9%93%BE%E8%A1%A8">链表</a>
-<ul>
-<li><a href="#%E5%A4%B4%E6%8C%87%E9%92%88">头指针</a></li>
-<li><a href="#%E5%A4%B4%E8%8A%82%E7%82%B9">头节点</a></li>
-<li><a href="#%E8%AF%BB%E5%8F%96">读取</a></li>
-<li><a href="#%E6%8F%92%E5%85%A5">插入</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+            
           </div>
         </div>
       
@@ -95,89 +74,15 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">数据结构和算法笔记</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Mysql 是怎样运行的</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-07-21 / 3 min read
+          2020-12-27 / 0 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://afret0.github.io/post-images/数据结构和算法复习笔记.jpg" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://raw.githubusercontent.com/Afret1/image/master/img/20201227152205.jpeg" alt="">
         
         <div class="post-content yue">
-          <p>o_O''</p>
-<!--more-->
-<h1 id="算法的复杂度">算法的复杂度</h1>
-<p>推导大 O 表示法方法</p>
-<ol>
-<li>用常数 1 取代云心时间中的所有加法常数</li>
-<li>修改后的运行次数函数中,只保留最高项</li>
-<li>如果最高项存在且不是 1, 则去除与这个项相乘的常数</li>
-</ol>
-<h1 id="线性表">线性表</h1>
-<blockquote>
-<p>由零个或多个元素组成的有限序列</p>
-</blockquote>
-<p>ADT</p>
-<p>Data</p>
-<p>Operation</p>
-<p><code>InitList(*l)</code> 初始化操作, 建立一个空的线性表 L</p>
-<p><code>ListEmpty(L)</code> 判断是否为空,&lt;空: true,非空: false&gt;</p>
-<p><code>ClearList(*l)</code> 清空线性表</p>
-<p><code>GetElem(L, i, *e)</code>: 返回第 i 个元素给 e</p>
-<p><code>LocateElem(L,e)</code> 查找与给定值 e 相等的元素, &lt; 存在: 返回 index, 不存在: 0&gt;</p>
-<p><code>ListInsert(*L,i,e)</code> 第 i 个位置插入元素 e</p>
-<p><code>ListDelete(*L,i,*e)</code> 删除 L 中第 i 个元素, 返回 e 的 index</p>
-<p><code>ListLength(L)</code> 返回 l 的长度</p>
-<p>endAdt</p>
-<h2 id="数组">数组</h2>
-<h3 id="插入操作">插入操作</h3>
-<p>插入位置不合理, 抛出异常</p>
-<p>长度大于表长度,则抛出异常或动态增加容量</p>
-<p>从最后一个元素开始向前便利到第 i 个位置, 分别将它们向后移动一个位置</p>
-<p>将要插入的元素放入位置 i 处</p>
-<p>表长度 +1</p>
-<h3 id="删除操作">删除操作</h3>
-<p>删除 index 不合理, 抛出异常</p>
-<p>取出删除元素</p>
-<p>从删除元素位置, 遍历到最后一个元素位置, 分别将它们向前移动一个位置</p>
-<p>表长 -1</p>
-<h2 id="链表">链表</h2>
-<h3 id="头指针">头指针</h3>
-<p>指链表指向第一个头节点的指针, 若链表有头节点,则是指向头节点的指针</p>
-<p>头指针具有表示作用, 所以常用头指针冠以链表的名字(指针变量的名字)</p>
-<p>无论链表是否为空,头指针均不为空</p>
-<p>头指针是链表的必要元素</p>
-<h3 id="头节点">头节点</h3>
-<p>头节点是为了操作的统一和方便而设立的, 放在第一个元素的节点之前, 其数据域一般无意义(可以用来存放链表的长度)</p>
-<p>有了头节点,对在第一个元素节点前插入节点和删除节点和其它节点的操作就统一了</p>
-<h3 id="读取">读取</h3>
-<p>获取链表地i个数据</p>
-<p>声明一个节点 p 指向链表的第一个节点, 初始化 j 从 1 开始</p>
-<p>当j&gt;j时, 遍历链表, p的指针向后移动</p>
-<p>当链表末尾指针为空, 说明第i个元素不存在</p>
-<p>若查找成功,返回节点p的数据</p>
-<pre><code class="language-c">Status GetElem(LinkList L, int i, ElemType *e)
-{
-    int j;
-    LinkList p;
-
-    p = L-&gt;next;
-    j = 1;
-
-    while (p &amp;&amp; j &lt; i)
-    {
-        p = p-&gt;next;
-        ++j;
-    }
-
-    if (!p || j &gt; i)
-    {
-        return 0;
-    }
-    *e = p-&gt;data;
-    return 1;
-}
-</code></pre>
-<h3 id="插入">插入</h3>
+          <!-- more -->
 
         </div>
 
