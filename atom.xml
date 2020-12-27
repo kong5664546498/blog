@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://afret0.github.io</id>
     <title>Afreto&apos;s blog</title>
-    <updated>2020-12-27T06:43:28.222Z</updated>
+    <updated>2020-12-27T06:50:22.946Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://afret0.github.io"/>
     <link rel="self" href="https://afret0.github.io/atom.xml"/>
@@ -34,17 +34,6 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>证书过期了,就顺手升级一下 caddy2.</p>
 <p>caddy 升级后直接使用官方 image, 增加了个小脚本自动拉取配置,真香~</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[数据结构和算法笔记]]></title>
-        <id>https://afret0.github.io/数据结构和算法复习笔记/</id>
-        <link href="https://afret0.github.io/数据结构和算法复习笔记/">
-        </link>
-        <updated>2020-07-21T06:44:49.000Z</updated>
-        <summary type="html"><![CDATA[<p>o_O''</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>o_O''</p>
 ]]></content>
     </entry>
     <entry>
@@ -127,6 +116,21 @@
 ]]></summary>
         <content type="html"><![CDATA[<blockquote>
 <p>记录一下 mac 客户端的配置</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[trojan 初尝]]></title>
+        <id>https://afret0.github.io/trojan-初尝/</id>
+        <link href="https://afret0.github.io/trojan-初尝/">
+        </link>
+        <updated>2020-02-08T03:57:54.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>有些鸟是关不住的</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>有些鸟是关不住的</p>
 </blockquote>
 ]]></content>
     </entry>
