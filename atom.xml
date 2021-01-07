@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://afret0.github.io</id>
     <title>Afreto&apos;s blog</title>
-    <updated>2021-01-05T20:20:57.431Z</updated>
+    <updated>2021-01-07T06:18:10.995Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://afret0.github.io"/>
     <link rel="self" href="https://afret0.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://afret0.github.io/images/avatar.png</logo>
     <icon>https://afret0.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Afreto&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[沈阳人为什么爱烤鸡架]]></title>
+        <id>https://afret0.github.io/TAkAxj0Dc/</id>
+        <link href="https://afret0.github.io/TAkAxj0Dc/">
+        </link>
+        <updated>2021-01-07T05:53:50.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[一键zsh]]></title>
         <id>https://afret0.github.io/一键zsh/</id>
@@ -114,21 +121,6 @@
 ]]></summary>
         <content type="html"><![CDATA[<blockquote>
 <p>记录一下 mac 客户端的配置</p>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[trojan 初尝]]></title>
-        <id>https://afret0.github.io/trojan-初尝/</id>
-        <link href="https://afret0.github.io/trojan-初尝/">
-        </link>
-        <updated>2020-02-08T03:57:54.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>有些鸟是关不住的</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>有些鸟是关不住的</p>
 </blockquote>
 ]]></content>
     </entry>
