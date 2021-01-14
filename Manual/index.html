@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Afreto&#39;s blog</title>
 <meta name="description" content="火锅就酒,冬笋炒肉~" />
-<link rel="shortcut icon" href="https://afret0.github.io/favicon.ico?v=1610013175911">
+<link rel="shortcut icon" href="https://afret0.github.io/favicon.ico?v=1610630728881">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://afret0.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://afret0.github.io/images/avatar.png?v=1610013175911" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://afret0.github.io/images/avatar.png?v=1610630728881" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Afreto&#39;s blog</h1>
       </div>
@@ -59,11 +59,8 @@
 <li><a href="#windows">windows</a>
 <ul>
 <li><a href="#%E7%94%B5%E6%BA%90%E7%AE%A1%E7%90%86%E4%B8%AD%E6%B2%A1%E6%9C%89%E4%BC%91%E7%9C%A0%E9%80%89%E9%A1%B9">电源管理中没有休眠选项</a></li>
-<li><a href="#chocolate">chocolate</a>
-<ul>
-<li><a href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86-2">设置代理</a></li>
-</ul>
-</li>
+<li><a href="#scoop">scoop</a></li>
+<li><a href="#chocolate">chocolate</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +111,7 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">Manual</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2018-10-26 / 3 min read
+          2018-10-26 / 4 min read
         </div>
         
           <img class="post-feature-image rounded-lg mx-auto my-4" src="https://raw.githubusercontent.com/Afret1/image/master/img/20201227151538.jpg" alt="">
@@ -197,8 +194,41 @@ powercfg hibernate size 40
 Powercfg -h on
 </code></pre>
 <p><a href="https://answers.microsoft.com/zh-hans/windows/forum/windows_10-power/new-surface/2bc0382c-0ad9-457e-8adc-8d24df60c94d">windows community solution</a></p>
+<h2 id="scoop">scoop</h2>
+<p><code>iwr -useb get.scoop.sh | iex</code></p>
+<p>Note: if you get an error you might need to change the execution policy (i.e. enable Powershell) with</p>
+<pre><code>Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+</code></pre>
+<blockquote>
+<p>raw.githubusercontent.com 访问不到修改 hosts <code>C:/windows/system32/drivers/etc/hosts</code><br>
+199.232.68.133 raw.githubusercontent.com</p>
+</blockquote>
+<p>关闭 aria2</p>
+<pre><code class="language-powershell">scoop config aria2-enabled false  
+</code></pre>
+<p>日常更新软件命令</p>
+<pre><code class="language-powershell">sudo scoop update * -g ; scoop update * ; sudo scoop cleanup * -g ; scoop cleanup *
+</code></pre>
+<p>查看 Scoop 还能直接识别哪些 bucket</p>
+<pre><code class="language-powershell">scoop bucket known
+</code></pre>
+<p>设置代理</p>
+<pre><code class="language-powershell">scoop config proxy 127.0.0.1:8118
+</code></pre>
+<p>添加常用的 bucket</p>
+<pre><code class="language-powershell">scoop bucket add extras;
+scoop bucket add Java;
+scoop bucket add versions;
+scoop bucket add Ash258 'https://github.com/Ash258/Scoop-Ash258.git'
+scoop bucket add dorado https://github.com/h404bi/dorado
+scoop bucket add iszy https://github.com/ZvonimirSun/scoop-iszy
+scoop bucket add dodorz https://github.com/dodorz/scoop-bucket
+scoop bucket add rasa https://github.com/rasa/scoops
+scoop bucket add scoopet https://github.com/integzz/scoopet
+scoop bucket add raresoft https://github.com/L-Trump/scoop-raresoft
+</code></pre>
 <h2 id="chocolate">chocolate</h2>
-<h3 id="设置代理-2">设置代理</h3>
+<p>设置代理</p>
 <p><code>choco config set proxy 'http://127.0.0.1:1080'</code></p>
 
         </div>
