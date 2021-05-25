@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Afreto&#39;s blog</title>
 <meta name="description" content="火锅就酒,冬笋炒肉~" />
-<link rel="shortcut icon" href="https://afret0.github.io/favicon.ico?v=1614044069551">
+<link rel="shortcut icon" href="https://afret0.github.io/favicon.ico?v=1621923237522">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://afret0.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://afret0.github.io/images/avatar.png?v=1614044069551" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://afret0.github.io/images/avatar.png?v=1621923237522" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Afreto&#39;s blog</h1>
       </div>
@@ -47,6 +47,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E7%9A%84%E6%AF%94%E8%BE%83%E8%A7%84%E5%88%99">字符集的比较规则</a></li>
 </ul>
 
           </div>
@@ -114,6 +115,8 @@
 <p><span style="color:red">如果两个查询请求在任何字符上的不同（例如：空格、注释、大小写），都会导致缓存不会命中</span>。另外，<span style="color:red">如果查询请求中包含某些系统函数、用户自定义变量和函数、一些系统表，如 mysql 、information_schema、 performance_schema 数据库中的表，那这个请求就不会被缓存</span></p>
 <p><span style="color:red">MySQL的缓存系统会监测涉及到的每张表，只要该表的结构或者数据被修改，如对该表使用了<code>INSERT</code>、 <code>UPDATE</code>、<code>DELETE</code>、<code>TRUNCATE TABLE</code>、<code>ALTER TABLE</code>、<code>DROP TABLE</code>或 <code>DROP DATABASE</code>语句，那使用该表的所有高速缓存查询都将变为无效并从高速缓存中删除</span>！</p>
 <p>虽然查询缓存有时可以提升系统性能，但也不得不因维护这块缓存而造成一些开销，比如每次都要去查询缓存中检索，查询请求处理完需要更新查询缓存，维护该查询缓存对应的内存区域。从MySQL 5.7.20开始，不推荐使用查询缓存，并在MySQL 8.0中删除。</p>
+<h1 id="字符集的比较规则">字符集的比较规则</h1>
+<p>将一个字符映射成一个二进制数据的过程叫编码, 将一个二进制数据映射到一个字符的过程叫解码</p>
 
         </div>
 

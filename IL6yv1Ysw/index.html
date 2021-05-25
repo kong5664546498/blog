@@ -34,36 +34,8 @@
           </p>
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
-<li><a href="#%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95">查看操作记录</a></li>
-<li><a href="#%E6%8F%90%E4%BA%A4%E9%94%99%E5%88%86%E6%94%AF">提交错分支</a>
-<ul>
-<li><a href="#%E6%96%B9%E6%A1%88-1">方案 1</a></li>
-<li><a href="#%E6%96%B9%E6%A1%88-2">方案 2</a></li>
-<li><a href="#%E6%96%B9%E6%A1%88-3">方案 3</a></li>
-<li><a href="#%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81">账号密码</a>
-<ul>
-<li><a href="#%E8%AE%BE%E7%BD%AE%E5%8D%95%E7%8B%AC%E7%9A%84-git-%E9%85%8D%E7%BD%AE">设置单独的 git 配置</a></li>
-<li><a href="#%E8%87%AA%E5%8A%A8%E8%AE%B0%E5%BD%95%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81">自动记录账号密码</a></li>
-</ul>
-</li>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">添加远程仓库</a></li>
-<li><a href="#%E6%8B%89%E5%8F%96%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF">拉取远程分支到本地分支</a></li>
-</ul>
-</li>
-<li><a href="#%E5%9B%9E%E6%BB%9A">回滚</a>
-<ul>
-<li><a href="#%E5%9B%9E%E6%BB%9A%E5%88%B0-index">回滚到 index</a></li>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E6%94%B9%E5%8A%A8%E5%88%B0%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1-commit">添加改动到最后一次 commit</a></li>
-</ul>
-</li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86">配置代理</a></li>
-<li><a href="#%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%90%8E-%E5%90%8C%E6%AD%A5%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF">删除远程分支后, 同步本地分支</a>
-<ul>
-<li><a href="#%E6%9F%A5%E7%9C%8B">查看</a></li>
-<li><a href="#%E4%BB%8E%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E5%BA%93%E4%B8%AD%E5%88%A0%E9%99%A4">从本地版本库中删除</a></li>
-</ul>
-</li>
-<li><a href="#%E6%9F%A5%E7%9C%8B-git-%E4%B8%AA%E4%BA%BA%E4%BB%A3%E7%A0%81%E9%87%8F">查看 git 个人代码量</a></li>
+<li><a href="#2021%E5%B9%B402%E6%9C%8803%E6%97%A5-%E4%BA%BA%E4%BA%BA%E5%AD%97%E5%B9%95%E7%BB%84%E4%B8%8B%E7%BA%BF">2021年02月03日 人人字幕组下线</a></li>
+<li><a href="#2021%E5%B9%B405%E6%9C%8822%E6%97%A5-%E8%A2%81%E9%9A%86%E5%B9%B3%E9%80%9D%E4%B8%96-%E5%A4%A7%E5%BE%B7%E9%B2%81%E4%BC%8A%E8%B5%B0%E5%A5%BD~">2021年05月22日  袁隆平逝世 大德鲁伊走好~</a></li>
 </ul>
 
           </div>
@@ -110,122 +82,34 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">git 咋用啊</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">人类终将一败涂地~</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-06-15 / 3 min read
+          2021-05-25 / 1 min read
         </div>
         
         <div class="post-content yue">
-          <blockquote>
-<p>日出江花红胜火</p>
-</blockquote>
-<!--more-->
-<h1 id="查看操作记录">查看操作记录</h1>
-<p><code>git reflog</code></p>
-<h1 id="提交错分支">提交错分支</h1>
-<h2 id="方案-1">方案 1</h2>
-<p>先新建一个分支</p>
-<p><code>git branch new_branch</code></p>
-<p>取消提交的分支</p>
-<p><code>git reset HEAD~ --hard</code></p>
-<h2 id="方案-2">方案 2</h2>
-<p>先撤销最后一次提交, 但保留变更</p>
-<p><code>git reset HEAD~ --soft</code></p>
-<p><code>git stash</code></p>
-<p>再切换到正确的分支, 提交代码</p>
-<p><code>git checkout correct_branch</code></p>
-<p><code>git stash pop</code></p>
-<p><code>git add .</code></p>
-<p><code>git commit -m &quot;msg&quot;</code></p>
-<h2 id="方案-3">方案 3</h2>
-<p>cherry-pick</p>
-<p>先切换到正确的分支</p>
-<p><code>git checkout correct_branch</code></p>
-<p>cherry-pick 获取最新一条记录</p>
-<p><code>git cherry-pick master</code></p>
-<p>删除 master 错误的记录</p>
-<p><code>git checkout master</code></p>
-<p><code>git reset HEAD~ --hard</code></p>
-<h2 id="账号密码">账号密码</h2>
-<h3 id="设置单独的-git-配置">设置单独的 git 配置</h3>
-<p>在 .git 路径下执行, 不要带 <code>—global</code>参数</p>
-<pre><code class="language-shell">$ git config user.name &quot;B&quot;
-$ git config user.email &quot;B@gmail.com&quot;
-</code></pre>
-<h3 id="自动记录账号密码">自动记录账号密码</h3>
-<p><code>git config --global credential.helper store</code></p>
-<h2 id="添加远程仓库">添加远程仓库</h2>
-<p><code>git remote add go_turorial git@gitee.com:afreto/go_tutorial.git</code></p>
-<h2 id="拉取远程分支到本地分支">拉取远程分支到本地分支</h2>
-<p><code>git checkout --track origin/feat/5.01</code></p>
-<p>不带 <code>—track</code> 参数只会拉取 index</p>
-<p><code>git config --global branch.autosetuprebase always</code></p>
-<h1 id="回滚">回滚</h1>
-<p><code>git reset --soft HEAD^</code></p>
-<p>HEAD^ 的意思是上一个版本，也可以写成 HEAD~1</p>
-<p>如果你进行了 2 次 commit，想都撤回，可以使用 HEAD~2</p>
-<p>--mixed<br>
-意思是：不删除工作空间改动代码，撤销 commit，并且撤销 git add . 操作<br>
-这个为默认参数，git reset --mixed HEAD^ 和 git reset HEAD^ 效果是一样的。</p>
-<p>--soft<br>
-不删除工作空间改动代码，撤销 commit，不撤销 git add .</p>
-<p>--hard<br>
-删除工作空间改动代码，撤销 commit，撤销 git add .</p>
-<p>注意完成这个操作后，就恢复到了上一次的 commit 状态。</p>
-<h2 id="回滚到-index">回滚到 index</h2>
-<p><code>git reset HEAD@{index}</code></p>
-<h2 id="添加改动到最后一次-commit">添加改动到最后一次 commit</h2>
+          <p>人类终将一败涂地...</p>
+<h1 id="2021年02月03日-人人字幕组下线">2021年02月03日 人人字幕组下线</h1>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/Afret1/image/master/img/20210204001650.png" alt="" loading="lazy"></figure>
+<h1 id="2021年05月22日-袁隆平逝世-大德鲁伊走好~">2021年05月22日  袁隆平逝世 大德鲁伊走好~</h1>
 <blockquote>
-<p>也可用来重新提交 commit message</p>
+<p>“杂交水稻之父”、中国工程院院士、“共和国勋章” 获得者袁隆平，5 月 22 日 13 点 07 分在湖南长沙逝世，享年 91 岁。袁老，走好！ ​​​​</p>
 </blockquote>
-<p><code>git commit --amend</code></p>
-<h1 id="配置代理">配置代理</h1>
-<pre><code class="language-shell">
- git config --global https.proxy https://127.0.0.1:1080
- git config --global http.proxy 'socks5://127.0.0.1:1080'
-
- git config --global http.proxy http://127.0.0.1:1080
- git config --global https.proxy 'socks5://127.0.0.1:1080'
-
- git config --global --unset http.proxy
-
- git config --global --unset https.proxy
-</code></pre>
-<h1 id="删除远程分支后-同步本地分支">删除远程分支后, 同步本地分支</h1>
-<h2 id="查看">查看</h2>
-<p><code>git remote show origin</code></p>
-<h2 id="从本地版本库中删除">从本地版本库中删除</h2>
-<p><code>git remote prune origin</code></p>
-<h1 id="查看-git-个人代码量">查看 git 个人代码量</h1>
-<p><code>git log --author=&quot;username&quot; --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf &quot;added lines: %s, removed lines: %s, total lines: %s\n&quot;, add, subs, loc }' -</code></p>
-<p>替换一下 username</p>
+<figure data-type="image" tabindex="2"><img src="https://img-1257201803.cos.ap-nanjing.myqcloud.com//%E8%A2%81%E9%9A%86%E5%B9%B3.png" alt="" loading="lazy"></figure>
 
         </div>
 
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://afret0.github.io/7v7rkMKSQz/">
-            <span class="flex-auto">git</span>
-          </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://afret0.github.io/vim-真的是太好用了/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  vim 真的是太好用了
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://afret0.github.io/vscode-配置远程开发记录/">
+              <a href="https://afret0.github.io/TAkAxj0Dc/">
                 <h3 class="post-title">
-                  vscode 配置记录
+                  沈阳人为什么爱烤鸡架
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
